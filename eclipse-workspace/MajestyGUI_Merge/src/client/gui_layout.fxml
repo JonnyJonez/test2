@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="pane" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="inner_pane" layoutX="36.0" layoutY="14.0" prefHeight="602.0" prefWidth="1016.0">
+         <children>
+            <AnchorPane layoutY="490.0" prefHeight="143.0" prefWidth="1003.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c5ed6800" height="134.0" layoutX="10.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="985.0" />
+                  <Label layoutX="22.0" layoutY="29.0" text="Chat" textFill="#9e581fb5">
+                     <font>
+                        <Font name="Pristina" size="36.0" />
+                     </font></Label>
+                  <TextArea fx:id="txtChatMessage" layoutX="90.0" layoutY="9.0" prefHeight="104.0" prefWidth="520.0" />
+                  <Button id="btnConnect" fx:id="btnSend" layoutX="613.0" layoutY="9.0" mnemonicParsing="false" onAction="#clickOnSend" prefHeight="104.0" prefWidth="68.0" text="Senden">
+                     <font>
+                        <Font name="Pristina" size="18.0" />
+                     </font>
+                  </Button>
+                  <TextArea fx:id="txtChatArea" layoutX="689.0" layoutY="9.0" prefHeight="104.0" prefWidth="297.0" />
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+      <AnchorPane layoutY="48.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#89aac7" height="143.0" layoutX="45.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="985.0" />
+            <ImageView fitHeight="143.0" fitWidth="82.0" layoutX="50.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pics/cards/backs/Back%201.jpg" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="133.0" layoutX="734.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
+            <Label layoutX="751.0" layoutY="33.0" text="Punkte:">
+               <font>
+                  <Font name="Pristina" size="36.0" />
+               </font></Label>
+            <Label fx:id="lblPlayer1" layoutX="756.0" layoutY="80.0" prefHeight="39.0" prefWidth="90.0" text="#Spieler1">
+               <font>
+                  <Font name="Pristina" size="24.0" />
+               </font></Label>
+            <Label fx:id="lblPlayer2" layoutX="755.0" layoutY="113.0" text="#Spieler 2">
+               <font>
+                  <Font name="Pristina" size="24.0" />
+               </font></Label>
+            <Label layoutX="870.0" layoutY="72.0" text="#Points Spieler 1">
+               <font>
+                  <Font name="Pristina" size="24.0" />
+               </font></Label>
+            <Label layoutX="879.0" layoutY="113.0" text="#Points Spieler 2">
+               <font>
+                  <Font name="Pristina" size="24.0" />
+               </font></Label>
+            <Button fx:id="btncard1" layoutX="136.0" layoutY="31.0" mnemonicParsing="false" onAction="#clickOnCard1">
+               <graphic>
+                  <ImageView fitHeight="140.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../pics/Question_mark.svg.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btncard2" layoutX="234.0" layoutY="31.0" mnemonicParsing="false" onAction="#clickOnCard2">
+               <graphic>
+                  <ImageView fitHeight="140.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../pics/Question_mark.svg.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btncard3" layoutX="332.0" layoutY="31.0" mnemonicParsing="false" onAction="#clickOnCard3">
+               <graphic>
+                  <ImageView fitHeight="140.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../pics/Question_mark.svg.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btncard4" layoutX="430.0" layoutY="31.0" mnemonicParsing="false" onAction="#clickOnCard4">
+               <graphic>
+                  <ImageView fitHeight="140.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../pics/Question_mark.svg.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btncard5" layoutX="528.0" layoutY="31.0" mnemonicParsing="false" onAction="#clickOnCard5">
+               <graphic>
+                  <ImageView fitHeight="140.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../pics/Question_mark.svg.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btncard6" layoutX="626.0" layoutY="31.0" mnemonicParsing="false" onAction="#clickOnCard6">
+               <graphic>
+                  <ImageView fitHeight="140.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../pics/Question_mark.svg.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="48.0" prefWidth="1000.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0bb6d" height="46.0" layoutX="45.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="985.0" />
+            <Label layoutX="70.0" layoutY="36.0" text="IP-Adresse">
+               <font>
+                  <Font name="Pristina" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="347.0" layoutY="36.0" text="Port">
+               <font>
+                  <Font name="Pristina" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="517.0" layoutY="37.0" text="Spieler">
+               <font>
+                  <Font name="Pristina" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtIpAddress" layoutX="146.0" layoutY="39.0">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtPort" layoutX="377.0" layoutY="39.0" prefWidth="50.0">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtName" layoutX="562.0" layoutY="39.0" prefWidth="203.0">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnConnect" layoutX="933.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickOnConnect" text="Verbinden">
+               <font>
+                  <Font name="Pristina" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="201.0" prefHeight="180.0" prefWidth="1000.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c5ed6852" height="187.0" layoutX="45.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" width="985.0" />
+            <ImageView fitHeight="167.0" fitWidth="107.0" layoutX="81.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pics/locations/Side%20A/Side%20A1.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="167.0" fitWidth="106.0" layoutX="195.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pics/locations/Side%20A/Side%20A2.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="167.0" fitWidth="106.0" layoutX="309.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pics/locations/Side%20A/Side%20A3.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="167.0" fitWidth="113.0" layoutX="423.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pics/locations/Side%20A/Side%20A4.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="167.0" fitWidth="114.0" layoutX="536.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pics/locations/Side%20A/Side%20A5.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="167.0" fitWidth="117.0" layoutX="648.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pics/locations/Side%20A/Side%20A6.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="167.0" fitWidth="119.0" layoutX="760.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pics/locations/Side%20A/Side%20A7.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="167.0" fitWidth="118.0" layoutX="874.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pics/locations/Side%20A/Side%20A8.jpg" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="52.0" layoutY="195.0" prefHeight="96.0" prefWidth="1009.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c3eb67e3" height="82.0" layoutX="-6.0" layoutY="18.0" stroke="BLACK" strokeType="INSIDE" width="985.0" />
+                  <GridPane layoutX="33.0" layoutY="14.0" prefHeight="90.0" prefWidth="962.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="#Player1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="#Player2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="3">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="4">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="5">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="6">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="7">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="8">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Pristina" size="24.0" />
+                           </font></Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
