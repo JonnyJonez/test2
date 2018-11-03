@@ -87,15 +87,21 @@ public class client_model {
 							
 						}	else if (msg instanceof CardStackMsg) {
 							CardStackMsg stackmsg = (CardStackMsg) msg;
-							int position = ((CardStackMsg) msg).getPosition();
-							String txtPosition = Integer.toString(position);
-							String Cardname = stackmsg.getCard();
-							buttonsText.set(txtPosition +"" + Cardname);
+							
+							
+							String Card1 = stackmsg.getCard1();
+							String Card2 = stackmsg.getCard2();
+							String Card3 = stackmsg.getCard3();
+							String Card4 = stackmsg.getCard4();
+							String Card5 = stackmsg.getCard5();
+							String Card6 = stackmsg.getCard6();
+							String Cards = Card1 + " " + Card2 + " " + Card3 + " " + Card4 + " " + Card5 + " " + Card6;
+							buttonsText.set(Cards);
 //							logger.info("$$$$$$$$$$$$$ReadButton Text $$$$$$$$$$$$$$$");
 							
 							
 							newestMessage.set("");
-							newestMessage.set("**** Card Stack Updated **** \n " +  txtPosition + " " + Cardname );
+							newestMessage.set("**** Card Stack Updated **** \n " +  Cards);
 							
 							
 							
@@ -149,6 +155,13 @@ public class client_model {
 //		Message msg2 = new CardTakenMsg(position);
 //		msg.send(socket);
 	}
+	
+	//Send position to server to remove
+	public void takenCard(int position) {
+		logger.info("Send position to Server");
+		Message msg = new CardTakenMsg(position);
+		msg.send(socket);
+		}
 	
 	public void sendMessage(String message) {
 		logger.info("Send message");

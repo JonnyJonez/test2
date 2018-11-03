@@ -25,6 +25,7 @@ public class server_model {
 	private volatile boolean stop = false;
 	private int maxPlayer = 2;
 	public String erster;
+	public CardStack s1;
 
 	public void startServer(int port) {
 		logger.info("Start server");
@@ -56,22 +57,14 @@ public class server_model {
 									
 									// Stack erstellen
 									
-									CardStack s1 = new CardStack();
+									s1 = new CardStack();
 									logger.info("ready to send cards");
-									for(int i=1; i<=6; i++){
-										
-										try {
-											Thread.sleep(1000);
-										} catch (InterruptedException e) {
-										e.printStackTrace();
-										}
-										
-										CardStackMsg cardSmsg = new CardStackMsg(i, s1.get(i).toString());
-										broadcast(cardSmsg);
-										
-										logger.info("send card " + i);
-										
-									}
+									
+									CardStackMsg cardSmsg = new CardStackMsg(s1.getCard(1), s1.getCard(2), s1.getCard(3), s1.getCard(4), s1.getCard(5), s1.getCard(6));
+									broadcast(cardSmsg);
+									logger.info("send cards");
+									
+									
 									
 									// Erster herausfinden
 									

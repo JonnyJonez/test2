@@ -47,6 +47,8 @@ public class CardStack {
 		
 	}
 	
+
+	
 	public int size() {
 		return stack.size();
 	}
@@ -70,6 +72,12 @@ public class CardStack {
 		return A;
 	}
 	
+	public String getCard(int position) {
+		Card CardTemp = this.stack.get(position);
+		String Cardname = CardTemp.toString();
+		return Cardname;
+	}
+	
 	public void removeCard(int position) {
 		ArrayList<Card> tempStack = this.stack;		
 		tempStack.remove(position);		
@@ -77,17 +85,6 @@ public class CardStack {
 		
 	}
 	
-	public void broadcast(){
-		// Not yet working
-		
-		CardStackMsg c1 = new CardStackMsg(1, stack.get(1).toString());	
-		model.broadcast(c1);
-		
-//		for(int i = 0; i < 6; i++){
-//			CardStackMsg c1 = new CardStackMsg(i, stack.get(i).toString());	
-//			model.broadcast(c1);
-//		}
-	}
 
 	public Card get(int i) {
 		return this.stack.get(i);

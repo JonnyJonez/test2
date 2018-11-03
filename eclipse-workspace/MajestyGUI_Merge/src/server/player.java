@@ -70,9 +70,15 @@ public class player {
 					} else if (msg instanceof JoinMsg) {
 						player.this.name = model.checknames(((JoinMsg) msg).getName());
 						model.broadcast((JoinMsg) msg);
+					//Msg to remove Card from Stack and send new Stack
 					} else if (msg instanceof CardTakenMsg){
 						player.this.position = ((CardTakenMsg)msg).getposition();
-					//	CardStack.this.removeCard(player.this.position);
+						model.s1.removeCard(position);			
+							
+						CardStackMsg cardSmsg = new CardStackMsg(model.s1.getCard(1), model.s1.getCard(2), model.s1.getCard(3), model.s1.getCard(4), model.s1.getCard(5), model.s1.getCard(6));
+						model.broadcast(cardSmsg);
+							
+						
 						
 						
 					} else if (msg instanceof ScoreMsg) {

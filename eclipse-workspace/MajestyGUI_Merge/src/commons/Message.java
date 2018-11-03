@@ -32,6 +32,7 @@ public abstract class Message {
 			}
 		}
 		
+		//Receive Message for Client and Server
 		public static Message receive(Socket socket) {
 			BufferedReader in;
 			Message msg = null;
@@ -55,7 +56,10 @@ public abstract class Message {
 				}  else if (parts[0].equals(MessageType.Visibility.toString())) {
 					msg = new VisibilityMsg(parts[1], parts[2]);		
 				} else if (parts[0].equals(MessageType.CardStack.toString())) {
-					msg = new CardStackMsg(Integer.parseInt(parts[1]), parts[2]);
+					msg = new CardStackMsg(parts[1], parts[2], parts[3], parts[4], parts[5], parts[6]);
+				} else if (parts[0].equals(MessageType.CardTakenMsg.toString())) {
+					msg = new CardTakenMsg(Integer.parseInt(parts[1]));
+					
 									
 				}
 				

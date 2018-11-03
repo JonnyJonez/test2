@@ -12,6 +12,10 @@ public class CardTakenMsg extends Message{
 		return positionofCard;
 	}
 	
+	public String toString() {
+		
+		return type.toString() + '|' + this.positionofCard;
+	}
 	
 
 

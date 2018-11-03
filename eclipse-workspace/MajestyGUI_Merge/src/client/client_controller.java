@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class client_controller {
@@ -21,6 +22,7 @@ public class client_controller {
 	public Button btncard4;
 	public Button btncard5;
 	public Button btncard6;
+	Button[] buttons = {btncard1, btncard2, btncard3, btncard4, btncard5, btncard6}; 
 	
 	public TextField txtIpAddress;
 	public TextField txtPort;
@@ -33,6 +35,8 @@ public class client_controller {
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
 	
+
+	
 	public void clickOnConnect () {
 		String ipAddress = txtIpAddress.getText();
 		int port = Integer.parseInt(txtPort.getText());
@@ -43,21 +47,27 @@ public class client_controller {
 	
 	public void clickOnCard1() {
 		model.takeCard(btncard1.getText());
+		model.takenCard(1);
 	}
 	public void clickOnCard2() {
 		model.takeCard(btncard2.getText());
+		model.takenCard(2);
 	}
 	public void clickOnCard3() {
 		model.takeCard(btncard3.getText());
+		model.takenCard(3);
 	}
 	public void clickOnCard4() {
 		model.takeCard(btncard4.getText());
+		model.takenCard(4);
 	}
 	public void clickOnCard5() {
 		model.takeCard(btncard5.getText());
+		model.takenCard(5);
 	}
 	public void clickOnCard6() {
 		model.takeCard(btncard6.getText());
+		model.takenCard(6);
 	}	
 	
 	
@@ -112,27 +122,51 @@ public void setButtonsInvisible(){
 	
 	public void setButtonCardsText(String Value){
 		
-		 String posID = String.valueOf(Value.charAt(0));
-		 String cardname = Value.substring(1);
-	
+		String[] cards = Value.split(" ");
+		
+		//Does not get the right image
+//		Image Blue = new Image(getClass().getResourceAsStream("Blue.jpg"));
+//		Image Brown = new Image(getClass().getResourceAsStream("Brown.jpg"));
+//		Image Green = new Image(getClass().getResourceAsStream("Green.jpg"));
+//		Image Orange = new Image(getClass().getResourceAsStream("Orange.jpg"));
+//		Image Red = new Image(getClass().getResourceAsStream("Red.jpg"));
+//		Image Violet = new Image(getClass().getResourceAsStream("Violet.jpg"));
+//		Image Yellow = new Image(getClass().getResourceAsStream("Yellow.jpg"));
+		
+		
+		
+		
 		
 		Platform.runLater(new Runnable() {
 		    @Override
 		    public void run() {
 		        // Update UI here.
-		    	if(Integer.parseInt(posID) == 1){
-					 btncard1.setText(cardname);				 
-				 } else if(Integer.parseInt(posID) == 2){
-					 btncard2.setText(cardname);
-				 } else if(Integer.parseInt(posID) == 3){
-					 btncard3.setText(cardname);
-				 } else if(Integer.parseInt(posID) == 4){
-					 btncard4.setText(cardname);
-				 } else if(Integer.parseInt(posID) == 5){
-					 btncard5.setText(cardname);
-				 } else if(Integer.parseInt(posID) == 6){
-					 btncard6.setText(cardname);
-				 }
+		    	btncard1.setText(cards[0]);
+		    	btncard2.setText(cards[1]);
+		    	btncard3.setText(cards[2]);
+		    	btncard4.setText(cards[3]);
+		    	btncard5.setText(cards[4]);
+		    	btncard6.setText(cards[5]);	    	
+		    	
+// Does not get image -> Exception
+//		    	for(Button button :buttons) {
+//					if(button.getText().equals("Muehle")) {
+//						button.setGraphic(new ImageView(Orange));
+//					} else if(button.getText().equals("Brauerei")){
+//						button.setGraphic(new ImageView(Brown));
+//					} else if(button.getText().equals("Hexenhaus")){
+//						button.setGraphic(new ImageView(Green));
+//					} else if(button.getText().equals("Wachturm")){
+//						button.setGraphic(new ImageView(Blue));
+//					} else if(button.getText().equals("Kaserne")){
+//						button.setGraphic(new ImageView(Red));
+//					} else if(button.getText().equals("Taverne")){
+//						button.setGraphic(new ImageView(Yellow));
+//					} else if(button.getText().equals("Schloss")){
+//						button.setGraphic(new ImageView(Violet));
+//					}
+//				}
+		    	
 		    }
 		
 		});
