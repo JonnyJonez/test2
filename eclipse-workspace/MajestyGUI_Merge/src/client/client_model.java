@@ -85,6 +85,8 @@ public class client_model {
 							if(vismsg.getName().equals(name)){
 							buttonsVis.set(vismsg.getVisibility());
 							}
+							newestMessage.set("");
+							newestMessage.set("----- Turn buttons " + vismsg.getVisibility());
 							
 						}	else if (msg instanceof CardStackMsg) {
 							CardStackMsg stackmsg = (CardStackMsg) msg;

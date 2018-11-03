@@ -25,6 +25,7 @@ public class server_model {
 	private volatile boolean stop = false;
 	private int maxPlayer = 2;
 	public String erster;
+	public String zweiter;
 	public CardStack s1;
 
 	public void startServer(int port) {
@@ -49,6 +50,9 @@ public class server_model {
 								if(players.size() == 1){
 									player.setErster();
 									player.setTurn();
+									VisibilityMsg firstmsg = new VisibilityMsg(erster, "false");
+									broadcast(firstmsg);	
+									
 								}
 								
 								if(players.size() == maxPlayer){
@@ -73,6 +77,8 @@ public class server_model {
 										if(p.getErster() == "true"){
 											erster = p.getName();
 											
+										} else if(p.getErster() == "false") {
+											zweiter = p.getName();
 										}
 										
 									// Visibility msg senden an erster
@@ -84,7 +90,12 @@ public class server_model {
 									}
 																		
 									VisibilityMsg vismsg = new VisibilityMsg(erster, "true");
-									broadcast(vismsg);										
+									broadcast(vismsg);
+									logger.info("set erster visible " + erster);
+									
+									VisibilityMsg vismsg2 = new VisibilityMsg(zweiter, "false");
+									broadcast(vismsg2);	
+									logger.info("set zweiter visible false " + zweiter);
 								
 										
 									}
