@@ -70,6 +70,7 @@ public class player {
 					} else if (msg instanceof JoinMsg) {
 						player.this.name = model.checknames(((JoinMsg) msg).getName());
 						model.broadcast((JoinMsg) msg);
+						
 					//Msg to remove Card from Stack and send new Stack
 					} else if (msg instanceof CardTakenMsg){
 						player.this.position = ((CardTakenMsg)msg).getposition();

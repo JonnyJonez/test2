@@ -1,5 +1,8 @@
 package client;
 
+import java.io.InputStream;
+import java.net.URL;
+
 import client.client_model;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -23,6 +26,8 @@ public class client_controller {
 	public Button btncard5;
 	public Button btncard6;
 	Button[] buttons = {btncard1, btncard2, btncard3, btncard4, btncard5, btncard6}; 
+	
+	
 	
 	public TextField txtIpAddress;
 	public TextField txtPort;
@@ -93,6 +98,13 @@ public class client_controller {
 			}		
 						
 		} );
+		
+		model.buttonImage.addListener( (o, oldValue, newValue) -> {
+			if(!newValue.isEmpty()) {
+				setButtonImage(newValue);
+			}		
+						
+		} );
 	}
 	
 	
@@ -117,6 +129,54 @@ public void setButtonsInvisible(){
 		btncard5.setDisable(false);
 		btncard6.setDisable(false);
 //		view.btncard7.setDisable(false);
+		}
+	
+	public void setButtonImage(String imagebutton) {
+//		 int posID = Integer.parseInt(String.valueOf(imagebutton.charAt(0)));
+//		 String Cardimage = imagebutton.substring(1);
+//		 
+//		 URL input = ClassLoader.getSystemResource("Brown.jpg");
+//		 fx
+//		 
+//		 //Set image for Character cards
+//		 Image Blue = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Blue.jpg"));
+//		 Image Brown = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Brown.jpg"));
+//		 Image Green = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Green.jpg"));
+//		 Image Orange = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Orange.jpg"));
+//		 Image Red = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Red.jpg"));
+//		 Image Violet = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Violet.jpg"));
+//		 Image Yellow = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Yellow.jpg"));
+//		 
+//		 //Set Imageview for Images
+//		 ImageView ViewBlue = new ImageView(Blue);
+//		 ImageView ViewBrown = new ImageView(Brown);
+//		 ImageView ViewGreen = new ImageView(Green);
+//		 ImageView ViewOrange = new ImageView(Orange);
+//		 ImageView ViewRed = new ImageView(Red);
+//		 ImageView ViewViolet = new ImageView(Violet);
+//		 ImageView ViewYellow= new ImageView(Yellow);
+//			
+//		 
+//		 Platform.runLater(new Runnable() {
+//			    @Override
+//			    public void run() {
+//			    	
+//					
+//					if(posID == 1) {
+//						btncard1.setGraphic(ViewBlue);
+//					} else if (posID == 2) {
+//						btncard2.setGraphic(ViewBrown);
+//					} else if (posID == 3) {
+//						btncard3.setGraphic(ViewGreen);
+//					} else if (posID == 4) {
+//						btncard4.setGraphic(ViewOrange);
+//					} else if (posID == 5) {
+//						btncard5.setGraphic(ViewRed);
+//					} else if (posID == 6) {
+//						btncard6.setGraphic(ViewRed);
+//					}
+//			    }
+//		 });
 		
 	}
 	
@@ -124,18 +184,7 @@ public void setButtonsInvisible(){
 		
 		String[] cards = Value.split(" ");
 		
-		//Does not get the right image
-//		Image Blue = new Image(getClass().getResourceAsStream("Blue.jpg"));
-//		Image Brown = new Image(getClass().getResourceAsStream("Brown.jpg"));
-//		Image Green = new Image(getClass().getResourceAsStream("Green.jpg"));
-//		Image Orange = new Image(getClass().getResourceAsStream("Orange.jpg"));
-//		Image Red = new Image(getClass().getResourceAsStream("Red.jpg"));
-//		Image Violet = new Image(getClass().getResourceAsStream("Violet.jpg"));
-//		Image Yellow = new Image(getClass().getResourceAsStream("Yellow.jpg"));
-		
-		
-		
-		
+
 		
 		Platform.runLater(new Runnable() {
 		    @Override
@@ -148,24 +197,6 @@ public void setButtonsInvisible(){
 		    	btncard5.setText(cards[4]);
 		    	btncard6.setText(cards[5]);	    	
 		    	
-// Does not get image -> Exception
-//		    	for(Button button :buttons) {
-//					if(button.getText().equals("Muehle")) {
-//						button.setGraphic(new ImageView(Orange));
-//					} else if(button.getText().equals("Brauerei")){
-//						button.setGraphic(new ImageView(Brown));
-//					} else if(button.getText().equals("Hexenhaus")){
-//						button.setGraphic(new ImageView(Green));
-//					} else if(button.getText().equals("Wachturm")){
-//						button.setGraphic(new ImageView(Blue));
-//					} else if(button.getText().equals("Kaserne")){
-//						button.setGraphic(new ImageView(Red));
-//					} else if(button.getText().equals("Taverne")){
-//						button.setGraphic(new ImageView(Yellow));
-//					} else if(button.getText().equals("Schloss")){
-//						button.setGraphic(new ImageView(Violet));
-//					}
-//				}
 		    	
 		    }
 		
