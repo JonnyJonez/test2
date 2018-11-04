@@ -17,7 +17,7 @@ public class CardStack {
 	
 	public CardStack() {
 		for (CardType cards: CardType.values()) {
-			for(int i = 0; i<4; i++){
+			for(int i = 0; i<10; i++){
 				stack.add(new Card(cards));					
 			}			
 		}

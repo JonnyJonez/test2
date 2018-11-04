@@ -74,13 +74,25 @@ public class player {
 					//Msg to remove Card from Stack and send new Stack
 					} else if (msg instanceof CardTakenMsg){
 						player.this.position = ((CardTakenMsg)msg).getposition();
-						model.s1.removeCard(position);			
-							
+						model.s1.removeCard(position);	
+						
+						//waiting for removing card
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+						e.printStackTrace();
+						}
+						
 						CardStackMsg cardSmsg = new CardStackMsg(model.s1.getCard(1), model.s1.getCard(2), model.s1.getCard(3), model.s1.getCard(4), model.s1.getCard(5), model.s1.getCard(6));
+						
+						//Wait for GUI 
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+						e.printStackTrace();
+						}
+						
 						model.broadcast(cardSmsg);
-							
-						
-						
 						
 					} else if (msg instanceof ScoreMsg) {
 						player.this.name = ((ScoreMsg) msg).getName();	
@@ -252,7 +264,7 @@ public class player {
 							
 							
 							try {
-								Thread.sleep(500);
+								Thread.sleep(800);
 							} catch (InterruptedException e) {
 							e.printStackTrace();
 							}
@@ -335,7 +347,8 @@ public class player {
 			this.turn = "false";
 		} else if (this.turn.equals("false")){
 			this.turn = "true";
-		}		
+		}
+		
 		VisibilityMsg vismsg = new VisibilityMsg(player.this.name, this.turn);
 		model.broadcast(vismsg);
 		

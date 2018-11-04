@@ -17,6 +17,7 @@ import commons.RewardMsg;
 import commons.ScoreMsg;
 import commons.VisibilityMsg;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Button;
 import server.player;
@@ -33,6 +34,7 @@ public class client_model {
 	protected SimpleStringProperty buttonsVis = new SimpleStringProperty();
 	protected SimpleStringProperty buttonsText = new SimpleStringProperty();
 	protected SimpleStringProperty buttonImage = new SimpleStringProperty();
+	
 
 	private Logger logger = Logger.getLogger("");
 	private Socket socket;
@@ -74,10 +76,15 @@ public class client_model {
 						}	else if (msg instanceof RewardMsg) {
 							RewardMsg rewardmsg = (RewardMsg) msg;
 							
-							if(rewardmsg.getName().equals(name)){
-							newestMessage.set(""); // erase previous message
-							newestMessage.set("$$$ Erhaltene Coins: " + rewardmsg.getReward() + " || Neuer Kontostand: " + rewardmsg.getSaldo());
-							}							
+							if(rewardmsg.getName().equals(name)){								
+								newestMessage.set(""); // erase previous message
+								newestMessage.set("$$$ Erhaltene Coins: " + rewardmsg.getReward() + " || Neuer Kontostand: " + rewardmsg.getSaldo());
+							}			
+							try {
+								Thread.sleep(200);
+							} catch (InterruptedException e) {
+							e.printStackTrace();
+							}
 							
 						}	else if (msg instanceof VisibilityMsg) {
 							VisibilityMsg vismsg = (VisibilityMsg) msg;
@@ -87,21 +94,34 @@ public class client_model {
 							}
 							newestMessage.set("");
 							newestMessage.set("----- Turn buttons " + vismsg.getVisibility());
+							try {
+								Thread.sleep(200);
+							} catch (InterruptedException e) {
+							e.printStackTrace();
+							}
 							
 						}	else if (msg instanceof CardStackMsg) {
-							CardStackMsg stackmsg = (CardStackMsg) msg;
-							
-							
+							CardStackMsg stackmsg = (CardStackMsg) msg;							
 							String Card1 = stackmsg.getCard1();
 							String Card2 = stackmsg.getCard2();
 							String Card3 = stackmsg.getCard3();
 							String Card4 = stackmsg.getCard4();
 							String Card5 = stackmsg.getCard5();
 							String Card6 = stackmsg.getCard6();
-							String[] cards = {Card1, Card2, Card3, Card4, Card5, Card6};
+//							String[] cards = {Card1, Card2, Card3, Card4, Card5, Card6};
+							
 							
 							String Cards = Card1 + " " + Card2 + " " + Card3 + " " + Card4 + " " + Card5 + " " + Card6;
+														
 							buttonsText.set(Cards);
+							
+							try {
+								Thread.sleep(200);
+							} catch (InterruptedException e) {
+							e.printStackTrace();
+							}
+							
+							
 //							logger.info("$$$$$$$$$$$$$ReadButton Text $$$$$$$$$$$$$$$");
 							
 //							buttonImage.set("1"+ Card1);
@@ -155,6 +175,12 @@ public class client_model {
 		logger.info("Take card");
 		Message msg = new ScoreMsg(name, card);
 		msg.send(socket);
+		
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+		e.printStackTrace();
+		}
 	
 //		try {
 //			Thread.sleep(500);
@@ -173,7 +199,15 @@ public class client_model {
 		logger.info("Send position to Server");
 		Message msg = new CardTakenMsg(position);
 		msg.send(socket);
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+		e.printStackTrace();
 		}
+		
+		}
+	
 	
 	public void sendMessage(String message) {
 		logger.info("Send message");

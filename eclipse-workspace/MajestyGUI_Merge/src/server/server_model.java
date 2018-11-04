@@ -83,15 +83,18 @@ public class server_model {
 										
 									// Visibility msg senden an erster
 									
-									try {
-										Thread.sleep(200);
-									} catch (InterruptedException e) {
-									e.printStackTrace();
-									}
+									
 																		
 									VisibilityMsg vismsg = new VisibilityMsg(erster, "true");
 									broadcast(vismsg);
 									logger.info("set erster visible " + erster);
+									
+									
+									try {
+										Thread.sleep(300);
+									} catch (InterruptedException e) {
+									e.printStackTrace();
+									}
 									
 									VisibilityMsg vismsg2 = new VisibilityMsg(zweiter, "false");
 									broadcast(vismsg2);	

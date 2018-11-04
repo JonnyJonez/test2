@@ -36,6 +36,8 @@ public class client_controller {
 	
 	public Label lblPlayer1;
 	public Label lblPlayer2;
+	public Label lblplayer1score;
+	public Label lblplayer2score;
 	
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
@@ -105,6 +107,7 @@ public class client_controller {
 			}		
 						
 		} );
+		
 	}
 	
 	
@@ -184,8 +187,6 @@ public void setButtonsInvisible(){
 		
 		String[] cards = Value.split(" ");
 		
-
-		
 		Platform.runLater(new Runnable() {
 		    @Override
 		    public void run() {
@@ -195,11 +196,9 @@ public void setButtonsInvisible(){
 		    	btncard3.setText(cards[2]);
 		    	btncard4.setText(cards[3]);
 		    	btncard5.setText(cards[4]);
-		    	btncard6.setText(cards[5]);	    	
-		    	
+		    	btncard6.setText(cards[5]);	 	
 		    	
 		    }
-		
 		});
 	}
 	
