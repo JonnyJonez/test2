@@ -45,9 +45,11 @@ public class client_controller {
 		String name = txtName.getText();
 		// lblPlayer1.setText(name);
 		lblplayer1score.setText("0");
-		// lblplayer2score.setText("0");
+		lblplayer2score.setText("0");
 		model.connect(ipAddress, port, name);
-		
+		txtIpAddress.setDisable(true);
+		txtPort.setDisable(true);
+		txtName.setDisable(true);		
 		
 	}
 	
@@ -253,7 +255,7 @@ public void setButtonsInvisible(){
 		    	if(type.equals("my")){
 		    		lblplayer1score.setText(saldo);
 		    	} else {
-				//	lblplayer2score.setText(saldo);
+					lblplayer2score.setText(saldo);
 				}	
 		    	
 		    }
