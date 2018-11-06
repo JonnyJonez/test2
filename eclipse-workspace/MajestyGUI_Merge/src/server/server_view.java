@@ -48,7 +48,7 @@ public class server_view {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-		stage.setTitle("SimpleChat Server");
+		stage.setTitle("Majesty Server");
 	}
 	
 	protected void start() {

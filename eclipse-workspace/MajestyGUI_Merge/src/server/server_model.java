@@ -11,6 +11,7 @@ import commons.CardStack;
 import commons.CardStackMsg;
 import commons.ChatMsg;
 import commons.JoinMsg;
+import commons.Message;
 import commons.RewardMsg;
 import commons.ScoreMsg;
 import commons.VisibilityMsg;
@@ -80,11 +81,27 @@ public class server_model {
 										} else if(p.getErster() == "false") {
 											zweiter = p.getName();
 										}
+									}
+										
+									// JoinMsg senden
+										
+									for (player p : players) {
+										
+									try {
+										Thread.sleep(200);
+									} catch (InterruptedException e) {
+									e.printStackTrace();
+									}	
+									
+									JoinMsg joinmsg = new JoinMsg(p.getName());
+									broadcast(joinmsg);
+											
+											
+									}
 										
 									// Visibility msg senden an erster
 									
-									
-																		
+																										
 									VisibilityMsg vismsg = new VisibilityMsg(erster, "true");
 									broadcast(vismsg);
 									logger.info("set erster visible " + erster);
@@ -100,8 +117,7 @@ public class server_model {
 									broadcast(vismsg2);	
 									logger.info("set zweiter visible false " + zweiter);
 								
-										
-									}
+									
 								}
 							
 							} else {

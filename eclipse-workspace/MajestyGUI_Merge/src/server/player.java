@@ -69,7 +69,7 @@ public class player {
 											
 					} else if (msg instanceof JoinMsg) {
 						player.this.name = model.checknames(((JoinMsg) msg).getName());
-						model.broadcast((JoinMsg) msg);
+						// model.broadcast((JoinMsg) msg);
 						
 					//Msg to remove Card from Stack and send new Stack
 					} else if (msg instanceof CardTakenMsg){
@@ -455,7 +455,7 @@ public class player {
 				player.this.Brauerei--;
 				lazarett.push("Brauerei");
 				
-				Message msg = new ChatMsg(name, "Minus Mühle");
+				Message msg = new ChatMsg(name, "Minus Brauerei");
 				msg.send(socket);
 				
 			} else {

@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.logging.Logger;
 
 import javax.sound.midi.ControllerEventListener;
+import javax.swing.text.View;
 
 import commons.CardStackMsg;
 import commons.CardTakenMsg;
@@ -31,14 +32,17 @@ import server.player;
  */
 public class client_model {
 	protected SimpleStringProperty newestMessage = new SimpleStringProperty();
+	protected SimpleStringProperty newJoin = new SimpleStringProperty();
 	protected SimpleStringProperty buttonsVis = new SimpleStringProperty();
 	protected SimpleStringProperty buttonsText = new SimpleStringProperty();
 	protected SimpleStringProperty buttonImage = new SimpleStringProperty();
+	protected SimpleStringProperty myCoins = new SimpleStringProperty();
+	protected SimpleStringProperty otherCoins = new SimpleStringProperty();
 	
 
 	private Logger logger = Logger.getLogger("");
 	private Socket socket;
-	private String name;
+	public String name;
 
 	public void connect(String ipAddress, int Port, String name) {
 		logger.info("Connect");
@@ -67,7 +71,8 @@ public class client_model {
 							JoinMsg joinmsg = (JoinMsg) msg;
 							newestMessage.set(""); // erase previous message
 							newestMessage.set("-------" + joinmsg.getName() + " joined the chat ------");
-							
+							newJoin.set(joinmsg.getName());
+														
 						} else if (msg instanceof ScoreMsg) {
 							ScoreMsg scoremsg = (ScoreMsg) msg;
 							newestMessage.set(""); // erase previous message
@@ -76,10 +81,15 @@ public class client_model {
 						}	else if (msg instanceof RewardMsg) {
 							RewardMsg rewardmsg = (RewardMsg) msg;
 							
+							
 							if(rewardmsg.getName().equals(name)){								
 								newestMessage.set(""); // erase previous message
 								newestMessage.set("$$$ Erhaltene Coins: " + rewardmsg.getReward() + " || Neuer Kontostand: " + rewardmsg.getSaldo());
-							}			
+								myCoins.set(((RewardMsg) msg).getSaldo().toString());
+							}	else{
+								otherCoins.set(((RewardMsg) msg).getSaldo().toString());
+							}
+							
 							try {
 								Thread.sleep(200);
 							} catch (InterruptedException e) {
@@ -93,7 +103,8 @@ public class client_model {
 							buttonsVis.set(vismsg.getVisibility());
 							}
 							newestMessage.set("");
-							newestMessage.set("----- Turn buttons " + vismsg.getVisibility());
+							newestMessage.set("----- Turn buttons " + vismsg.getVisibility() + " for " + vismsg.getName());
+							
 							try {
 								Thread.sleep(200);
 							} catch (InterruptedException e) {
@@ -120,6 +131,8 @@ public class client_model {
 							} catch (InterruptedException e) {
 							e.printStackTrace();
 							}
+							
+						
 							
 							
 //							logger.info("$$$$$$$$$$$$$ReadButton Text $$$$$$$$$$$$$$$");

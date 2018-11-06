@@ -26,13 +26,10 @@ public class client_controller {
 	public Button btncard5;
 	public Button btncard6;
 	Button[] buttons = {btncard1, btncard2, btncard3, btncard4, btncard5, btncard6}; 
-	
-	
-	
+		
 	public TextField txtIpAddress;
 	public TextField txtPort;
 	public TextField txtName;
-	;
 	
 	public Label lblPlayer1;
 	public Label lblPlayer2;
@@ -42,14 +39,16 @@ public class client_controller {
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
 	
-
-	
 	public void clickOnConnect () {
 		String ipAddress = txtIpAddress.getText();
 		int port = Integer.parseInt(txtPort.getText());
 		String name = txtName.getText();
-		lblPlayer1.setText(name);
+		// lblPlayer1.setText(name);
+		lblplayer1score.setText("0");
+		// lblplayer2score.setText("0");
 		model.connect(ipAddress, port, name);
+		
+		
 	}
 	
 	public void clickOnCard1() {
@@ -104,6 +103,27 @@ public class client_controller {
 		model.buttonImage.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				setButtonImage(newValue);
+			}		
+						
+		} );
+		
+		model.newJoin.addListener( (o, oldValue, newValue) -> {
+			if(!newValue.isEmpty()) {
+				checkJoiner(newValue);
+			}		
+						
+		} );
+		
+		model.myCoins.addListener( (o, oldValue, newValue) -> {
+			if(!newValue.isEmpty()) {
+				addSaldo("my", newValue);
+			}		
+						
+		} );
+		
+		model.otherCoins.addListener( (o, oldValue, newValue) -> {
+			if(!newValue.isEmpty()) {
+				addSaldo("other", newValue);
 			}		
 						
 		} );
@@ -207,4 +227,40 @@ public void setButtonsInvisible(){
 		model.sendMessage(txtChatMessage.getText());
 	}
 	
+	public void checkJoiner(String joiner) {
+		
+		Platform.runLater(new Runnable() {
+			
+			  @Override
+		    public void run() {
+		        // Update UI here.
+		    	if(joiner.equals(txtName.getText())){
+					lblPlayer1.setText(joiner);
+				} else {
+					lblPlayer2.setText(joiner);
+				}	
+		    	
+		    }
+		});
+	}
+	
+	public void addSaldo(String type, String saldo) {
+		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		        // Update UI here.
+		    	if(type.equals("my")){
+		    		lblplayer1score.setText(saldo);
+		    	} else {
+				//	lblplayer2score.setText(saldo);
+				}	
+		    	
+		    }
+		});
+	}
+	
+		
+		
+
 }
