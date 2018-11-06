@@ -169,6 +169,61 @@ public class player {
 								player.this.Hexenhaus++;
 								model.broadcast((ScoreMsg) msg);	
 								
+								try {
+									if (lazarett.peek().equals("Muehle")) {
+										ScoreMsg miller = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Muehle");
+										player.this.Muehle++;
+										lazarett.pop();
+										model.broadcast((ScoreMsg) miller); // does this work?
+									} 
+									
+									else if (lazarett.peek().equals("Brauerei")) {
+										ScoreMsg beer = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Brauerei");
+										player.this.Brauerei++;
+										lazarett.pop();
+										model.broadcast((ScoreMsg) beer);
+									}
+									
+									else if (lazarett.peek().equals("Hexenhaus")) {
+										ScoreMsg witch = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Hexenhaus");
+										player.this.Hexenhaus++;
+										lazarett.pop();
+										model.broadcast((ScoreMsg) witch);
+									}
+									
+									else if (lazarett.peek().equals("Wachturm")) {
+										ScoreMsg defense = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Wachturm");
+										player.this.Wachturm++;
+										lazarett.pop();
+										model.broadcast((ScoreMsg) defense);
+									}		
+
+									else if (lazarett.peek().equals("Kaserne")) {
+										ScoreMsg attack = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Kaserne");
+										player.this.Kaserne++;
+										lazarett.pop();
+										model.broadcast((ScoreMsg) attack);
+									} 
+									
+									else if (lazarett.peek().equals("Taverne")) {
+										ScoreMsg tavern = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Taverne");
+										player.this.Taverne++;
+										lazarett.pop();
+										model.broadcast((ScoreMsg) tavern);
+									}
+									
+									else if (lazarett.peek().equals("Schloss")){
+										ScoreMsg castle = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Schloss");
+										player.this.Schloss++;
+										lazarett.pop();
+										model.broadcast((ScoreMsg) castle);
+									}
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}			
+								
+						
 								reward += (player.this.getMuehle() * rate);
 								reward += (player.this.getBrauerei() * rate);
 								reward += (player.this.getHexenhaus() * rate);
