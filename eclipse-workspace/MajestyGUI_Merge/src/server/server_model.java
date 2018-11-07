@@ -96,8 +96,7 @@ public class server_model {
 									}
 										
 									// Visibility msg senden an erster
-									
-																										
+																																			
 									VisibilityMsg vismsg = new VisibilityMsg(erster, "true");
 									broadcast(vismsg);
 									logger.info("set erster visible " + erster);

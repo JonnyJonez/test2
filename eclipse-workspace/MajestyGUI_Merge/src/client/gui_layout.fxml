@@ -234,59 +234,59 @@
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="2">
+                        <Label fx:id="lblPlayer1brauerei" text="Label" GridPane.columnIndex="2">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label fx:id="lblPlayer2brauerei" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="3">
+                        <Label fx:id="lblPlayer1hexenhaus"  text="Label" GridPane.columnIndex="3">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Label fx:id="lblPlayer2hexenhaus" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="4">
+                        <Label fx:id="lblPlayer1wachturm" text="Label" GridPane.columnIndex="4">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <Label fx:id="lblPlayer2wachturm" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="5">
+                        <Label fx:id="lblPlayer1kaserne" text="Label" GridPane.columnIndex="5">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                        <Label fx:id="lblPlayer2kaserne" text="Label" GridPane.columnIndex="5" GridPane.rowIndex="1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="6">
+                        <Label fx:id="lblPlayer1taverne" text="Label" GridPane.columnIndex="6">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                        <Label fx:id="lblPlayer2taverne" text="Label" GridPane.columnIndex="6" GridPane.rowIndex="1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="7">
+                        <Label fx:id="lblPlayer1schloss" text="Label" GridPane.columnIndex="7">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="8">
+                        <Label fx:id="lblPlayer1lazarett" text="Label" GridPane.columnIndex="8">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                        <Label  fx:id="lblPlayer2schloss" text="Label" GridPane.columnIndex="7" GridPane.rowIndex="1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                        <Label  fx:id="lblPlayer2lazarett" text="Label" GridPane.columnIndex="8" GridPane.rowIndex="1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>

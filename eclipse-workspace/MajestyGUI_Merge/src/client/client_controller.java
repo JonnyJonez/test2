@@ -35,10 +35,25 @@ public class client_controller {
 	public Label lblPlayer1table;
 	public Label lblPlayer2;
 	public Label lblPlayer2table;
-	public Label lblPlayer1muehle;
-	public Label lblPlayer2muehle;
 	public Label lblplayer1score;
 	public Label lblplayer2score;
+	
+	public Label lblPlayer1muehle;
+	public Label lblPlayer2muehle;
+	public Label lblPlayer1brauerei;
+	public Label lblPlayer2brauerei;
+	public Label lblPlayer1hexenhaus;
+	public Label lblPlayer2hexenhaus;
+	public Label lblPlayer1wachturm;
+	public Label lblPlayer2wachturm;
+	public Label lblPlayer1kaserne;
+	public Label lblPlayer2kaserne;	
+	public Label lblPlayer1taverne;
+	public Label lblPlayer2taverne;
+	public Label lblPlayer1schloss;
+	public Label lblPlayer2schloss;
+	public Label lblPlayer1lazarett;
+	public Label lblPlayer2lazarett;
 	
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
@@ -48,8 +63,24 @@ public class client_controller {
 		int port = Integer.parseInt(txtPort.getText());
 		String name = txtName.getText();
 		// lblPlayer1.setText(name);
+		
 		lblplayer1score.setText("0");
 		lblplayer2score.setText("0");
+		lblPlayer1muehle.setText("0");
+		lblPlayer1brauerei.setText("0");
+		lblPlayer1hexenhaus.setText("0");
+		lblPlayer1wachturm.setText("0");
+		lblPlayer1kaserne.setText("0");
+		lblPlayer1taverne.setText("0");
+		lblPlayer1schloss.setText("0");
+		lblPlayer2muehle.setText("0");
+		lblPlayer2brauerei.setText("0");
+		lblPlayer2hexenhaus.setText("0");
+		lblPlayer2wachturm.setText("0");
+		lblPlayer2kaserne.setText("0");
+		lblPlayer2taverne.setText("0");
+		lblPlayer2schloss.setText("0");
+		
 		model.connect(ipAddress, port, name);
 		txtIpAddress.setDisable(true);
 		txtPort.setDisable(true);
@@ -304,18 +335,49 @@ public void setButtonsInvisible(){
 			    		model.muehle++;
 			    		lblPlayer1muehle.setText("" + model.muehle);
 			    	} else if (card.equals("Brauerei")) {
-			    		// add others
-			    	}
-		    		
-		    		
+			    		model.brauerei++;
+			    		lblPlayer1brauerei.setText("" + model.brauerei);
+			    	} else if (card.equals("Hexenhaus")) {
+			    		model.hexenhaus++;
+			    		lblPlayer1hexenhaus.setText("" + model.hexenhaus);
+			    	} else if (card.equals("Wachturm")) {
+			    		model.wachturm++;
+			    		lblPlayer1wachturm.setText("" + model.wachturm);
+			    	} else if (card.equals("Kaserne")) {
+			    		model.kaserne++;
+			    		lblPlayer1kaserne.setText("" + model.kaserne);
+			    	} else if (card.equals("Taverne")) {
+			    		model.taverne++;
+			    		lblPlayer1taverne.setText("" + model.taverne);
+			    	} else if (card.equals("Schloss")) {
+			    		model.schloss++;
+			    		lblPlayer1schloss.setText("" + model.schloss);
+			    	} 
+
 		    	} else {
 		    		
 		    		if(card.equals("Muehle")){
 			    		model.muehle++;
 			    		lblPlayer2muehle.setText("" + model.muehle);
-			    	} else if (card.equals("Brauerei")) {
-			    		// add others
-			    	}
+		    		} else if (card.equals("Brauerei")) {
+			    		model.brauerei++;
+			    		lblPlayer2brauerei.setText("" + model.brauerei);
+			    	} else if (card.equals("Hexenhaus")) {
+			    		model.hexenhaus++;
+			    		lblPlayer2hexenhaus.setText("" + model.hexenhaus);
+			    	} else if (card.equals("Wachturm")) {
+			    		model.wachturm++;
+			    		lblPlayer2wachturm.setText("" + model.wachturm);
+			    	} else if (card.equals("Kaserne")) {
+			    		model.kaserne++;
+			    		lblPlayer2kaserne.setText("" + model.kaserne);
+			    	} else if (card.equals("Taverne")) {
+			    		model.taverne++;
+			    		lblPlayer2taverne.setText("" + model.taverne);
+			    	} else if (card.equals("Schloss")) {
+			    		model.schloss++;
+			    		lblPlayer2schloss.setText("" + model.schloss);
+			    	} 
 				}
 		         	
 		    }

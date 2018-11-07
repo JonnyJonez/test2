@@ -45,7 +45,14 @@ public class client_model {
 	private Logger logger = Logger.getLogger("");
 	private Socket socket;
 	public String name;
+	
+	public int wachturm = 0;
+	public int taverne = 0;
+	public int kaserne = 0;
 	public int muehle = 0;
+	public int brauerei = 0;
+	public int hexenhaus = 0;
+	public int schloss = 0;
 
 	public void connect(String ipAddress, int Port, String name) {
 		logger.info("Connect");
