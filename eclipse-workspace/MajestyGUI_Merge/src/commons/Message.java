@@ -50,7 +50,7 @@ public abstract class Message {
 				} else if (parts[0].equals(MessageType.Chat.toString())) {
 					msg = new ChatMsg(parts[1], parts[2]);
 				} else if (parts[0].equals(MessageType.Score.toString())) {
-					msg = new ScoreMsg(parts[1], parts[2]);
+					msg = new ScoreMsg(parts[1], parts[2], parts[3]);
 				} else if (parts[0].equals(MessageType.Reward.toString())) {
 					msg = new RewardMsg(parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
 				}  else if (parts[0].equals(MessageType.Visibility.toString())) {

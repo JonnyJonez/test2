@@ -16,6 +16,7 @@ import commons.Message;
 import commons.MessageType;
 import commons.RewardMsg;
 import commons.ScoreMsg;
+import commons.ScoreType;
 import commons.VisibilityMsg;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -40,19 +41,32 @@ public class client_model {
 	protected SimpleStringProperty otherCoins = new SimpleStringProperty();
 	protected SimpleStringProperty myCardTaken = new SimpleStringProperty();
 	protected SimpleStringProperty otherCardTaken = new SimpleStringProperty();
+	protected SimpleStringProperty myCardAction = new SimpleStringProperty();
+	protected SimpleStringProperty otherCardAction = new SimpleStringProperty();
+	
 	
 
 	private Logger logger = Logger.getLogger("");
 	private Socket socket;
 	public String name;
 	
-	public int wachturm = 0;
-	public int taverne = 0;
-	public int kaserne = 0;
-	public int muehle = 0;
-	public int brauerei = 0;
-	public int hexenhaus = 0;
-	public int schloss = 0;
+	public int mywachturm = 0;
+	public int mytaverne = 0;
+	public int mykaserne = 0;
+	public int mymuehle = 0;
+	public int mybrauerei = 0;
+	public int myhexenhaus = 0;
+	public int myschloss = 0;
+	public int mylazarett = 0;
+	
+	public int otherwachturm = 0;
+	public int othertaverne = 0;
+	public int otherkaserne = 0;
+	public int othermuehle = 0;
+	public int otherbrauerei = 0;
+	public int otherhexenhaus = 0;
+	public int otherschloss = 0;
+	public int otherlazarett = 0;
 
 	public void connect(String ipAddress, int Port, String name) {
 		logger.info("Connect");
@@ -85,14 +99,34 @@ public class client_model {
 							
 							ScoreMsg scoremsg = (ScoreMsg) msg;
 							
-							if(scoremsg.getName().equals(name)){
-							myCardTaken.set(((ScoreMsg) msg).getCard());
-							} else {
-							otherCardTaken.set(((ScoreMsg) msg).getCard());
+							if(scoremsg.getScoreType().equals("attack")){
+								
+								if(scoremsg.getName().equals(name)){
+									myCardAction.set(((ScoreMsg) msg).getScoreType() + "|" + ((ScoreMsg) msg).getCard());
+									} else {
+									otherCardAction.set(((ScoreMsg) msg).getScoreType() + "|" + ((ScoreMsg) msg).getCard());
+									}
+																							
+							} else if (scoremsg.getScoreType().equals("heal")) {
+								
+								if(scoremsg.getName().equals(name)){
+									myCardAction.set(((ScoreMsg) msg).getScoreType() + "|" + ((ScoreMsg) msg).getCard());
+									} else {
+									otherCardAction.set(((ScoreMsg) msg).getScoreType() + "|" + ((ScoreMsg) msg).getCard());
+									}
+								
+							} else if (scoremsg.getScoreType().equals("take")) {
+								
+								if(scoremsg.getName().equals(name)){
+									myCardTaken.set(((ScoreMsg) msg).getCard());
+									} else {
+									otherCardTaken.set(((ScoreMsg) msg).getCard());
+									}
+								
 							}
 							
 							newestMessage.set(""); // erase previous message
-							newestMessage.set("***" + scoremsg.getName() + " took " + scoremsg.getCard() + " ***");
+							newestMessage.set("***" + scoremsg.getName() + scoremsg.getScoreType() + scoremsg.getCard() + " ***");
 							
 						}	else if (msg instanceof RewardMsg) {
 							RewardMsg rewardmsg = (RewardMsg) msg;
@@ -202,7 +236,7 @@ public class client_model {
 
 	public void takeCard(String card) {
 		logger.info("Take card");
-		Message msg = new ScoreMsg(name, card);
+		Message msg = new ScoreMsg(name, card, "take");
 		msg.send(socket);
 		
 		try {

@@ -16,6 +16,7 @@ import commons.Message;
 import commons.MessageType;
 import commons.RewardMsg;
 import commons.ScoreMsg;
+import commons.ScoreType;
 import commons.VisibilityMsg;
 import server.server_model;
 
@@ -169,49 +170,49 @@ public class player {
 								
 								try {
 									if (lazarett.peek().equals("Muehle")) {
-										ScoreMsg miller = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Muehle");
+										ScoreMsg miller = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Muehle", "heal");
 										player.this.Muehle++;
 										lazarett.pop();
 										model.broadcast((ScoreMsg) miller); // does this work?
 									} 
 									
 									else if (lazarett.peek().equals("Brauerei")) {
-										ScoreMsg beer = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Brauerei");
+										ScoreMsg beer = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Brauerei", "heal");
 										player.this.Brauerei++;
 										lazarett.pop();
 										model.broadcast((ScoreMsg) beer);
 									}
 									
 									else if (lazarett.peek().equals("Hexenhaus")) {
-										ScoreMsg witch = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Hexenhaus");
+										ScoreMsg witch = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Hexenhaus", "heal");
 										player.this.Hexenhaus++;
 										lazarett.pop();
 										model.broadcast((ScoreMsg) witch);
 									}
 									
 									else if (lazarett.peek().equals("Wachturm")) {
-										ScoreMsg defense = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Wachturm");
+										ScoreMsg defense = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Wachturm", "heal");
 										player.this.Wachturm++;
 										lazarett.pop();
 										model.broadcast((ScoreMsg) defense);
 									}		
 
 									else if (lazarett.peek().equals("Kaserne")) {
-										ScoreMsg attack = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Kaserne");
+										ScoreMsg attack = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Kaserne", "heal");
 										player.this.Kaserne++;
 										lazarett.pop();
 										model.broadcast((ScoreMsg) attack);
 									} 
 									
 									else if (lazarett.peek().equals("Taverne")) {
-										ScoreMsg tavern = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Taverne");
+										ScoreMsg tavern = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Taverne", "heal");
 										player.this.Taverne++;
 										lazarett.pop();
 										model.broadcast((ScoreMsg) tavern);
 									}
 									
 									else if (lazarett.peek().equals("Schloss")){
-										ScoreMsg castle = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Schloss");
+										ScoreMsg castle = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Schloss", "heal");
 										player.this.Schloss++;
 										lazarett.pop();
 										model.broadcast((ScoreMsg) castle);
@@ -296,6 +297,7 @@ public class player {
 								
 								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
 								model.broadcast(rewardmsg);	
+								
 								
 								List<String> players = model.getPlayersWithCard("Brauerei");
 								
@@ -445,56 +447,63 @@ public class player {
 			player.this.Muehle--;
 			lazarett.push("Muehle");
 			
-			Message msg = new ChatMsg(name, "Minus Mühle");
-			msg.send(socket);
+			ScoreMsg msg = new ScoreMsg(name, "Muehle", "attack");
+			//Message msg = new ChatMsg(name, "Minus Muehle");
+			model.broadcast(msg);
 						
 		} else {
 			if(player.this.Brauerei > 0){
 				player.this.Brauerei--;
 				lazarett.push("Brauerei");
 				
-				Message msg = new ChatMsg(name, "Minus Brauerei");
-				msg.send(socket);
+				ScoreMsg msg = new ScoreMsg(name, "Brauerei", "attack");
+				// Message msg = new ChatMsg(name, "Minus Brauerei");
+				model.broadcast(msg);
 				
 			} else {
 				if(player.this.Hexenhaus > 0){
 					player.this.Hexenhaus--;
 					lazarett.push("Hexenhaus");
 					
-					Message msg = new ChatMsg(name, "Minus Hexenhaus");
-					msg.send(socket);
+					ScoreMsg msg = new ScoreMsg(name, "Hexenhaus", "attack");
+					// Message msg = new ChatMsg(name, "Minus Hexenhaus");
+					model.broadcast(msg);
 					
 				} else {
 					if(player.this.Wachturm > 0){
 						player.this.Wachturm--;
 						lazarett.push("Wachturm");
 						
-						Message msg = new ChatMsg(name, "Minus Wachturm");
-						msg.send(socket);
+						ScoreMsg msg = new ScoreMsg(name, "Wachturm", "attack");
+						// Message msg = new ChatMsg(name, "Minus Wachturm");
+						model.broadcast(msg);
 	
 					} else {
 						if(player.this.Kaserne > 0){
 							player.this.Kaserne--;
 							lazarett.push("Kaserne");
 							
-							Message msg = new ChatMsg(name, "Minus Kaserne");
-							msg.send(socket);
+							ScoreMsg msg = new ScoreMsg(name, "Kaserne", "attack");
+							// Message msg = new ChatMsg(name, "Minus Kaserne");
+							model.broadcast(msg);
 							
 						} else {
 							if(player.this.Taverne > 0){
 								player.this.Taverne--;
 								lazarett.push("Taverne");
 								
-								Message msg = new ChatMsg(name, "Minus Taverne");
-								msg.send(socket);
+								ScoreMsg msg = new ScoreMsg(name, "Taverne", "attack");
+								// Message msg = new ChatMsg(name, "Minus Taverne");
+								model.broadcast(msg);
 								
 							} else {
 								if(player.this.Schloss > 0){
 									player.this.Schloss--;
 									lazarett.push("Schloss");
 									
-									Message msg = new ChatMsg(name, "Minus Schloss");
-									msg.send(socket);
+									ScoreMsg msg = new ScoreMsg(name, "Schloss", "attack");
+									// Message msg = new ChatMsg(name, "Minus Schloss");
+									model.broadcast(msg);
 								} 
 							}
 						}

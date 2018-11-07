@@ -80,6 +80,8 @@ public class client_controller {
 		lblPlayer2kaserne.setText("0");
 		lblPlayer2taverne.setText("0");
 		lblPlayer2schloss.setText("0");
+		lblPlayer1lazarett.setText("0");
+		lblPlayer2lazarett.setText("0");
 		
 		model.connect(ipAddress, port, name);
 		txtIpAddress.setDisable(true);
@@ -167,14 +169,28 @@ public class client_controller {
 		
 		model.myCardTaken.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
-				updateCardCount("my", newValue);
+				increaseCardCount("my", newValue);
 			}		
 						
 		} );
 		
 		model.otherCardTaken.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
-				updateCardCount("other", newValue);
+				increaseCardCount("other", newValue);
+			}		
+						
+		} );
+		
+		model.myCardAction.addListener( (o, oldValue, newValue) -> {
+			if(!newValue.isEmpty()) {
+				myCardAction(newValue);
+			}		
+						
+		} );
+		
+		model.otherCardAction.addListener( (o, oldValue, newValue) -> {
+			if(!newValue.isEmpty()) {
+				otherCardAction(newValue);
 			}		
 						
 		} );
@@ -323,7 +339,47 @@ public void setButtonsInvisible(){
 		});
 	}
 	
-	public void updateCardCount(String type, String card){
+	public void myCardAction(String s){
+		
+		String[] parts = s.split("\\|");
+				
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		       	if(parts[0].equals("attack")){
+		       		model.mylazarett++;
+		       		lblPlayer1lazarett.setText("" + model.mylazarett);
+		       		decreaseCardCount("my", parts[1]);
+		    	} else if (parts[0].equals("heal")) {
+		    		model.mylazarett--;
+		    		lblPlayer1lazarett.setText("" + model.mylazarett);
+		    		increaseCardCount("my", parts[1]);
+		    	}
+		    }
+		});
+	}
+	
+	public void otherCardAction(String s){
+		
+		String[] parts = s.split("\\|");
+				
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		       	if(parts[0].equals("attack")){
+		       		model.otherlazarett++;
+		       		lblPlayer2lazarett.setText("" + model.otherlazarett);
+		       		decreaseCardCount("other", parts[1]);
+		    	} else if (parts[0].equals("heal")) {
+		    		model.otherlazarett--;
+		    		lblPlayer2lazarett.setText("" + model.otherlazarett);
+		    		increaseCardCount("other", parts[1]);
+		    	}
+		    }
+		});
+	}
+	
+	public void increaseCardCount(String type, String card){
 		
 		Platform.runLater(new Runnable() {
 		    @Override
@@ -332,51 +388,112 @@ public void setButtonsInvisible(){
 		    	if(type.equals("my")){
 		    		
 		    		if(card.equals("Muehle")){
-			    		model.muehle++;
-			    		lblPlayer1muehle.setText("" + model.muehle);
+			    		model.mymuehle++;
+			    		lblPlayer1muehle.setText("" + model.mymuehle);
 			    	} else if (card.equals("Brauerei")) {
-			    		model.brauerei++;
-			    		lblPlayer1brauerei.setText("" + model.brauerei);
+			    		model.mybrauerei++;
+			    		lblPlayer1brauerei.setText("" + model.mybrauerei);
 			    	} else if (card.equals("Hexenhaus")) {
-			    		model.hexenhaus++;
-			    		lblPlayer1hexenhaus.setText("" + model.hexenhaus);
+			    		model.myhexenhaus++;
+			    		lblPlayer1hexenhaus.setText("" + model.myhexenhaus);
 			    	} else if (card.equals("Wachturm")) {
-			    		model.wachturm++;
-			    		lblPlayer1wachturm.setText("" + model.wachturm);
+			    		model.mywachturm++;
+			    		lblPlayer1wachturm.setText("" + model.mywachturm);
 			    	} else if (card.equals("Kaserne")) {
-			    		model.kaserne++;
-			    		lblPlayer1kaserne.setText("" + model.kaserne);
+			    		model.mykaserne++;
+			    		lblPlayer1kaserne.setText("" + model.mykaserne);
 			    	} else if (card.equals("Taverne")) {
-			    		model.taverne++;
-			    		lblPlayer1taverne.setText("" + model.taverne);
+			    		model.mytaverne++;
+			    		lblPlayer1taverne.setText("" + model.mytaverne);
 			    	} else if (card.equals("Schloss")) {
-			    		model.schloss++;
-			    		lblPlayer1schloss.setText("" + model.schloss);
+			    		model.myschloss++;
+			    		lblPlayer1schloss.setText("" + model.myschloss);
 			    	} 
 
 		    	} else {
 		    		
 		    		if(card.equals("Muehle")){
-			    		model.muehle++;
-			    		lblPlayer2muehle.setText("" + model.muehle);
+			    		model.othermuehle++;
+			    		lblPlayer2muehle.setText("" + model.othermuehle);
 		    		} else if (card.equals("Brauerei")) {
-			    		model.brauerei++;
-			    		lblPlayer2brauerei.setText("" + model.brauerei);
+			    		model.otherbrauerei++;
+			    		lblPlayer2brauerei.setText("" + model.otherbrauerei);
 			    	} else if (card.equals("Hexenhaus")) {
-			    		model.hexenhaus++;
-			    		lblPlayer2hexenhaus.setText("" + model.hexenhaus);
+			    		model.otherhexenhaus++;
+			    		lblPlayer2hexenhaus.setText("" + model.otherhexenhaus);
 			    	} else if (card.equals("Wachturm")) {
-			    		model.wachturm++;
-			    		lblPlayer2wachturm.setText("" + model.wachturm);
+			    		model.otherwachturm++;
+			    		lblPlayer2wachturm.setText("" + model.otherwachturm);
 			    	} else if (card.equals("Kaserne")) {
-			    		model.kaserne++;
-			    		lblPlayer2kaserne.setText("" + model.kaserne);
+			    		model.otherkaserne++;
+			    		lblPlayer2kaserne.setText("" + model.otherkaserne);
 			    	} else if (card.equals("Taverne")) {
-			    		model.taverne++;
-			    		lblPlayer2taverne.setText("" + model.taverne);
+			    		model.othertaverne++;
+			    		lblPlayer2taverne.setText("" + model.othertaverne);
 			    	} else if (card.equals("Schloss")) {
-			    		model.schloss++;
-			    		lblPlayer2schloss.setText("" + model.schloss);
+			    		model.otherschloss++;
+			    		lblPlayer2schloss.setText("" + model.otherschloss);
+			    	} 
+				}
+		         	
+		    }
+		});
+	}
+	
+	public void decreaseCardCount(String type, String card){
+		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    	
+		    	if(type.equals("my")){
+		    		
+		    		if(card.equals("Muehle")){
+			    		model.mymuehle--;
+			    		lblPlayer1muehle.setText("" + model.mymuehle);
+			    	} else if (card.equals("Brauerei")) {
+			    		model.mybrauerei--;
+			    		lblPlayer1brauerei.setText("" + model.mybrauerei);
+			    	} else if (card.equals("Hexenhaus")) {
+			    		model.myhexenhaus--;
+			    		lblPlayer1hexenhaus.setText("" + model.myhexenhaus);
+			    	} else if (card.equals("Wachturm")) {
+			    		model.mywachturm--;
+			    		lblPlayer1wachturm.setText("" + model.mywachturm);
+			    	} else if (card.equals("Kaserne")) {
+			    		model.mykaserne--;
+			    		lblPlayer1kaserne.setText("" + model.mykaserne);
+			    	} else if (card.equals("Taverne")) {
+			    		model.mytaverne--;
+			    		lblPlayer1taverne.setText("" + model.mytaverne);
+			    	} else if (card.equals("Schloss")) {
+			    		model.myschloss--;
+			    		lblPlayer1schloss.setText("" + model.myschloss);
+			    	} 
+
+		    	} else {
+		    		
+		    		if(card.equals("Muehle")){
+			    		model.othermuehle--;
+			    		lblPlayer2muehle.setText("" + model.othermuehle);
+		    		} else if (card.equals("Brauerei")) {
+			    		model.otherbrauerei--;
+			    		lblPlayer2brauerei.setText("" + model.otherbrauerei);
+			    	} else if (card.equals("Hexenhaus")) {
+			    		model.otherhexenhaus--;
+			    		lblPlayer2hexenhaus.setText("" + model.otherhexenhaus);
+			    	} else if (card.equals("Wachturm")) {
+			    		model.otherwachturm--;
+			    		lblPlayer2wachturm.setText("" + model.otherwachturm);
+			    	} else if (card.equals("Kaserne")) {
+			    		model.otherkaserne--;
+			    		lblPlayer2kaserne.setText("" + model.otherkaserne);
+			    	} else if (card.equals("Taverne")) {
+			    		model.othertaverne--;
+			    		lblPlayer2taverne.setText("" + model.othertaverne);
+			    	} else if (card.equals("Schloss")) {
+			    		model.otherschloss--;
+			    		lblPlayer2schloss.setText("" + model.otherschloss);
 			    	} 
 				}
 		         	
