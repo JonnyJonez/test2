@@ -44,7 +44,7 @@ public class server_model {
 							Socket socket = listener.accept();	
 							
 							if(players.size() < maxPlayer){
-								
+																
 								player player = new player(server_model.this, socket);
 								players.add(player); 
 								
@@ -57,9 +57,7 @@ public class server_model {
 								}
 								
 								if(players.size() == maxPlayer){
-									
-									
-									
+																		
 									// Stack erstellen
 									
 									s1 = new CardStack();
@@ -67,9 +65,7 @@ public class server_model {
 									
 									CardStackMsg cardSmsg = new CardStackMsg(s1.getCard(1), s1.getCard(2), s1.getCard(3), s1.getCard(4), s1.getCard(5), s1.getCard(6));
 									broadcast(cardSmsg);
-									logger.info("send cards");
-									
-									
+									logger.info("send cards");							
 									
 									// Erster herausfinden
 									
@@ -252,11 +248,7 @@ public class server_model {
 				logger.info("attack players");
 				}
 			}
-		}
-		
-		//
-	
-		
+		}	
 	}
 	
 	

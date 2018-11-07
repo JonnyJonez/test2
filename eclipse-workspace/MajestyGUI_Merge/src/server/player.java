@@ -58,18 +58,16 @@ public class player {
 														
 						player.this.AnzahlMessages++;					
 						model.broadcast((ChatMsg) msg);
-						
-						if (((ChatMsg) msg).getContent().equals("Hallo")) {
-							((ChatMsg) msg).setContent("3 Coins erhalten");	
-						model.broadcast((ChatMsg) msg); }
-						
+									
 						ChatMsg countmsg = new ChatMsg(player.this.name, "hat " + player.this.AnzahlMessages + " Nachrichten gesendet");
 						model.broadcast(countmsg);
 						
 											
 					} else if (msg instanceof JoinMsg) {
+										
 						player.this.name = model.checknames(((JoinMsg) msg).getName());
-						// model.broadcast((JoinMsg) msg);
+						model.broadcast((JoinMsg) msg);
+
 						
 					//Msg to remove Card from Stack and send new Stack
 					} else if (msg instanceof CardTakenMsg){

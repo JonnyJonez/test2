@@ -38,11 +38,14 @@ public class client_model {
 	protected SimpleStringProperty buttonImage = new SimpleStringProperty();
 	protected SimpleStringProperty myCoins = new SimpleStringProperty();
 	protected SimpleStringProperty otherCoins = new SimpleStringProperty();
+	protected SimpleStringProperty myCardTaken = new SimpleStringProperty();
+	protected SimpleStringProperty otherCardTaken = new SimpleStringProperty();
 	
 
 	private Logger logger = Logger.getLogger("");
 	private Socket socket;
 	public String name;
+	public int muehle = 0;
 
 	public void connect(String ipAddress, int Port, String name) {
 		logger.info("Connect");
@@ -50,14 +53,11 @@ public class client_model {
 		try {
 			socket = new Socket(ipAddress, Port);
 
-			// Create thread to read incoming messages
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
 					while (true) {
-						 
-						// Logik
-						
+							
 						Message msg = Message.receive(socket);
 						
 						// Handling of incomming messages
@@ -69,12 +69,21 @@ public class client_model {
 							 
 						} else if (msg instanceof JoinMsg) {
 							JoinMsg joinmsg = (JoinMsg) msg;
+							newJoin.set(joinmsg.getName());														
 							newestMessage.set(""); // erase previous message
 							newestMessage.set("-------" + joinmsg.getName() + " joined the chat ------");
-							newJoin.set(joinmsg.getName());
+							
 														
 						} else if (msg instanceof ScoreMsg) {
+							
 							ScoreMsg scoremsg = (ScoreMsg) msg;
+							
+							if(scoremsg.getName().equals(name)){
+							myCardTaken.set(((ScoreMsg) msg).getCard());
+							} else {
+							otherCardTaken.set(((ScoreMsg) msg).getCard());
+							}
+							
 							newestMessage.set(""); // erase previous message
 							newestMessage.set("***" + scoremsg.getName() + " took " + scoremsg.getCard() + " ***");
 							

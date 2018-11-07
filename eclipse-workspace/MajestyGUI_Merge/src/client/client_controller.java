@@ -32,7 +32,11 @@ public class client_controller {
 	public TextField txtName;
 	
 	public Label lblPlayer1;
+	public Label lblPlayer1table;
 	public Label lblPlayer2;
+	public Label lblPlayer2table;
+	public Label lblPlayer1muehle;
+	public Label lblPlayer2muehle;
 	public Label lblplayer1score;
 	public Label lblplayer2score;
 	
@@ -126,6 +130,20 @@ public class client_controller {
 		model.otherCoins.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				addSaldo("other", newValue);
+			}		
+						
+		} );
+		
+		model.myCardTaken.addListener( (o, oldValue, newValue) -> {
+			if(!newValue.isEmpty()) {
+				updateCardCount("my", newValue);
+			}		
+						
+		} );
+		
+		model.otherCardTaken.addListener( (o, oldValue, newValue) -> {
+			if(!newValue.isEmpty()) {
+				updateCardCount("other", newValue);
 			}		
 						
 		} );
@@ -238,8 +256,10 @@ public void setButtonsInvisible(){
 		        // Update UI here.
 		    	if(joiner.equals(txtName.getText())){
 					lblPlayer1.setText(joiner);
+					lblPlayer1table.setText(joiner);
 				} else {
 					lblPlayer2.setText(joiner);
+					lblPlayer2table.setText(joiner);
 				}	
 		    	
 		    }
@@ -262,6 +282,45 @@ public void setButtonsInvisible(){
 		});
 	}
 	
+	public void setNameInGUI(String name){
+		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		       txtName.setText(name);		    	
+		    }
+		});
+	}
+	
+	public void updateCardCount(String type, String card){
+		
+		Platform.runLater(new Runnable() {
+		    @Override
+		    public void run() {
+		    	
+		    	if(type.equals("my")){
+		    		
+		    		if(card.equals("Muehle")){
+			    		model.muehle++;
+			    		lblPlayer1muehle.setText("" + model.muehle);
+			    	} else if (card.equals("Brauerei")) {
+			    		// add others
+			    	}
+		    		
+		    		
+		    	} else {
+		    		
+		    		if(card.equals("Muehle")){
+			    		model.muehle++;
+			    		lblPlayer2muehle.setText("" + model.muehle);
+			    	} else if (card.equals("Brauerei")) {
+			    		// add others
+			    	}
+				}
+		         	
+		    }
+		});
+	}
 		
 		
 

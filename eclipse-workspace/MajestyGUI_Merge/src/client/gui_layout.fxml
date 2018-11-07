@@ -218,19 +218,19 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="#Player1">
+                        <Label fx:id="lblPlayer1table" text="#Player1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="#Player2" GridPane.rowIndex="1">
+                        <Label fx:id="lblPlayer2table" text="#Player2" GridPane.rowIndex="1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="1">
+                        <Label fx:id="lblPlayer1muehle" text="Label" GridPane.columnIndex="1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label  fx:id="lblPlayer2muehle" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="Pristina" size="24.0" />
                            </font></Label>
