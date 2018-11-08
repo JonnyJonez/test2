@@ -167,6 +167,11 @@ public class player {
 								
 								player.this.Hexenhaus++;
 								model.broadcast((ScoreMsg) msg);	
+
+								reward += (player.this.getMuehle() * rate);
+								reward += (player.this.getBrauerei() * rate);
+								reward += (player.this.getHexenhaus() * rate);
+								player.this.saldo += reward;
 								
 								try {
 									if (lazarett.peek().equals("Muehle")) {
@@ -223,11 +228,6 @@ public class player {
 								}			
 								
 						
-								reward += (player.this.getMuehle() * rate);
-								reward += (player.this.getBrauerei() * rate);
-								reward += (player.this.getHexenhaus() * rate);
-								player.this.saldo += reward;
-								
 								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
 								model.broadcast(rewardmsg);		
 							
