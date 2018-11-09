@@ -222,14 +222,17 @@ public void setButtonsInvisible(){
 		}
 	
 	public void setButtonImage(String imagebutton) {
-//		 int posID = Integer.parseInt(String.valueOf(imagebutton.charAt(0)));
-//		 String Cardimage = imagebutton.substring(1);
+		 int posID = Integer.parseInt(String.valueOf(imagebutton.charAt(0)));
+		 String Cardimage = imagebutton.substring(1);
 //		 
 //		 URL input = ClassLoader.getSystemResource("Brown.jpg");
 //		 fx
 //		 
 //		 //Set image for Character cards
-//		 Image Blue = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Blue.jpg"));
+		
+ 		 Image Blue = new Image(getClass().getResourceAsStream("../character_cards/Blue.jpg")); // FOLDER BELOW NOT ACCESSABLE
+		 
+//		 Image Blue = new Image(getClass().getResourceAsStream("@../../pics/cards/character cards/Blue.jpg"));
 //		 Image Brown = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Brown.jpg"));
 //		 Image Green = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Green.jpg"));
 //		 Image Orange = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Orange.jpg"));
@@ -247,13 +250,14 @@ public void setButtonsInvisible(){
 //		 ImageView ViewYellow= new ImageView(Yellow);
 //			
 //		 
-//		 Platform.runLater(new Runnable() {
-//			    @Override
-//			    public void run() {
-//			    	
+		 Platform.runLater(new Runnable() {
+			    @Override
+			    public void run() {
+			    	
 //					
-//					if(posID == 1) {
-//						btncard1.setGraphic(ViewBlue);
+					if(posID == 1) {
+						// btncard1.setGraphic(ViewBlue);
+						btncard1.setGraphic(new ImageView(Blue)); }
 //					} else if (posID == 2) {
 //						btncard2.setGraphic(ViewBrown);
 //					} else if (posID == 3) {
@@ -265,8 +269,8 @@ public void setButtonsInvisible(){
 //					} else if (posID == 6) {
 //						btncard6.setGraphic(ViewRed);
 //					}
-//			    }
-//		 });
+			    }
+		 });
 		
 	}
 	

@@ -170,8 +170,7 @@ public class client_model {
 							String Card5 = stackmsg.getCard5();
 							String Card6 = stackmsg.getCard6();
 //							String[] cards = {Card1, Card2, Card3, Card4, Card5, Card6};
-							
-							
+														
 							String Cards = Card1 + " " + Card2 + " " + Card3 + " " + Card4 + " " + Card5 + " " + Card6;
 														
 							buttonsText.set(Cards);
@@ -184,10 +183,9 @@ public class client_model {
 							
 						
 							
-							
 //							logger.info("$$$$$$$$$$$$$ReadButton Text $$$$$$$$$$$$$$$");
 							
-//							buttonImage.set("1"+ Card1);
+							buttonImage.set("1"+ Card1);
 //							buttonImage.set("2"+ Card2);
 //							buttonImage.set("3"+ Card3);
 //							buttonImage.set("4"+ Card4);
