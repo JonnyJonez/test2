@@ -65,7 +65,13 @@ public class server_model {
 									
 									CardStackMsg cardSmsg = new CardStackMsg(s1.getCard(1), s1.getCard(2), s1.getCard(3), s1.getCard(4), s1.getCard(5), s1.getCard(6));
 									broadcast(cardSmsg);
-									logger.info("send cards");							
+									logger.info("send cards");	
+
+									try {
+										Thread.sleep(1000);
+									} catch (InterruptedException e) {
+									e.printStackTrace();
+									}
 									
 									// Erster herausfinden
 									

@@ -185,12 +185,18 @@ public class client_model {
 							
 //							logger.info("$$$$$$$$$$$$$ReadButton Text $$$$$$$$$$$$$$$");
 							
-							buttonImage.set("1"+ Card1);
-//							buttonImage.set("2"+ Card2);
-//							buttonImage.set("3"+ Card3);
-//							buttonImage.set("4"+ Card4);
-//							buttonImage.set("5"+ Card5);
-//							buttonImage.set("6"+ Card6);
+							buttonImage.set("1"+ Card1);							
+							buttonImage.set("2"+ Card2);							
+							buttonImage.set("3"+ Card3);							
+							buttonImage.set("4"+ Card4);							
+							buttonImage.set("5"+ Card5);							
+							buttonImage.set("6"+ Card6);
+							
+							try {
+								Thread.sleep(500);
+							} catch (InterruptedException e) {
+							e.printStackTrace();
+							}
 							
 							
 							newestMessage.set("");

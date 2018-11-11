@@ -58,6 +58,19 @@ public class client_controller {
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
 	
+//	 Set image for Character cards
+
+	 
+	 Image Wachturm = new Image(getClass().getResourceAsStream("../character_cards/Blue.jpg"));
+	 Image Brauerei = new Image(getClass().getResourceAsStream("../character_cards/Brown.jpg"));
+	 Image Hexenhaus = new Image(getClass().getResourceAsStream("../character_cards/Green.jpg"));
+	 Image Muehle = new Image(getClass().getResourceAsStream("../character_cards/Orange.jpg"));
+	 Image Kaserne = new Image(getClass().getResourceAsStream("../character_cards/Red.jpg"));
+	 Image Schloss = new Image(getClass().getResourceAsStream("../character_cards/Violet.jpg"));
+	 Image Taverne = new Image(getClass().getResourceAsStream("../character_cards/Yellow.jpg"));
+	
+	
+	
 	public void clickOnConnect () {
 		String ipAddress = txtIpAddress.getText();
 		int port = Integer.parseInt(txtPort.getText());
@@ -86,7 +99,8 @@ public class client_controller {
 		model.connect(ipAddress, port, name);
 		txtIpAddress.setDisable(true);
 		txtPort.setDisable(true);
-		txtName.setDisable(true);		
+		txtName.setDisable(true);
+		btnConnect.setDisable(false);
 		
 	}
 	
@@ -224,51 +238,194 @@ public void setButtonsInvisible(){
 	public void setButtonImage(String imagebutton) {
 		 int posID = Integer.parseInt(String.valueOf(imagebutton.charAt(0)));
 		 String Cardimage = imagebutton.substring(1);
-//		 
-//		 URL input = ClassLoader.getSystemResource("Brown.jpg");
-//		 fx
-//		 
-//		 //Set image for Character cards
-		
- 		 Image Blue = new Image(getClass().getResourceAsStream("../character_cards/Blue.jpg")); // FOLDER BELOW NOT ACCESSABLE
-		 
-//		 Image Blue = new Image(getClass().getResourceAsStream("@../../pics/cards/character cards/Blue.jpg"));
-//		 Image Brown = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Brown.jpg"));
-//		 Image Green = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Green.jpg"));
-//		 Image Orange = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Orange.jpg"));
-//		 Image Red = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Red.jpg"));
-//		 Image Violet = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Violet.jpg"));
-//		 Image Yellow = new Image(getClass().getResourceAsStream("/pics/cards/character cards/Yellow.jpg"));
-//		 
-//		 //Set Imageview for Images
-//		 ImageView ViewBlue = new ImageView(Blue);
-//		 ImageView ViewBrown = new ImageView(Brown);
-//		 ImageView ViewGreen = new ImageView(Green);
-//		 ImageView ViewOrange = new ImageView(Orange);
-//		 ImageView ViewRed = new ImageView(Red);
-//		 ImageView ViewViolet = new ImageView(Violet);
-//		 ImageView ViewYellow= new ImageView(Yellow);
-//			
-//		 
+ 
+		 //Set Imageview of the Images
+		 ImageView ViewWachturm = new ImageView(Wachturm);
+		 ViewWachturm.setFitWidth(70);
+		 ViewWachturm.setFitHeight(140);
+		 ImageView ViewBrauerei = new ImageView(Brauerei);
+		 ViewBrauerei.setFitWidth(70);
+		 ViewBrauerei.setFitHeight(140);
+		 ImageView ViewHexenhaus = new ImageView(Hexenhaus);
+		 ViewHexenhaus.setFitWidth(70);
+		 ViewHexenhaus.setFitHeight(140);
+		 ImageView ViewMuehle = new ImageView(Muehle);
+		 ViewMuehle.setFitWidth(70);
+		 ViewMuehle.setFitHeight(140);
+		 ImageView ViewKaserne = new ImageView(Kaserne);
+		 ViewKaserne.setFitWidth(70);
+		 ViewKaserne.setFitHeight(140);
+		 ImageView ViewSchloss = new ImageView(Schloss);
+		 ViewSchloss.setFitWidth(70);
+		 ViewSchloss.setFitHeight(140);
+		 ImageView ViewTaverne = new ImageView(Taverne);
+		 ViewTaverne.setFitWidth(70);
+		 ViewTaverne.setFitHeight(140);
+
+
+
+// Set Image to Button 
 		 Platform.runLater(new Runnable() {
 			    @Override
 			    public void run() {
-			    	
-//					
+				
 					if(posID == 1) {
-						// btncard1.setGraphic(ViewBlue);
-						btncard1.setGraphic(new ImageView(Blue)); }
-//					} else if (posID == 2) {
-//						btncard2.setGraphic(ViewBrown);
-//					} else if (posID == 3) {
-//						btncard3.setGraphic(ViewGreen);
-//					} else if (posID == 4) {
-//						btncard4.setGraphic(ViewOrange);
-//					} else if (posID == 5) {
-//						btncard5.setGraphic(ViewRed);
-//					} else if (posID == 6) {
-//						btncard6.setGraphic(ViewRed);
-//					}
+						switch (Cardimage) {
+						case "Wachturm":
+							btncard1.setGraphic(ViewWachturm);							
+							break;
+						case "Brauerei":
+							btncard1.setGraphic(ViewBrauerei);
+							break;
+						case "Hexenhaus":
+							btncard1.setGraphic(ViewHexenhaus);
+							break;
+						case "Muehle":
+							btncard1.setGraphic(ViewMuehle);
+							break;
+						case "Kaserne":
+							btncard1.setGraphic(ViewKaserne);
+							break;
+						case "Schloss":
+							btncard1.setGraphic(ViewSchloss);
+							break;
+						case "Taverne":
+							btncard1.setGraphic(ViewTaverne);
+							break;
+						default:
+							break;
+						}
+					} else if(posID == 2) {
+							switch (Cardimage) {
+							case "Wachturm":
+								btncard2.setGraphic(ViewWachturm);							
+								break;
+							case "Brauerei":
+								btncard2.setGraphic(ViewBrauerei);
+								break;
+							case "Hexenhaus":
+								btncard2.setGraphic(ViewHexenhaus);
+								break;
+							case "Muehle":
+								btncard2.setGraphic(ViewMuehle);
+								break;
+							case "Kaserne":
+								btncard2.setGraphic(ViewKaserne);
+								break;
+							case "Schloss":
+								btncard2.setGraphic(ViewSchloss);
+								break;
+							case "Taverne":
+								btncard2.setGraphic(ViewTaverne);
+								break;
+							default:
+								break;
+							} 
+					} else if(posID == 3) {
+							switch (Cardimage) {
+							case "Wachturm":
+								btncard3.setGraphic(ViewWachturm);							
+								break;
+							case "Brauerei":
+								btncard3.setGraphic(ViewBrauerei);
+								break;
+							case "Hexenhaus":
+								btncard3.setGraphic(ViewHexenhaus);
+								break;
+							case "Muehle":
+								btncard3.setGraphic(ViewMuehle);
+								break;
+							case "Kaserne":
+								btncard3.setGraphic(ViewKaserne);
+								break;
+							case "Schloss":
+								btncard3.setGraphic(ViewSchloss);
+								break;
+							case "Taverne":
+								btncard3.setGraphic(ViewTaverne);
+								break;
+							default:
+								break;
+								} 
+					}else if(posID == 4) {
+							switch (Cardimage) {
+							case "Wachturm":
+								btncard4.setGraphic(ViewWachturm);							
+								break;
+							case "Brauerei":
+								btncard4.setGraphic(ViewBrauerei);
+								break;
+							case "Hexenhaus":
+								btncard4.setGraphic(ViewHexenhaus);
+								break;
+							case "Muehle":
+								btncard4.setGraphic(ViewMuehle);
+								break;
+							case "Kaserne":
+								btncard4.setGraphic(ViewKaserne);
+								break;
+							case "Schloss":
+								btncard4.setGraphic(ViewSchloss);
+								break;
+							case "Taverne":
+								btncard4.setGraphic(ViewTaverne);
+								break;
+							default:
+								break;
+							}
+					}else if(posID == 5) {
+							switch (Cardimage) {
+							case "Wachturm":
+								btncard5.setGraphic(ViewWachturm);							
+								break;
+							case "Brauerei":
+								btncard5.setGraphic(ViewBrauerei);
+								break;
+							case "Hexenhaus":
+								btncard5.setGraphic(ViewHexenhaus);
+								break;
+							case "Muehle":
+								btncard5.setGraphic(ViewMuehle);
+								break;
+							case "Kaserne":
+								btncard5.setGraphic(ViewKaserne);
+								break;
+							case "Schloss":
+								btncard5.setGraphic(ViewSchloss);
+								break;
+							case "Taverne":
+								btncard5.setGraphic(ViewTaverne);
+								break;
+							default:
+								break;
+							}
+					}else if(posID == 6) {
+							switch (Cardimage) {
+							case "Wachturm":
+								btncard6.setGraphic(ViewWachturm);							
+								break;
+							case "Brauerei":
+								btncard6.setGraphic(ViewBrauerei);
+								break;
+							case "Hexenhaus":
+								btncard6.setGraphic(ViewHexenhaus);
+								break;
+							case "Muehle":
+								btncard6.setGraphic(ViewMuehle);
+								break;
+							case "Kaserne":
+								btncard6.setGraphic(ViewKaserne);
+								break;
+							case "Schloss":
+								btncard6.setGraphic(ViewSchloss);
+								break;
+							case "Taverne":
+								btncard6.setGraphic(ViewTaverne);
+								break;
+							default:
+								break;
+							}
+					}
 			    }
 		 });
 		
