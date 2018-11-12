@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 public class client_controller {
 	private client_model model;
 	
+	// Initiate buttons, labels and text fields
 	public Button btnConnect;
 	public Button btnSend;
 	
@@ -58,24 +59,25 @@ public class client_controller {
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
 	
-//	 Set image for Character cards
-
+	//	 Set image for Character cards
 	 
-	 Image Wachturm = new Image(getClass().getResourceAsStream("../character_cards/Blue.jpg"));
-	 Image Brauerei = new Image(getClass().getResourceAsStream("../character_cards/Brown.jpg"));
-	 Image Hexenhaus = new Image(getClass().getResourceAsStream("../character_cards/Green.jpg"));
-	 Image Muehle = new Image(getClass().getResourceAsStream("../character_cards/Orange.jpg"));
-	 Image Kaserne = new Image(getClass().getResourceAsStream("../character_cards/Red.jpg"));
-	 Image Schloss = new Image(getClass().getResourceAsStream("../character_cards/Violet.jpg"));
-	 Image Taverne = new Image(getClass().getResourceAsStream("../character_cards/Yellow.jpg"));
+	Image Wachturm = new Image(getClass().getResourceAsStream("../character_cards/Blue.jpg"));
+	Image Brauerei = new Image(getClass().getResourceAsStream("../character_cards/Brown.jpg"));
+	Image Hexenhaus = new Image(getClass().getResourceAsStream("../character_cards/Green.jpg"));
+	Image Muehle = new Image(getClass().getResourceAsStream("../character_cards/Orange.jpg"));
+	Image Kaserne = new Image(getClass().getResourceAsStream("../character_cards/Red.jpg"));
+	Image Schloss = new Image(getClass().getResourceAsStream("../character_cards/Violet.jpg"));
+	Image Taverne = new Image(getClass().getResourceAsStream("../character_cards/Yellow.jpg"));
 	
-	
+	// Action on connect button
 	
 	public void clickOnConnect () {
+		
 		String ipAddress = txtIpAddress.getText();
 		int port = Integer.parseInt(txtPort.getText());
 		String name = txtName.getText();
-		// lblPlayer1.setText(name);
+
+		// set default text for labels
 		
 		lblplayer1score.setText("0");
 		lblplayer2score.setText("0");
@@ -97,6 +99,9 @@ public class client_controller {
 		lblPlayer2lazarett.setText("0");
 		
 		model.connect(ipAddress, port, name);
+		
+		// disable labels and buttons
+		
 		txtIpAddress.setDisable(true);
 		txtPort.setDisable(true);
 		txtName.setDisable(true);
@@ -104,10 +109,12 @@ public class client_controller {
 		
 	}
 	
+	// Action for taking cards
+	
 	public void clickOnCard1() {
 		model.takeCard(btncard1.getText());
 		model.takenCard(1);
-	}
+	}	
 	public void clickOnCard2() {
 		model.takeCard(btncard2.getText());
 		model.takenCard(2);
@@ -133,11 +140,15 @@ public class client_controller {
 	public client_controller(client_model model) {
 		this.model = model;
 		
+		// Add listeners
+		
+		// Listener for log area		
 		model.newestMessage.addListener( (o, oldValue, newValue) -> {
-			if (!newValue.isEmpty()) // Ignore empty messages
+			if (!newValue.isEmpty()) 
 				txtChatArea.appendText(newValue + "\n");
 		} );
 		
+		// Listener for button visibility
 		model.buttonsVis.addListener( (o, oldValue, newValue) -> {
 			if(newValue.equals("false"))
 				setButtonsInvisible();
@@ -146,6 +157,7 @@ public class client_controller {
 						
 		} );
 		
+		// Listener for button texts		
 		model.buttonsText.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				setButtonCardsText(newValue);	
@@ -153,6 +165,7 @@ public class client_controller {
 						
 		} );
 		
+		// Listener for button images
 		model.buttonImage.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				setButtonImage(newValue);
@@ -160,6 +173,7 @@ public class client_controller {
 						
 		} );
 		
+		// Listener for new joiner in the game
 		model.newJoin.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				checkJoiner(newValue);
@@ -167,6 +181,7 @@ public class client_controller {
 						
 		} );
 		
+		// Listener for rewards concerning myself to update labels
 		model.myCoins.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				addSaldo("my", newValue);
@@ -174,6 +189,7 @@ public class client_controller {
 						
 		} );
 		
+		// Listener for rewards concerning others to update labels
 		model.otherCoins.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				addSaldo("other", newValue);
@@ -181,6 +197,7 @@ public class client_controller {
 						
 		} );
 		
+		// Listener for cards to update labels concerning myself
 		model.myCardTaken.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				increaseCardCount("my", newValue);
@@ -188,6 +205,7 @@ public class client_controller {
 						
 		} );
 		
+		// Listener for cards to update labels concerning others
 		model.otherCardTaken.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				increaseCardCount("other", newValue);
@@ -195,6 +213,7 @@ public class client_controller {
 						
 		} );
 		
+		// Listener for special actions (attack, heal) on my cards
 		model.myCardAction.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				myCardAction(newValue);
@@ -202,6 +221,7 @@ public class client_controller {
 						
 		} );
 		
+		// Listener for special actions (attack, heal) on other cards
 		model.otherCardAction.addListener( (o, oldValue, newValue) -> {
 			if(!newValue.isEmpty()) {
 				otherCardAction(newValue);
@@ -211,18 +231,20 @@ public class client_controller {
 		
 	}
 	
+	// Set all card buttons to invisible
 	
-public void setButtonsInvisible(){
-		
-		btncard1.setDisable(true);
-		btncard2.setDisable(true);
-		btncard3.setDisable(true);
-		btncard4.setDisable(true);
-		btncard5.setDisable(true);
-		btncard6.setDisable(true);
-//		btncard7.setDisable(true);
+	public void setButtonsInvisible(){
+			
+			btncard1.setDisable(true);
+			btncard2.setDisable(true);
+			btncard3.setDisable(true);
+			btncard4.setDisable(true);
+			btncard5.setDisable(true);
+			btncard6.setDisable(true);
 		
 	}
+	
+	// Set all card buttons to visible
 	
 	public void setButtonsVisible(){
 		
@@ -232,42 +254,49 @@ public void setButtonsInvisible(){
 		btncard4.setDisable(false);
 		btncard5.setDisable(false);
 		btncard6.setDisable(false);
-//		view.btncard7.setDisable(false);
 		}
+	
+	// Set card images to the buttons
 	
 	public void setButtonImage(String imagebutton) {
 		 int posID = Integer.parseInt(String.valueOf(imagebutton.charAt(0)));
 		 String Cardimage = imagebutton.substring(1);
  
-		 //Set Imageview of the Images
+		 // Define Imageview of the Images
+		 
 		 ImageView ViewWachturm = new ImageView(Wachturm);
 		 ViewWachturm.setFitWidth(70);
 		 ViewWachturm.setFitHeight(140);
+		 
 		 ImageView ViewBrauerei = new ImageView(Brauerei);
 		 ViewBrauerei.setFitWidth(70);
 		 ViewBrauerei.setFitHeight(140);
+		 
 		 ImageView ViewHexenhaus = new ImageView(Hexenhaus);
 		 ViewHexenhaus.setFitWidth(70);
 		 ViewHexenhaus.setFitHeight(140);
+		 
 		 ImageView ViewMuehle = new ImageView(Muehle);
 		 ViewMuehle.setFitWidth(70);
 		 ViewMuehle.setFitHeight(140);
+		 
 		 ImageView ViewKaserne = new ImageView(Kaserne);
 		 ViewKaserne.setFitWidth(70);
 		 ViewKaserne.setFitHeight(140);
+		 
 		 ImageView ViewSchloss = new ImageView(Schloss);
 		 ViewSchloss.setFitWidth(70);
 		 ViewSchloss.setFitHeight(140);
+		 
 		 ImageView ViewTaverne = new ImageView(Taverne);
 		 ViewTaverne.setFitWidth(70);
 		 ViewTaverne.setFitHeight(140);
 
 
-
-// Set Image to Button 
+		 // Set Image to Button 
+		 
 		 Platform.runLater(new Runnable() {
-			    @Override
-			    public void run() {
+			     public void run() {
 				
 					if(posID == 1) {
 						switch (Cardimage) {
@@ -431,14 +460,17 @@ public void setButtonsInvisible(){
 		
 	}
 	
+	// Set text to buttons
+	
 	public void setButtonCardsText(String Value){
 		
 		String[] cards = Value.split(" ");
 		
 		Platform.runLater(new Runnable() {
-		    @Override
 		    public void run() {
-		        // Update UI here.
+		    	
+		    	// Update button text
+		    	
 		    	btncard1.setText(cards[0]);
 		    	btncard2.setText(cards[1]);
 		    	btncard3.setText(cards[2]);
@@ -451,17 +483,22 @@ public void setButtonsInvisible(){
 	}
 	
 
+	// Send Chat message
+	
 	public void clickOnSend() {
 		model.sendMessage(txtChatMessage.getText());
 	}
 	
+	
+	// Set joiner name to labels
+	
 	public void checkJoiner(String joiner) {
 		
 		Platform.runLater(new Runnable() {
-			
-			  @Override
 		    public void run() {
-		        // Update UI here.
+		    	
+		    	// Check if the joiner is myself
+		    	
 		    	if(joiner.equals(txtName.getText())){
 					lblPlayer1.setText(joiner);
 					lblPlayer1table.setText(joiner);
@@ -474,12 +511,16 @@ public void setButtonsInvisible(){
 		});
 	}
 	
+	
+	// Add a new saldo to the labels
+	
 	public void addSaldo(String type, String saldo) {
 		
 		Platform.runLater(new Runnable() {
-		    @Override
 		    public void run() {
-		        // Update UI here.
+		    	
+		    	// Check for which player the update is
+
 		    	if(type.equals("my")){
 		    		lblplayer1score.setText(saldo);
 		    	} else {
@@ -490,27 +531,31 @@ public void setButtonsInvisible(){
 		});
 	}
 	
+	// Set a player name in the user interface
+	
 	public void setNameInGUI(String name){
 		
 		Platform.runLater(new Runnable() {
-		    @Override
 		    public void run() {
 		       txtName.setText(name);		    	
 		    }
 		});
 	}
 	
+	// React on actions concerning myself
+	
 	public void myCardAction(String s){
 		
 		String[] parts = s.split("\\|");
 				
 		Platform.runLater(new Runnable() {
-		    @Override
 		    public void run() {
+		    	
 		       	if(parts[0].equals("attack")){
 		       		model.mylazarett++;
 		       		lblPlayer1lazarett.setText("" + model.mylazarett);
 		       		decreaseCardCount("my", parts[1]);
+		       		
 		    	} else if (parts[0].equals("heal")) {
 		    		model.mylazarett--;
 		    		lblPlayer1lazarett.setText("" + model.mylazarett);
@@ -520,17 +565,20 @@ public void setButtonsInvisible(){
 		});
 	}
 	
+	// React on actions concerning others
+	
 	public void otherCardAction(String s){
 		
 		String[] parts = s.split("\\|");
 				
 		Platform.runLater(new Runnable() {
-		    @Override
 		    public void run() {
+		    	
 		       	if(parts[0].equals("attack")){
 		       		model.otherlazarett++;
 		       		lblPlayer2lazarett.setText("" + model.otherlazarett);
 		       		decreaseCardCount("other", parts[1]);
+		       		
 		    	} else if (parts[0].equals("heal")) {
 		    		model.otherlazarett--;
 		    		lblPlayer2lazarett.setText("" + model.otherlazarett);
@@ -540,11 +588,14 @@ public void setButtonsInvisible(){
 		});
 	}
 	
+	// Increase card counter and update labels
+	
 	public void increaseCardCount(String type, String card){
 		
 		Platform.runLater(new Runnable() {
-		    @Override
 		    public void run() {
+		    	
+		    	// Increase my card counter
 		    	
 		    	if(type.equals("my")){
 		    		
@@ -570,6 +621,8 @@ public void setButtonsInvisible(){
 			    		model.myschloss++;
 			    		lblPlayer1schloss.setText("" + model.myschloss);
 			    	} 
+		    		
+		    	// Increase others card counter
 
 		    	} else {
 		    		
@@ -601,11 +654,15 @@ public void setButtonsInvisible(){
 		});
 	}
 	
+	// Decrease card counter and update labels
+	
 	public void decreaseCardCount(String type, String card){
 		
 		Platform.runLater(new Runnable() {
-		    @Override
 		    public void run() {
+		    	
+		    	
+		    	// Increase my card counter
 		    	
 		    	if(type.equals("my")){
 		    		
@@ -631,6 +688,8 @@ public void setButtonsInvisible(){
 			    		model.myschloss--;
 			    		lblPlayer1schloss.setText("" + model.myschloss);
 			    	} 
+		    		
+		    	// Increase others card counter
 
 		    	} else {
 		    		
@@ -660,8 +719,6 @@ public void setButtonsInvisible(){
 		         	
 		    }
 		});
-	}
-		
-		
+	}	
 
 }

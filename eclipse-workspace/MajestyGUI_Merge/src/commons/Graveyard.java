@@ -23,34 +23,34 @@ public class Graveyard {
 //		adding the corresponding card back to its origin
 		
 		try {
-			if (lazarett.peek().equals("Muehle")) {
-				player.this.Muehle++;
-				lazarett.pop();
-			} 
-			else if (lazarett.peek().equals("Brauerei")) {
-				player.this.Brauerei++;
-				lazarett.pop();
-			}
-			else if (lazarett.peek().equals("Hexenhaus")) {
-				player.this.Hexenhaus++;
-				lazarett.pop();
-			}
-			else if (lazarett.peek().equals("Wachturm")) {
-				player.this.Wachturm++;
-				lazarett.pop();
-			}		
-			else if (lazarett.peek().equals("Kaserne")) {
-				player.this.Kaserne++;
-				lazarett.pop
-			} 
-			else if (lazarett.peek().equals("Taverne")) {
-				player.this.Taverne++;
-				lazarett.pop();
-			}
-			else if (lazarett.peek().equals("Schloss")){
-				player.this.Schloss++;
-				lazarett.pop();
-			}
+//			if (lazarett.peek().equals("Muehle")) {
+//				player.this.Muehle++;
+//				lazarett.pop();
+//			} 
+//			else if (lazarett.peek().equals("Brauerei")) {
+//				player.this.Brauerei++;
+//				lazarett.pop();
+//			}
+//			else if (lazarett.peek().equals("Hexenhaus")) {
+//				player.this.Hexenhaus++;
+//				lazarett.pop();
+//			}
+//			else if (lazarett.peek().equals("Wachturm")) {
+//				player.this.Wachturm++;
+//				lazarett.pop();
+//			}		
+//			else if (lazarett.peek().equals("Kaserne")) {
+//				player.this.Kaserne++;
+//				lazarett.pop
+//			} 
+//			else if (lazarett.peek().equals("Taverne")) {
+//				player.this.Taverne++;
+//				lazarett.pop();
+//			}
+//			else if (lazarett.peek().equals("Schloss")){
+//				player.this.Schloss++;
+//				lazarett.pop();
+//			}
 
 			// was muss do förne message hin ond här gschobe wärde demit beidi clients chegge was abghot?
 			
@@ -59,3 +59,4 @@ public class Graveyard {
 			e.printStackTrace();
 			}
 		}
+}

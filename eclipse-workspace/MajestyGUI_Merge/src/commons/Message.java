@@ -41,8 +41,6 @@ public abstract class Message {
 				String msgText = in.readLine(); // Will wait here for complete line
 				logger.info("Receiving message: " + msgText);
 				
-				
-				
 				// Parse message
 				String[] parts = msgText.split("\\|");
 				if (parts[0].equals(MessageType.Join.toString())) {

@@ -10,16 +10,18 @@ import javafx.stage.Stage;
 
 
 public class client_main extends Application {
-	@Override
+
 	public void start(Stage primaryStage) {
 		try {
 			client_model model = new client_model();
 			client_controller controller = new client_controller(model);
+			
 			// Laden des FXML (view)
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("gui_layout.fxml"));
 			loader.setController(controller);
 			AnchorPane root = loader.load();
 					
+			// Start sound when opening the game client
 			
 			/* Temporary off
 			 * 
@@ -34,6 +36,7 @@ public class client_main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

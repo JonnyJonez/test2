@@ -35,7 +35,6 @@ public class server_model {
 		try {
 			listener = new ServerSocket(port, 10, null);
 			Runnable r = new Runnable() {
-				@Override
 				public void run() {
 										
 					while (!stop) {
@@ -43,29 +42,37 @@ public class server_model {
 							
 							Socket socket = listener.accept();	
 							
+							// Accept new players as long as not all spaces are taken
+							
 							if(players.size() < maxPlayer){
 																
 								player player = new player(server_model.this, socket);
 								players.add(player); 
+								
+								// Set "first" flag to the first joiner
 								
 								if(players.size() == 1){
 									player.setErster();
 									player.setTurn();
 									VisibilityMsg firstmsg = new VisibilityMsg(erster, "false");
 									broadcast(firstmsg);	
-									
 								}
+								
+								// Initiate CardStack when all spaces are taken
 								
 								if(players.size() == maxPlayer){
 																		
-									// Stack erstellen
+									// Create stack
 									
 									s1 = new CardStack();
 									logger.info("ready to send cards");
 									
+									// Send first 6 cards
 									CardStackMsg cardSmsg = new CardStackMsg(s1.getCard(1), s1.getCard(2), s1.getCard(3), s1.getCard(4), s1.getCard(5), s1.getCard(6));
 									broadcast(cardSmsg);
 									logger.info("send cards");	
+									
+									// Avoid overlapping messages
 
 									try {
 										Thread.sleep(1000);
@@ -73,7 +80,7 @@ public class server_model {
 									e.printStackTrace();
 									}
 									
-									// Erster herausfinden
+									// Find first and second joiner 
 									
 									for (player p : players) {
 										p.getErster();
@@ -85,28 +92,30 @@ public class server_model {
 										}
 									}
 										
-									// JoinMsg senden
+									// Send Join messages
 										
 									for (player p : players) {
 										
-									try {
-										Thread.sleep(200);
-									} catch (InterruptedException e) {
-									e.printStackTrace();
-									}	
+										// Avoid overlapping messages
+											
+										try {
+											Thread.sleep(200);
+										} catch (InterruptedException e) {
+										e.printStackTrace();
+										}	
 									
 									JoinMsg joinmsg = new JoinMsg(p.getName());
 									broadcast(joinmsg);
-											
-											
+												
 									}
 										
-									// Visibility msg senden an erster
+									// Send visibility message (true) to the first player to start the game
 																																			
 									VisibilityMsg vismsg = new VisibilityMsg(erster, "true");
 									broadcast(vismsg);
 									logger.info("set erster visible " + erster);
 									
+									// Avoid overlapping messages
 									
 									try {
 										Thread.sleep(300);
@@ -114,25 +123,23 @@ public class server_model {
 									e.printStackTrace();
 									}
 									
+									// Send visibility message (false) to the second player to wait 
+																		
 									VisibilityMsg vismsg2 = new VisibilityMsg(zweiter, "false");
 									broadcast(vismsg2);	
 									logger.info("set zweiter visible false " + zweiter);
 								
-									
 								}
 							
 							} else {
 								// Pech, schon alle da
-							}
-							
-							
-							
+							}						
 							
 						} catch (Exception e) {
 							logger.info(e.toString());
 						}
 						
-				}
+					}
 				}
 			};
 			
@@ -154,7 +161,6 @@ public class server_model {
 			try {
 				listener.close();
 			} catch (IOException e) {
-				// Uninteresting
 			}
 		}
 	}
@@ -173,7 +179,7 @@ public class server_model {
 		for (player p : players) {
 			p.send(rewardmsg);
 		}
-	}// Jonez was here
+	}
 	
 	public void broadcast(JoinMsg joinMsg) {
 		logger.info("Broadcasting Joinmessage to clients");
@@ -203,17 +209,20 @@ public class server_model {
 		}
 	}
 	
+	// Get names of all players
+	
 	public String getNames(){
 		String msg = "Spieler: ";
+		
 		for (player p : players) {
 		msg += (p.getName()+ " ");
 		}
 		
 		return msg;
-	
 	}
 	
-	// Get all players with certain card
+	// Get all players with a certain card 
+	// Used for  rewards concerning other players (used in Taverne or Muehle)
 	
 	public List<String> getPlayersWithCard(String s){
 		
@@ -241,11 +250,10 @@ public class server_model {
 
 	}
 	
-	// Get Players mit weniger Verteitigung 
+	// Attack all player with less defense than attackers
 	
 	public void attackAll(int attackers, String name){
-		
-		// Search Playeers
+				
 		for (player p : players) {
 			if(!p.getName().equals(name)){
 			if(p.getWachturm() < attackers){
@@ -257,7 +265,7 @@ public class server_model {
 	}
 	
 	
-	// Get saldo of a player
+	// Get saldo of a certain player
 
 	public void setSaldi(String string) {
 		String[] parts = string.split("\\|");
@@ -282,25 +290,5 @@ public class server_model {
 	public int getPlayerCount(){
 		return players.size();
 	}
-	
-	// Check if name is already used
-
-	public String checknames(String name) {
-		String returnName = name;
-		boolean given = false;
-		for (player p : players) {
-			if(p.getName().equals(name)){
-				given = true;
-			}
-		}
-		
-		if(given == true){
-			returnName = name + "2";			
-		}
-		return returnName;
-	}
-	
-	
-
 	
 }

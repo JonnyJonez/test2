@@ -26,6 +26,9 @@ public class player {
 	private Socket socket;
 	private String name = "<new>";
 	private server_model model;
+	
+	// Create counter for cards
+	
 	private int AnzahlMessages = 0;
 	private int Wachturm = 0;
 	private int Taverne = 0;
@@ -34,10 +37,17 @@ public class player {
 	private int Brauerei = 0;
 	private int Hexenhaus = 0;
 	private int Schloss = 0;
+	
+	// Initiate saldo
+	
 	private int saldo = 0;
+	
 	private String turn = "false";
 	private String erster = "false";
 	private int position;
+	
+	// Initiate lazarett
+	
 	private Stack<String> lazarett = new Stack<String>();
 	
 
@@ -48,12 +58,12 @@ public class player {
 		// Create thread to read incoming messages
 		
 		Runnable r = new Runnable() {
-			@Override
 			public void run() {
-				while(true) {			
+				while(true) {		
+					
 					Message msg = Message.receive(socket);
 					
-					// Messages empfangen und auf Typ überprüfen
+					// Receive messages and check type
 					
 					if (msg instanceof ChatMsg) {	
 														
@@ -66,11 +76,13 @@ public class player {
 											
 					} else if (msg instanceof JoinMsg) {
 										
-						player.this.name = model.checknames(((JoinMsg) msg).getName());
+						// player.this.name = model.checknames(((JoinMsg) msg).getName());
+						player.this.name = ((JoinMsg) msg).getName();
 						model.broadcast((JoinMsg) msg);
 
 						
-					//Msg to remove Card from Stack and send new Stack
+					// Msg to remove Card from Stack and send new Stack
+						
 					} else if (msg instanceof CardTakenMsg){
 						player.this.position = ((CardTakenMsg)msg).getposition();
 						model.s1.removeCard(position);	
@@ -112,16 +124,21 @@ public class player {
 						e.printStackTrace();
 						}
 						
-						// Auf Typen überprüfen
+						// Check taken cards for type and send rewards
 						
 						if (((ScoreMsg) msg).getCard().equals("Wachturm")) {
 							
+							reward = 0;
+							rate = 2;
+							
 							player.this.Wachturm++;							
 							model.broadcast((ScoreMsg) msg);
+							
+							// Get 2 coins for each Kaserne, Wachtrum and Taverne card
 
-							reward += (player.this.getKaserne() * 2);
-							reward += (player.this.getWachturm() * 2);
-							reward += (player.this.getTaverne() * 2);
+							reward += (player.this.getKaserne() * rate);
+							reward += (player.this.getWachturm() * rate);
+							reward += (player.this.getTaverne() * rate);
 							player.this.saldo += reward;
 						
 							RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
@@ -138,15 +155,18 @@ public class player {
 							player.this.Brauerei++;
 							model.broadcast((ScoreMsg) msg);
 							
+							// Get 2 coins for each Brauerei card
+							
 							reward += (player.this.getBrauerei() * rate);
 							player.this.saldo += reward;
 						
 							RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
 							model.broadcast(rewardmsg);
 							
+							// Get 2 coins for each player with at least one Muehle card
+							
 							List<String> players = model.getPlayersWithCard("Muehle");
 													
-							
 								for(int i = 0; i < players.size(); i++){
 									
 									String[] parts = players.get(i).split("\\|");
@@ -161,17 +181,22 @@ public class player {
 								}
 							}
 							
-							if (((ScoreMsg) msg).getCard().equals("Hexenhaus")) {
+						if (((ScoreMsg) msg).getCard().equals("Hexenhaus")) {
 								
-								rate = 2;
+							reward = 0;
+							rate = 2;
 								
-								player.this.Hexenhaus++;
-								model.broadcast((ScoreMsg) msg);	
+							player.this.Hexenhaus++;
+							model.broadcast((ScoreMsg) msg);	
+								
+							// Get 2 coins for each Muehle, Brauerei and Hexenhaus card
 
-								reward += (player.this.getMuehle() * rate);
-								reward += (player.this.getBrauerei() * rate);
-								reward += (player.this.getHexenhaus() * rate);
-								player.this.saldo += reward;
+							reward += (player.this.getMuehle() * rate);
+							reward += (player.this.getBrauerei() * rate);
+							reward += (player.this.getHexenhaus() * rate);
+							player.this.saldo += reward;
+								
+							// Heal cards from lazarett
 								
 								try {
 									if (lazarett.peek().equals("Muehle")) {
@@ -223,11 +248,9 @@ public class player {
 										model.broadcast((ScoreMsg) castle);
 									}
 								} catch (Exception e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}			
 								
-						
 								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
 								model.broadcast(rewardmsg);		
 							
@@ -240,6 +263,8 @@ public class player {
 								
 								player.this.Muehle++;
 								model.broadcast((ScoreMsg) msg);
+								
+								// get 2 coins for each Muehle
 														
 								reward += (player.this.getMuehle() * rate);
 								player.this.saldo += reward;
@@ -257,7 +282,10 @@ public class player {
 								player.this.Kaserne++;
 								model.broadcast((ScoreMsg) msg);
 								
+								// Attack players
 								model.attackAll(player.this.Kaserne, player.this.name);	
+								
+								// get 3 coins for each Kaserne
 								
 								reward += (player.this.getKaserne() * rate);
 								player.this.saldo += reward;
@@ -273,6 +301,8 @@ public class player {
 								
 								player.this.Schloss++;
 								model.broadcast((ScoreMsg) msg);
+								
+								// get 5 coins for each Schloss
 								
 								reward += (player.this.getSchloss() * rate);
 								player.this.saldo += reward;
@@ -292,15 +322,17 @@ public class player {
 								player.this.Taverne++;
 								model.broadcast((ScoreMsg) msg);
 								
+								// get 4 coins for each Taverne
+								
 								reward += (player.this.getTaverne() * rate);
 								player.this.saldo += reward;
 								
 								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
 								model.broadcast(rewardmsg);	
 								
+								// get 3 coins for all players with at least one Brauerei
 								
 								List<String> players = model.getPlayersWithCard("Brauerei");
-								
 								
 								for(int i = 0; i < players.size(); i++){
 									
@@ -317,6 +349,7 @@ public class player {
 								}
 							}
 							
+							// Avoid overlapping messages 
 							
 							try {
 								Thread.sleep(800);
@@ -340,6 +373,8 @@ public class player {
 	public void send(Message msg) {
 		msg.send(socket);
 	}
+	
+	// Getter
 	
 	public String getName() {
 		return this.name;
@@ -377,25 +412,35 @@ public class player {
 		return this.saldo;
 	}
 	
+	public String getTurn() {
+		return this.turn;
+	}
+	
+	public String getErster() {
+		return this.erster;
+	}
+
+	
+	// Setter
+	
 	public void setSaldo(int saldo) {
 		this.saldo = saldo;
 	}
 	
-	public void stop() {
-		try {
-			socket.close();
-		} catch (IOException e) {
-			// Uninteresting
-		}
+	public void setErster() {
+		this.erster = "true";
+	}
+	
+	public void setTurn() {
+		this.turn = "true";
+		
 	}
 
 	public String toString() {
 		return name + ": " + socket.toString();
 	}
 	
-	public String getTurn() {
-		return this.turn;
-	}
+
 	
 	public void changeTurn() {
 		if(this.turn.equals("true")){
@@ -406,49 +451,18 @@ public class player {
 		
 		VisibilityMsg vismsg = new VisibilityMsg(player.this.name, this.turn);
 		model.broadcast(vismsg);
-		
-//		CardStackMsg stackmsg = new CardStackMsg(this.position, this.card.toString());
-//		model.broadcast(stackmsg);
-	}
 
-	public void setErster() {
-		this.erster = "true";
-	}
-	
-	public String getErster() {
-		return this.erster;
-	}
-
-	public void setTurn() {
-		this.turn = "true";
-		
 	}
 	
 	public void attack(){
 		
-	//	boolean found = false;
-	//	int i = 0;
-	//	Integer[] searchArray = new Integer[7];
-	//	searchArray[0] = player.this.Muehle;
-	//	searchArray[1] = "Brauerei";
-	//	searchArray[2] = "Hexenhaus";
-	//	searchArray[3] = "Wachturm";
-	//	searchArray[4] = "Taverne";
-	//	searchArray[6] = "Schloss";
-	//	
-	//	while (i < searchArray.length && found == false){
-	//			if(player.this. > 0){
-	//				
-	//			}
-	//		}
-	//	
+		// Go from left to right until a card is found
 		
 		if(player.this.Muehle > 0){
 			player.this.Muehle--;
 			lazarett.push("Muehle");
 			
 			ScoreMsg msg = new ScoreMsg(name, "Muehle", "attack");
-			//Message msg = new ChatMsg(name, "Minus Muehle");
 			model.broadcast(msg);
 						
 		} else {
@@ -457,7 +471,6 @@ public class player {
 				lazarett.push("Brauerei");
 				
 				ScoreMsg msg = new ScoreMsg(name, "Brauerei", "attack");
-				// Message msg = new ChatMsg(name, "Minus Brauerei");
 				model.broadcast(msg);
 				
 			} else {
@@ -466,7 +479,6 @@ public class player {
 					lazarett.push("Hexenhaus");
 					
 					ScoreMsg msg = new ScoreMsg(name, "Hexenhaus", "attack");
-					// Message msg = new ChatMsg(name, "Minus Hexenhaus");
 					model.broadcast(msg);
 					
 				} else {
@@ -475,7 +487,6 @@ public class player {
 						lazarett.push("Wachturm");
 						
 						ScoreMsg msg = new ScoreMsg(name, "Wachturm", "attack");
-						// Message msg = new ChatMsg(name, "Minus Wachturm");
 						model.broadcast(msg);
 	
 					} else {
@@ -484,7 +495,6 @@ public class player {
 							lazarett.push("Kaserne");
 							
 							ScoreMsg msg = new ScoreMsg(name, "Kaserne", "attack");
-							// Message msg = new ChatMsg(name, "Minus Kaserne");
 							model.broadcast(msg);
 							
 						} else {
@@ -493,7 +503,6 @@ public class player {
 								lazarett.push("Taverne");
 								
 								ScoreMsg msg = new ScoreMsg(name, "Taverne", "attack");
-								// Message msg = new ChatMsg(name, "Minus Taverne");
 								model.broadcast(msg);
 								
 							} else {
@@ -502,7 +511,6 @@ public class player {
 									lazarett.push("Schloss");
 									
 									ScoreMsg msg = new ScoreMsg(name, "Schloss", "attack");
-									// Message msg = new ChatMsg(name, "Minus Schloss");
 									model.broadcast(msg);
 								} 
 							}
@@ -512,10 +520,15 @@ public class player {
 			}
 		}
 	}
+
+	public void stop() {
+		try {
+			socket.close();
+		} catch (IOException e) {
+		}
+	}
 	
-
 }
-
 
 
 
