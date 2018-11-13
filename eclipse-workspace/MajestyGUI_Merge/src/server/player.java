@@ -1,5 +1,6 @@
 package server;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import commons.RewardMsg;
 import commons.ScoreMsg;
 import commons.ScoreType;
 import commons.VisibilityMsg;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import server.server_model;
 
 
@@ -128,6 +131,15 @@ public class player {
 						
 						if (((ScoreMsg) msg).getCard().equals("Wachturm")) {
 							
+							try {
+								String wachturmMusicFile = "src/sounds/chimes.wav";
+								Media wachturmSound = new Media (new File(wachturmMusicFile).toURI().toString());
+								MediaPlayer wachturmPlayer = new MediaPlayer(wachturmSound);
+								wachturmPlayer.play();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							
 							reward = 0;
 							rate = 2;
 							
@@ -147,6 +159,15 @@ public class player {
 										
 					
 						if (((ScoreMsg) msg).getCard().equals("Brauerei")) {
+							
+							try {
+								String brauereiMusicFile = "src/sounds/chord.wav";
+								Media brauereiSound = new Media (new File(brauereiMusicFile).toURI().toString());
+								MediaPlayer brauereiPlayer = new MediaPlayer(brauereiSound);
+								brauereiPlayer.play();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
 							
 							reward = 0;
 							rate = 2;
@@ -182,7 +203,16 @@ public class player {
 							}
 							
 						if (((ScoreMsg) msg).getCard().equals("Hexenhaus")) {
-								
+							
+							try {
+								String witchMusicFile = "src/sounds/recycle.wav";
+								Media witchSound = new Media (new File(witchMusicFile).toURI().toString());
+								MediaPlayer witchPlayer = new MediaPlayer(witchSound);
+								witchPlayer.play();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							
 							reward = 0;
 							rate = 2;
 								
@@ -258,6 +288,15 @@ public class player {
 							
 							if (((ScoreMsg) msg).getCard().equals("Muehle")) {
 								
+								try {
+									String muehleMusicFile = "src/sounds/ding.wav";
+									Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
+									MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
+									muehlePlayer.play();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+								
 								reward = 0;
 								rate = 2;
 								
@@ -275,6 +314,15 @@ public class player {
 								}
 							
 							if (((ScoreMsg) msg).getCard().equals("Kaserne")) {
+								
+								try {
+									String kaserneMusicFile = "src/sounds/notify.wav";
+									Media kaserneSound = new Media (new File(kaserneMusicFile).toURI().toString());
+									MediaPlayer kasernePlayer = new MediaPlayer(kaserneSound);
+									kasernePlayer.play();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
 								
 								reward = 0;
 								rate = 3;
@@ -296,6 +344,15 @@ public class player {
 							
 							if (((ScoreMsg) msg).getCard().equals("Schloss")) {
 								
+								try {
+									String schlossMusicFile = "src/sounds/ringout.wav";
+									Media schlossSound = new Media (new File(schlossMusicFile).toURI().toString());
+									MediaPlayer schlossPlayer = new MediaPlayer(schlossSound);
+									schlossPlayer.play();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+								
 								reward = 0;
 								rate = 5;
 								
@@ -314,6 +371,15 @@ public class player {
 							
 								
 							if (((ScoreMsg) msg).getCard().equals("Taverne")) {
+								
+								try {
+									String taverneMusicFile = "src/sounds/tada.wav";
+									Media taverneSound = new Media (new File(taverneMusicFile).toURI().toString());
+									MediaPlayer tavernePlayer = new MediaPlayer(taverneSound);
+									tavernePlayer.play();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
 								
 								reward = 0;
 								rate = 4;
