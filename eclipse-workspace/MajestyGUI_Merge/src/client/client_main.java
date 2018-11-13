@@ -1,5 +1,7 @@
 package client;
 	
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,13 +25,14 @@ public class client_main extends Application {
 					
 			// Start sound when opening the game client
 			
-			/* Temporary off
-			 * 
-			 * Media musicfile = new Media("file:///C:/Users/jonez/eclipse-workspace/MajestyGUI/src/application/background_sound.mp3");
-			MediaPlayer mediaplayer = new MediaPlayer(musicfile);
-			mediaplayer.setAutoPlay(true);
-			mediaplayer.setVolume(0.2);
-			mediaplayer.play(); */
+			 // Temporary off
+			 /* String backgroundSound = "src/sounds/background_sound.mp3";
+			  Media musicfile = new Media (new File(backgroundSound).toURI().toString());
+			  MediaPlayer mediaplayer = new MediaPlayer(musicfile);
+			  mediaplayer.setAutoPlay(true);
+			  mediaplayer.setVolume(0.2);
+			  mediaplayer.play();
+			*/
 			
 			
 			Scene scene = new Scene(root,1100,700);
