@@ -1,5 +1,6 @@
 package client;
 
+import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 
@@ -12,6 +13,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class client_controller {
 	private client_model model;
@@ -78,6 +81,19 @@ public class client_controller {
 		String name = txtName.getText();
 
 		// set default text for labels
+		
+		// Start sound when opening the game client
+		
+		 // Temporary off
+		 String backgroundSound = "src/sounds/background_sound.mp3";
+		 Media musicfile = new Media (new File(backgroundSound).toURI().toString());
+		 MediaPlayer mediaplayer = new MediaPlayer(musicfile);
+		 mediaplayer.setAutoPlay(true);
+		 mediaplayer.setVolume(0.2);
+		 mediaplayer.play();
+		
+		
+		
 		
 		lblplayer1score.setText("0");
 		lblplayer2score.setText("0");
