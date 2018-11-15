@@ -291,4 +291,22 @@ public class server_model {
 		return players.size();
 	}
 	
+	public void setComplete(){
+		
+		// @Ali
+		
+		// Ich habe mal einen overall counter eingefügt in der player klasse 
+		// Zeile 121-122 und 436 - 441. Dort wird diese Methode aufgerufen
+				
+		// Hier muss überprüft werden, ob alle players in der getComplete methode "true" zurückgeben
+		// Ansatz: for (player p : players) { ---> getComplete() und das in einen array speichern
+		// danach durch den array gehen und schauen, ob alle einträge des arrays .equals"true" haben.
+		// falls nein muss nichts unternommen werden, da player2 noch am spielen ist
+		// falls ja muss die schlusserwertung beginnen --> Diese kannst du schon mal programmieren.
+		// Die Anzahl karten kannst du z.b. über getBrauerei() vom player holen. evtl müssen die getter noch erstellt werden.
+		
+		// Probiere zuerst mal das, dann können wir schauen, wie wir die Winmessage erstellen.
+		
+	}
+	
 }

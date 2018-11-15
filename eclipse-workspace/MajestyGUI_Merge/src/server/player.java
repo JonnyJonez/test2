@@ -40,6 +40,7 @@ public class player {
 	private int Brauerei = 0;
 	private int Hexenhaus = 0;
 	private int Schloss = 0;
+	int overallcount = 0;
 	
 	// Initiate saldo
 	
@@ -48,6 +49,8 @@ public class player {
 	private String turn = "false";
 	private String erster = "false";
 	private int position;
+	private String complete = "false";
+	
 	
 	// Initiate lazarett
 	
@@ -115,184 +118,30 @@ public class player {
 						int rate = 0;
 						int rewardall = 0;
 						
-						// disable buttons 
-						VisibilityMsg vismsg = new VisibilityMsg(player.this.name, "false");
-						model.broadcast(vismsg);	
+						overallcount ++;
+						if (overallcount <= 12) {											
 						
-						// wait before calculate for GUI
-						
-						try {
-							Thread.sleep(200);
-						} catch (InterruptedException e) {
-						e.printStackTrace();
-						}
-						
-						// Check taken cards for type and send rewards
-						
-						if (((ScoreMsg) msg).getCard().equals("Wachturm")) {
+							// disable buttons 
+							VisibilityMsg vismsg = new VisibilityMsg(player.this.name, "false");
+							model.broadcast(vismsg);	
+							
+							// wait before calculate for GUI
 							
 							try {
-								String wachturmMusicFile = "src/sounds/chimes.wav";
-								Media wachturmSound = new Media (new File(wachturmMusicFile).toURI().toString());
-								MediaPlayer wachturmPlayer = new MediaPlayer(wachturmSound);
-								wachturmPlayer.play();
-							} catch (Exception e) {
-								e.printStackTrace();
+								Thread.sleep(200);
+							} catch (InterruptedException e) {
+							e.printStackTrace();
 							}
 							
-							reward = 0;
-							rate = 2;
+							// Check taken cards for type and send rewards
 							
-							player.this.Wachturm++;							
-							model.broadcast((ScoreMsg) msg);
-							
-							// Get 2 coins for each Kaserne, Wachtrum and Taverne card
-
-							reward += (player.this.getKaserne() * rate);
-							reward += (player.this.getWachturm() * rate);
-							reward += (player.this.getTaverne() * rate);
-							player.this.saldo += reward;
-						
-							RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
-							model.broadcast(rewardmsg);
-						}
-										
-					
-						if (((ScoreMsg) msg).getCard().equals("Brauerei")) {
-							
-							try {
-								String brauereiMusicFile = "src/sounds/chord.wav";
-								Media brauereiSound = new Media (new File(brauereiMusicFile).toURI().toString());
-								MediaPlayer brauereiPlayer = new MediaPlayer(brauereiSound);
-								brauereiPlayer.play();
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-							
-							reward = 0;
-							rate = 2;
-							rewardall = 2;
-													
-							player.this.Brauerei++;
-							model.broadcast((ScoreMsg) msg);
-							
-							// Get 2 coins for each Brauerei card
-							
-							reward += (player.this.getBrauerei() * rate);
-							player.this.saldo += reward;
-						
-							RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
-							model.broadcast(rewardmsg);
-							
-							// Get 2 coins for each player with at least one Muehle card
-							
-							List<String> players = model.getPlayersWithCard("Muehle");
-													
-								for(int i = 0; i < players.size(); i++){
-									
-									String[] parts = players.get(i).split("\\|");
-									String temp1;
-									rewardmsg.changeMsg(parts[0], rewardall, Integer.parseInt(parts[1])+rewardall);	
-									parts[1] = "" + (Integer.parseInt(parts[1])+rewardall);
-									temp1 = parts[0] + "|" + parts[1];
-									
-									model.setSaldi(temp1);	
-									model.broadcast(rewardmsg);
-									
-								}
-							}
-							
-						if (((ScoreMsg) msg).getCard().equals("Hexenhaus")) {
-							
-							try {
-								String witchMusicFile = "src/sounds/recycle.wav";
-								Media witchSound = new Media (new File(witchMusicFile).toURI().toString());
-								MediaPlayer witchPlayer = new MediaPlayer(witchSound);
-								witchPlayer.play();
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-							
-							reward = 0;
-							rate = 2;
-								
-							player.this.Hexenhaus++;
-							model.broadcast((ScoreMsg) msg);	
-								
-							// Get 2 coins for each Muehle, Brauerei and Hexenhaus card
-
-							reward += (player.this.getMuehle() * rate);
-							reward += (player.this.getBrauerei() * rate);
-							reward += (player.this.getHexenhaus() * rate);
-							player.this.saldo += reward;
-								
-							// Heal cards from lazarett
+							if (((ScoreMsg) msg).getCard().equals("Wachturm")) {
 								
 								try {
-									if (lazarett.peek().equals("Muehle")) {
-										ScoreMsg miller = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Muehle", "heal");
-										player.this.Muehle++;
-										lazarett.pop();
-										model.broadcast((ScoreMsg) miller); // does this work?
-									} 
-									
-									else if (lazarett.peek().equals("Brauerei")) {
-										ScoreMsg beer = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Brauerei", "heal");
-										player.this.Brauerei++;
-										lazarett.pop();
-										model.broadcast((ScoreMsg) beer);
-									}
-									
-									else if (lazarett.peek().equals("Hexenhaus")) {
-										ScoreMsg witch = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Hexenhaus", "heal");
-										player.this.Hexenhaus++;
-										lazarett.pop();
-										model.broadcast((ScoreMsg) witch);
-									}
-									
-									else if (lazarett.peek().equals("Wachturm")) {
-										ScoreMsg defense = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Wachturm", "heal");
-										player.this.Wachturm++;
-										lazarett.pop();
-										model.broadcast((ScoreMsg) defense);
-									}		
-
-									else if (lazarett.peek().equals("Kaserne")) {
-										ScoreMsg attack = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Kaserne", "heal");
-										player.this.Kaserne++;
-										lazarett.pop();
-										model.broadcast((ScoreMsg) attack);
-									} 
-									
-									else if (lazarett.peek().equals("Taverne")) {
-										ScoreMsg tavern = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Taverne", "heal");
-										player.this.Taverne++;
-										lazarett.pop();
-										model.broadcast((ScoreMsg) tavern);
-									}
-									
-									else if (lazarett.peek().equals("Schloss")){
-										ScoreMsg castle = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Schloss", "heal");
-										player.this.Schloss++;
-										lazarett.pop();
-										model.broadcast((ScoreMsg) castle);
-									}
-								} catch (Exception e) {
-									e.printStackTrace();
-								}			
-								
-								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
-								model.broadcast(rewardmsg);		
-							
-							}
-							
-							if (((ScoreMsg) msg).getCard().equals("Muehle")) {
-								
-								try {
-									String muehleMusicFile = "src/sounds/ding.wav";
-									Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
-									MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
-									muehlePlayer.play();
+									String wachturmMusicFile = "src/sounds/chimes.wav";
+									Media wachturmSound = new Media (new File(wachturmMusicFile).toURI().toString());
+									MediaPlayer wachturmPlayer = new MediaPlayer(wachturmSound);
+									wachturmPlayer.play();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -300,132 +149,296 @@ public class player {
 								reward = 0;
 								rate = 2;
 								
-								player.this.Muehle++;
+								player.this.Wachturm++;							
 								model.broadcast((ScoreMsg) msg);
 								
-								// get 2 coins for each Muehle
-														
-								reward += (player.this.getMuehle() * rate);
-								player.this.saldo += reward;
-								
-								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
-								model.broadcast(rewardmsg);	
-								
-								}
-							
-							if (((ScoreMsg) msg).getCard().equals("Kaserne")) {
-								
-								try {
-									String kaserneMusicFile = "src/sounds/notify.wav";
-									Media kaserneSound = new Media (new File(kaserneMusicFile).toURI().toString());
-									MediaPlayer kasernePlayer = new MediaPlayer(kaserneSound);
-									kasernePlayer.play();
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-								
-								reward = 0;
-								rate = 3;
-								
-								player.this.Kaserne++;
-								model.broadcast((ScoreMsg) msg);
-								
-								// Attack players
-								model.attackAll(player.this.Kaserne, player.this.name);	
-								
-								// get 3 coins for each Kaserne
-								
+								// Get 2 coins for each Kaserne, Wachtrum and Taverne card
+	
 								reward += (player.this.getKaserne() * rate);
-								player.this.saldo += reward;
-								
-								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
-								model.broadcast(rewardmsg);	
-							}
-							
-							if (((ScoreMsg) msg).getCard().equals("Schloss")) {
-								
-								try {
-									String schlossMusicFile = "src/sounds/ringout.wav";
-									Media schlossSound = new Media (new File(schlossMusicFile).toURI().toString());
-									MediaPlayer schlossPlayer = new MediaPlayer(schlossSound);
-									schlossPlayer.play();
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-								
-								reward = 0;
-								rate = 5;
-								
-								player.this.Schloss++;
-								model.broadcast((ScoreMsg) msg);
-								
-								// get 5 coins for each Schloss
-								
-								reward += (player.this.getSchloss() * rate);
-								player.this.saldo += reward;
-								
-								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
-								model.broadcast(rewardmsg);
-																
-							}
-							
-								
-							if (((ScoreMsg) msg).getCard().equals("Taverne")) {
-								
-								try {
-									String taverneMusicFile = "src/sounds/tada.wav";
-									Media taverneSound = new Media (new File(taverneMusicFile).toURI().toString());
-									MediaPlayer tavernePlayer = new MediaPlayer(taverneSound);
-									tavernePlayer.play();
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-								
-								reward = 0;
-								rate = 4;
-								rewardall = 3;
-								
-								player.this.Taverne++;
-								model.broadcast((ScoreMsg) msg);
-								
-								// get 4 coins for each Taverne
-								
+								reward += (player.this.getWachturm() * rate);
 								reward += (player.this.getTaverne() * rate);
 								player.this.saldo += reward;
-								
+							
 								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
-								model.broadcast(rewardmsg);	
+								model.broadcast(rewardmsg);
+							}
+											
+						
+							if (((ScoreMsg) msg).getCard().equals("Brauerei")) {
 								
-								// get 3 coins for all players with at least one Brauerei
+								try {
+									String brauereiMusicFile = "src/sounds/chord.wav";
+									Media brauereiSound = new Media (new File(brauereiMusicFile).toURI().toString());
+									MediaPlayer brauereiPlayer = new MediaPlayer(brauereiSound);
+									brauereiPlayer.play();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
 								
-								List<String> players = model.getPlayersWithCard("Brauerei");
+								reward = 0;
+								rate = 2;
+								rewardall = 2;
+														
+								player.this.Brauerei++;
+								model.broadcast((ScoreMsg) msg);
 								
-								for(int i = 0; i < players.size(); i++){
+								// Get 2 coins for each Brauerei card
+								
+								reward += (player.this.getBrauerei() * rate);
+								player.this.saldo += reward;
+							
+								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
+								model.broadcast(rewardmsg);
+								
+								// Get 2 coins for each player with at least one Muehle card
+								
+								List<String> players = model.getPlayersWithCard("Muehle");
+														
+									for(int i = 0; i < players.size(); i++){
+										
+										String[] parts = players.get(i).split("\\|");
+										String temp1;
+										rewardmsg.changeMsg(parts[0], rewardall, Integer.parseInt(parts[1])+rewardall);	
+										parts[1] = "" + (Integer.parseInt(parts[1])+rewardall);
+										temp1 = parts[0] + "|" + parts[1];
+										
+										model.setSaldi(temp1);	
+										model.broadcast(rewardmsg);
+										
+									}
+								}
+								
+							if (((ScoreMsg) msg).getCard().equals("Hexenhaus")) {
+								
+								try {
+									String witchMusicFile = "src/sounds/recycle.wav";
+									Media witchSound = new Media (new File(witchMusicFile).toURI().toString());
+									MediaPlayer witchPlayer = new MediaPlayer(witchSound);
+									witchPlayer.play();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+								
+								reward = 0;
+								rate = 2;
 									
-									String[] parts = players.get(i).split("\\|");
-									String temp1;
+								player.this.Hexenhaus++;
+								model.broadcast((ScoreMsg) msg);	
 									
-									rewardmsg.changeMsg(parts[0], rewardall, Integer.parseInt(parts[1])+rewardall);	
-									parts[1] = "" + (Integer.parseInt(parts[1])+rewardall);
-									temp1 = parts[0] + "|" + parts[1];
+								// Get 2 coins for each Muehle, Brauerei and Hexenhaus card
+	
+								reward += (player.this.getMuehle() * rate);
+								reward += (player.this.getBrauerei() * rate);
+								reward += (player.this.getHexenhaus() * rate);
+								player.this.saldo += reward;
 									
-									model.setSaldi(temp1);
-									model.broadcast(rewardmsg);
+								// Heal cards from lazarett
+									
+									try {
+										if (lazarett.peek().equals("Muehle")) {
+											ScoreMsg miller = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Muehle", "heal");
+											player.this.Muehle++;
+											lazarett.pop();
+											model.broadcast((ScoreMsg) miller); // does this work?
+										} 
+										
+										else if (lazarett.peek().equals("Brauerei")) {
+											ScoreMsg beer = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Brauerei", "heal");
+											player.this.Brauerei++;
+											lazarett.pop();
+											model.broadcast((ScoreMsg) beer);
+										}
+										
+										else if (lazarett.peek().equals("Hexenhaus")) {
+											ScoreMsg witch = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Hexenhaus", "heal");
+											player.this.Hexenhaus++;
+											lazarett.pop();
+											model.broadcast((ScoreMsg) witch);
+										}
+										
+										else if (lazarett.peek().equals("Wachturm")) {
+											ScoreMsg defense = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Wachturm", "heal");
+											player.this.Wachturm++;
+											lazarett.pop();
+											model.broadcast((ScoreMsg) defense);
+										}		
+	
+										else if (lazarett.peek().equals("Kaserne")) {
+											ScoreMsg attack = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Kaserne", "heal");
+											player.this.Kaserne++;
+											lazarett.pop();
+											model.broadcast((ScoreMsg) attack);
+										} 
+										
+										else if (lazarett.peek().equals("Taverne")) {
+											ScoreMsg tavern = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Taverne", "heal");
+											player.this.Taverne++;
+											lazarett.pop();
+											model.broadcast((ScoreMsg) tavern);
+										}
+										
+										else if (lazarett.peek().equals("Schloss")){
+											ScoreMsg castle = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Schloss", "heal");
+											player.this.Schloss++;
+											lazarett.pop();
+											model.broadcast((ScoreMsg) castle);
+										}
+									} catch (Exception e) {
+										e.printStackTrace();
+									}			
+									
+									RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
+									model.broadcast(rewardmsg);		
 								
 								}
-							}
-							
-							// Avoid overlapping messages 
-							
-							try {
-								Thread.sleep(800);
-							} catch (InterruptedException e) {
-							e.printStackTrace();
-							}
-							
-							// Enable change buttons
-							
-							model.changeTurn();
+								
+								if (((ScoreMsg) msg).getCard().equals("Muehle")) {
+									
+									try {
+										String muehleMusicFile = "src/sounds/ding.wav";
+										Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
+										MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
+										muehlePlayer.play();
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+									
+									reward = 0;
+									rate = 2;
+									
+									player.this.Muehle++;
+									model.broadcast((ScoreMsg) msg);
+									
+									// get 2 coins for each Muehle
+															
+									reward += (player.this.getMuehle() * rate);
+									player.this.saldo += reward;
+									
+									RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
+									model.broadcast(rewardmsg);	
+									
+									}
+								
+								if (((ScoreMsg) msg).getCard().equals("Kaserne")) {
+									
+									try {
+										String kaserneMusicFile = "src/sounds/notify.wav";
+										Media kaserneSound = new Media (new File(kaserneMusicFile).toURI().toString());
+										MediaPlayer kasernePlayer = new MediaPlayer(kaserneSound);
+										kasernePlayer.play();
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+									
+									reward = 0;
+									rate = 3;
+									
+									player.this.Kaserne++;
+									model.broadcast((ScoreMsg) msg);
+									
+									// Attack players
+									model.attackAll(player.this.Kaserne, player.this.name);	
+									
+									// get 3 coins for each Kaserne
+									
+									reward += (player.this.getKaserne() * rate);
+									player.this.saldo += reward;
+									
+									RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
+									model.broadcast(rewardmsg);	
+								}
+								
+								if (((ScoreMsg) msg).getCard().equals("Schloss")) {
+									
+									try {
+										String schlossMusicFile = "src/sounds/ringout.wav";
+										Media schlossSound = new Media (new File(schlossMusicFile).toURI().toString());
+										MediaPlayer schlossPlayer = new MediaPlayer(schlossSound);
+										schlossPlayer.play();
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+									
+									reward = 0;
+									rate = 5;
+									
+									player.this.Schloss++;
+									model.broadcast((ScoreMsg) msg);
+									
+									// get 5 coins for each Schloss
+									
+									reward += (player.this.getSchloss() * rate);
+									player.this.saldo += reward;
+									
+									RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
+									model.broadcast(rewardmsg);
+																	
+								}
+								
+									
+								if (((ScoreMsg) msg).getCard().equals("Taverne")) {
+									
+									try {
+										String taverneMusicFile = "src/sounds/tada.wav";
+										Media taverneSound = new Media (new File(taverneMusicFile).toURI().toString());
+										MediaPlayer tavernePlayer = new MediaPlayer(taverneSound);
+										tavernePlayer.play();
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+									
+									reward = 0;
+									rate = 4;
+									rewardall = 3;
+									
+									player.this.Taverne++;
+									model.broadcast((ScoreMsg) msg);
+									
+									// get 4 coins for each Taverne
+									
+									reward += (player.this.getTaverne() * rate);
+									player.this.saldo += reward;
+									
+									RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
+									model.broadcast(rewardmsg);	
+									
+									// get 3 coins for all players with at least one Brauerei
+									
+									List<String> players = model.getPlayersWithCard("Brauerei");
+									
+									for(int i = 0; i < players.size(); i++){
+										
+										String[] parts = players.get(i).split("\\|");
+										String temp1;
+										
+										rewardmsg.changeMsg(parts[0], rewardall, Integer.parseInt(parts[1])+rewardall);	
+										parts[1] = "" + (Integer.parseInt(parts[1])+rewardall);
+										temp1 = parts[0] + "|" + parts[1];
+										
+										model.setSaldi(temp1);
+										model.broadcast(rewardmsg);
+									
+									}
+								}
+								
+								// Avoid overlapping messages 
+								
+								try {
+									Thread.sleep(800);
+								} catch (InterruptedException e) {
+								e.printStackTrace();
+								}
+								
+								// Enable change buttons
+								
+								model.changeTurn();
+								
+							} else {
+								
+								player.this.complete = "true";
+								model.setComplete();
+								
+								}
 							
 						}
 					}
@@ -484,6 +497,10 @@ public class player {
 	
 	public String getErster() {
 		return this.erster;
+	}
+	
+	public String getComplete(){
+		return this.complete;
 	}
 
 	
