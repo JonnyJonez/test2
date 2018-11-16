@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Stack;
 
 import commons.JoinMsg;
+import commons.MeepleMsg;
 import commons.Card;
 import commons.CardStack;
 import commons.CardStackMsg;
@@ -50,6 +51,7 @@ public class player {
 	private String erster = "false";
 	private int position;
 	private String complete = "false";
+	private int Meeples;
 	
 	// Initiate lazarett
 	
@@ -109,6 +111,24 @@ public class player {
 						}
 						
 						model.broadcast(cardSmsg);
+						
+					// Msg to set Meeples for each Player
+					} else if (msg instanceof MeepleMsg) {
+						player.this.name = ((MeepleMsg) msg).getname();
+						player.this.Meeples = ((MeepleMsg) msg).getMeeples();
+						
+						if (player.this.Meeples > 5) {
+							for(int i = player.this.Meeples; i > 5; i--) {
+								
+							}
+						}
+						
+						MeepleMsg mepplmsg = new MeepleMsg(player.this.name, player.this.Meeples);
+					
+						model.broadcast(mepplmsg);
+						
+						
+					
 						
 					} else if (msg instanceof ScoreMsg) {
 						player.this.name = ((ScoreMsg) msg).getName();	

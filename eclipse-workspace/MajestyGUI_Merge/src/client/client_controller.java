@@ -60,6 +60,14 @@ public class client_controller {
 	public Label lblPlayer1lazarett;
 	public Label lblPlayer2lazarett;
 	
+	public Label lblMeeple1;
+	public Label lblMeeple2;
+	public Label lblMeeple3;
+	public Label lblMeeple4;
+	public Label lblMeeple5;
+	public Label lblMeeplePlayer1;
+	public Label lblMeeplePlayer2;
+	
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
 	

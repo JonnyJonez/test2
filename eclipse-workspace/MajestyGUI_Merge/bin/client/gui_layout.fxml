@@ -312,8 +312,17 @@
                         </Label>
                      </children>
                   </GridPane>
+                  <Label fx:id="lblMeeplePlayer2" layoutX="20.0" layoutY="-6.0" text="Label" />
                </children>
             </AnchorPane>
+            <Label fx:id="lblMeeple5" layoutX="279.0" layoutY="39.0" text="Label" />
+            <Label fx:id="lblMeeple4" layoutX="374.0" layoutY="39.0" text="Label" />
+            <Label fx:id="lblMeeple3" layoutX="465.0" layoutY="39.0" text="Label" />
+            <Label fx:id="lblMeeple2" layoutX="557.0" layoutY="39.0" text="Label" />
+            <Label fx:id="lblMeeple1" layoutX="657.0" layoutY="39.0" text="Label" />
+            <Label fx:id="lblMeeplePlayer1" layoutX="72.0" layoutY="112.0" text="Label" />
+            <Label layoutX="72.0" layoutY="85.0" text="Meeple P1" />
+            <Label layoutX="72.0" layoutY="162.0" text="Meeple P2" />
          </children>
       </AnchorPane>
    </children>

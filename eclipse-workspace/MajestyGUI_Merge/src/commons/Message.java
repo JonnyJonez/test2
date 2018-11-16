@@ -57,6 +57,8 @@ public abstract class Message {
 					msg = new CardStackMsg(parts[1], parts[2], parts[3], parts[4], parts[5], parts[6]);
 				} else if (parts[0].equals(MessageType.CardTakenMsg.toString())) {
 					msg = new CardTakenMsg(Integer.parseInt(parts[1]));
+				} else if (parts[0].equals(MessageType.Meeples.toString())) {
+					msg = new MeepleMsg(parts[1], Integer.parseInt(parts[2]));
 					
 									
 				}

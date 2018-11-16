@@ -11,6 +11,7 @@ import commons.CardStackMsg;
 import commons.CardTakenMsg;
 import commons.ChatMsg;
 import commons.JoinMsg;
+import commons.MeepleMsg;
 import commons.Message;
 import commons.MessageType;
 import commons.RewardMsg;
@@ -221,11 +222,9 @@ public class client_model {
 							e.printStackTrace();
 							}
 							
-							// Log card stack update
+							//Read Mepple Messages to set Mepple Count on view
+						}	else if (msg instanceof MeepleMsg) {
 							
-							// newestMessage.set("");
-							// newestMessage.set("**** Card Stack Updated **** \n " +  Cards);
-	
 						}
 					}	
 				}

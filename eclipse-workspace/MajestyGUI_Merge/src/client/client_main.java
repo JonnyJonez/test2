@@ -23,6 +23,7 @@ public class client_main extends Application {
 			loader.setController(controller);
 			AnchorPane root = loader.load();
 					
+			
 			// Start sound when opening the game client
 			
 			 String backgroundSound = "src/sounds/background_sound.mp3";
