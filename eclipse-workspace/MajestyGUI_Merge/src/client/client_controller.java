@@ -22,6 +22,7 @@ public class client_controller {
 	// Initiate buttons, labels and text fields
 	public Button btnConnect;
 	public Button btnSend;
+	public Button btnMute;
 	
 	public Button btncard1;
 	public Button btncard2;
@@ -82,18 +83,6 @@ public class client_controller {
 
 		// set default text for labels
 		
-		// Start sound when opening the game client
-		
-		 // Temporary off
-		 String backgroundSound = "src/sounds/background_sound.mp3";
-		 Media musicfile = new Media (new File(backgroundSound).toURI().toString());
-		 MediaPlayer mediaplayer = new MediaPlayer(musicfile);
-		 mediaplayer.setAutoPlay(true);
-		 mediaplayer.setVolume(0.2);
-		 mediaplayer.play();
-		
-		
-		
 		
 		lblplayer1score.setText("0");
 		lblplayer2score.setText("0");
@@ -124,6 +113,7 @@ public class client_controller {
 		btnConnect.setDisable(false);
 		
 	}
+	
 	
 	// Action for taking cards
 	

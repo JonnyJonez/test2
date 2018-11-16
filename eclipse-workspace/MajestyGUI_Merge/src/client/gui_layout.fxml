@@ -27,11 +27,6 @@
                      </font>
                   </Button>
                   <TextArea fx:id="txtChatArea" layoutX="689.0" layoutY="56.0" prefHeight="82.0" prefWidth="297.0" />
-                  <Button layoutX="22.0" layoutY="114.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="56.0" text="Stumm">
-                     <font>
-                        <Font size="8.0" />
-                     </font>
-                  </Button>
                </children>
             </AnchorPane>
          </children></AnchorPane>

@@ -25,15 +25,13 @@ public class client_main extends Application {
 					
 			// Start sound when opening the game client
 			
-			 // Temporary off
-			 /* String backgroundSound = "src/sounds/background_sound.mp3";
-			  Media musicfile = new Media (new File(backgroundSound).toURI().toString());
-			  MediaPlayer mediaplayer = new MediaPlayer(musicfile);
-			  mediaplayer.setAutoPlay(true);
-			  mediaplayer.setVolume(0.2);
-			  mediaplayer.play();
-			*/
-			
+			 String backgroundSound = "src/sounds/background_sound.mp3";
+			 Media musicfile = new Media (new File(backgroundSound).toURI().toString());
+			 MediaPlayer mediaplayer = new MediaPlayer(musicfile);
+			 mediaplayer.setAutoPlay(true);
+			 mediaplayer.setVolume(0.2);
+			 mediaplayer.play();
+				
 			
 			Scene scene = new Scene(root,1100,700);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
