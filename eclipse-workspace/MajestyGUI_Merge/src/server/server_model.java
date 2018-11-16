@@ -11,6 +11,7 @@ import commons.CardStack;
 import commons.CardStackMsg;
 import commons.ChatMsg;
 import commons.JoinMsg;
+import commons.MeepleMsg;
 import commons.Message;
 import commons.RewardMsg;
 import commons.ScoreMsg;
@@ -28,6 +29,7 @@ public class server_model {
 	public String erster;
 	public String zweiter;
 	public CardStack s1;
+	public int Meppledefault = 5;
 
 	public void startServer(int port) {
 		logger.info("Start server");
@@ -128,6 +130,20 @@ public class server_model {
 									VisibilityMsg vismsg2 = new VisibilityMsg(zweiter, "false");
 									broadcast(vismsg2);	
 									logger.info("set zweiter visible false " + zweiter);
+									
+									//Send Mepples Message default = 5 Mepples
+									
+									MeepleMsg mplmsg = new MeepleMsg(erster, Meppledefault);
+									broadcast(mplmsg);
+									
+									try {
+										Thread.sleep(300);
+									} catch (InterruptedException e) {
+									e.printStackTrace();
+									}
+									
+									MeepleMsg mplmsg2 = new MeepleMsg(zweiter, Meppledefault);
+									broadcast(mplmsg2);
 								
 								}
 							
@@ -206,6 +222,13 @@ public class server_model {
 		logger.info("Broadcasting CardStack msg");
 		for (player p : players) {
 			p.send(stackmsg);
+		}
+	}
+	
+	public void broadcast(MeepleMsg mplmsg) {
+		logger.info("Broadcast Meeples msg");
+		for (player p : players) {
+			p.send(mplmsg);
 		}
 	}
 	
