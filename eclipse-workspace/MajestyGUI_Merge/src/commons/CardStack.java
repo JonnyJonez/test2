@@ -14,12 +14,15 @@ public class CardStack {
 	private ArrayList<Card> stack = new ArrayList<>();
 	private Socket socket;
 	private server_model model;
+	private int[] Frequency = {9,6,5,5,3,4,5};
 	
 	public CardStack() {
-		for (CardType cards: CardType.values()) {
-			for(int i = 0; i<10; i++){
+		int counter = 0;
+		for (CardType cards: CardType.values()) {			
+			for(int i = 0; i < Frequency[counter]; i++){
 				stack.add(new Card(cards));					
-			}			
+			}
+			counter++;
 		}
 		
 		this.shuffleStack();
