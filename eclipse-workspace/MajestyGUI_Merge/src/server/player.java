@@ -51,7 +51,7 @@ public class player {
 	private String erster = "false";
 	private int position;
 	private String complete = "false";
-	private int Mepples;
+	private int Meeples;
 	
 	// Initiate lazarett
 	
@@ -115,9 +115,15 @@ public class player {
 					// Msg to set Meeples for each Player
 					} else if (msg instanceof MeepleMsg) {
 						player.this.name = ((MeepleMsg) msg).getname();
-						player.this.Mepples = ((MeepleMsg) msg).getMeeples();
+						player.this.Meeples = ((MeepleMsg) msg).getMeeples();
 						
-						MeepleMsg mepplmsg = new MeepleMsg(player.this.name, player.this.Mepples);
+						if (player.this.Meeples > 5) {
+							for(int i = player.this.Meeples; i > 5; i--) {
+								
+							}
+						}
+						
+						MeepleMsg mepplmsg = new MeepleMsg(player.this.name, player.this.Meeples);
 					
 						model.broadcast(mepplmsg);
 						
