@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Stack;
 
 import commons.JoinMsg;
-import commons.MeepleMsg;
 import commons.Card;
 import commons.CardStack;
 import commons.CardStackMsg;
@@ -50,8 +49,10 @@ public class player {
 	private String turn = "false";
 	private String erster = "false";
 	private int position;
-	private String complete = "false";
-	private int Meeples;
+	// @ali String -> boolean
+	private boolean complete = false;
+	// @ali: mit -1 sieht man, ob der Spieler am Ende 0 Punkte hatte
+	private int points = -1;
 	
 	// Initiate lazarett
 	
@@ -112,24 +113,6 @@ public class player {
 						
 						model.broadcast(cardSmsg);
 						
-					// Msg to set Meeples for each Player
-					} else if (msg instanceof MeepleMsg) {
-						player.this.name = ((MeepleMsg) msg).getname();
-						player.this.Meeples = ((MeepleMsg) msg).getMeeples();
-						
-						if (player.this.Meeples > 5) {
-							for(int i = player.this.Meeples; i > 5; i--) {
-								
-							}
-						}
-						
-						MeepleMsg mepplmsg = new MeepleMsg(player.this.name, player.this.Meeples);
-					
-						model.broadcast(mepplmsg);
-						
-						
-					
-						
 					} else if (msg instanceof ScoreMsg) {
 						player.this.name = ((ScoreMsg) msg).getName();	
 						
@@ -157,11 +140,11 @@ public class player {
 							if (((ScoreMsg) msg).getCard().equals("Wachturm")) {
 								
 								try {
-									String wachturmMusicFile = "src/sounds/defense.wav";
-									Media wachturmSound = new Media (new File(wachturmMusicFile).toURI().toString());
-									MediaPlayer wachturmPlayer = new MediaPlayer(wachturmSound);
-									wachturmPlayer.setVolume(0.2);
-									wachturmPlayer.play();
+									String brauereiMusicFile = "src/sounds/defense.wav";
+									Media brauereiSound = new Media (new File(brauereiMusicFile).toURI().toString());
+									MediaPlayer brauereiPlayer = new MediaPlayer(brauereiSound);
+									brauereiPlayer.setVolume(0.2);
+									brauereiPlayer.play();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -232,11 +215,11 @@ public class player {
 							if (((ScoreMsg) msg).getCard().equals("Hexenhaus")) {
 									
 							try {
-									String hexeMusicFile = "src/sounds/witch.wav";
-									Media hexeSound = new Media (new File(hexeMusicFile).toURI().toString());
-									MediaPlayer hexePlayer = new MediaPlayer(hexeSound);
-									hexePlayer.setVolume(0.2);
-									hexePlayer.play();
+									String brauereiMusicFile = "src/sounds/witch.wav";
+									Media brauereiSound = new Media (new File(brauereiMusicFile).toURI().toString());
+									MediaPlayer brauereiPlayer = new MediaPlayer(brauereiSound);
+									brauereiPlayer.setVolume(0.2);
+									brauereiPlayer.play();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -320,7 +303,6 @@ public class player {
 										String muehleMusicFile = "src/sounds/miller.wav";
 										Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
 										MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
-										muehlePlayer.setVolume(0.2);
 										muehlePlayer.play();
 									} catch (Exception e) {
 										e.printStackTrace();
@@ -345,11 +327,10 @@ public class player {
 								if (((ScoreMsg) msg).getCard().equals("Kaserne")) {
 									
 									try {
-										String kaserneMusicFile = "src/sounds/attack.wav";
-										Media kaserneSound = new Media (new File(kaserneMusicFile).toURI().toString());
-										MediaPlayer kasernePlayer = new MediaPlayer(kaserneSound);
-										kasernePlayer.setVolume(0.2);
-										kasernePlayer.play();
+										String muehleMusicFile = "src/sounds/attack.wav";
+										Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
+										MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
+										muehlePlayer.play();
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -375,11 +356,10 @@ public class player {
 								if (((ScoreMsg) msg).getCard().equals("Schloss")) {
 									
 									try {
-										String schlossMusicFile = "src/sounds/castle.wav";
-										Media schlossSound = new Media (new File(schlossMusicFile).toURI().toString());
-										MediaPlayer schlossPlayer = new MediaPlayer(schlossSound);
-										schlossPlayer.setVolume(0.2);
-										schlossPlayer.play();
+										String muehleMusicFile = "src/sounds/castle.wav";
+										Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
+										MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
+										muehlePlayer.play();
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -404,11 +384,10 @@ public class player {
 								if (((ScoreMsg) msg).getCard().equals("Taverne")) {
 									
 									try {
-										String taverneMusicFile = "src/sounds/tavern.wav";
-										Media taverneSound = new Media (new File(taverneMusicFile).toURI().toString());
-										MediaPlayer tavernePlayer = new MediaPlayer(taverneSound);
-										tavernePlayer.setVolume(0.2);
-										tavernePlayer.play();
+										String muehleMusicFile = "src/sounds/tavern.wav";
+										Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
+										MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
+										muehlePlayer.play();
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -461,8 +440,8 @@ public class player {
 								model.changeTurn();
 								
 							} else {
-								
-								player.this.complete = "true";
+								// TODO: disable buttons in all player windows
+								player.this.complete = true;
 								model.setComplete();
 								
 							}
@@ -526,7 +505,7 @@ public class player {
 		return this.erster;
 	}
 	
-	public String getComplete(){
+	public boolean getComplete(){
 		return this.complete;
 	}
 
@@ -544,6 +523,19 @@ public class player {
 	public void setTurn() {
 		this.turn = "true";
 		
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+		
+	// @Ali: grösse vom Stack entspricht der Anzahl Personen im Lazarett (Minuspunkte in der Auswertung)
+	public int getLazarett() {
+		return lazarett.size();
 	}
 
 	public String toString() {
