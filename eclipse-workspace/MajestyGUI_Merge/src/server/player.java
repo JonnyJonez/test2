@@ -443,6 +443,7 @@ public class player {
 								// TODO: disable buttons in all player windows
 								player.this.complete = true;
 								model.setComplete();
+								model.changeTurn();
 								
 							}
 						}
