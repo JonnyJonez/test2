@@ -505,6 +505,7 @@ public class server_model {
 		System.out.println("Auswertung:");
 		System.out.println(playerOne.getName() + ": " + playerOne.getPoints());
 		System.out.println(playerTwo.getName() + ": " + playerTwo.getPoints());
+		winner();
 	}
 	
 	public void winner() {
