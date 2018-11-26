@@ -230,8 +230,8 @@ public class client_model {
 							if(winmsg.getWinner().equals(name)) {
 								//******HERE WINNER ACTION ********
 							} else if (winmsg.getLoser().equals(name)) {
-								//******HERE LOSER ACTION *******
-							}
+								// **** HERE LOSER ACTION *******
+							}							
 						}
 					}	
 				}
