@@ -15,6 +15,7 @@ import commons.Message;
 import commons.RewardMsg;
 import commons.ScoreMsg;
 import commons.VisibilityMsg;
+import commons.WinnerMsg;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -217,6 +218,13 @@ public class server_model {
 		logger.info("Broadcasting CardStack msg");
 		for (player p : players) {
 			p.send(stackmsg);
+		}
+	}
+	
+	public void broadcast(WinnerMsg winmsg) {
+		logger.info("Broadcasting Winner msg");
+		for (player p : players) {
+			p.send(winmsg);
 		}
 	}
 	

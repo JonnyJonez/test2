@@ -11,13 +11,13 @@ import commons.CardStackMsg;
 import commons.CardTakenMsg;
 import commons.ChatMsg;
 import commons.JoinMsg;
-import commons.MeepleMsg;
 import commons.Message;
 import commons.MessageType;
 import commons.RewardMsg;
 import commons.ScoreMsg;
 import commons.ScoreType;
 import commons.VisibilityMsg;
+import commons.WinnerMsg;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -222,8 +222,17 @@ public class client_model {
 							e.printStackTrace();
 							}
 							
-							//Read Mepple Messages to set Mepple Count on view
-						}	else if (msg instanceof MeepleMsg) {
+							//Read the Winner Message 
+						}	else if (msg instanceof WinnerMsg) {
+							
+							WinnerMsg winmsg = (WinnerMsg) msg;
+							
+							if(winmsg.getWinner().equals(name)) {
+								//******HERE WINNER ACTION ********
+							} else if (winmsg.getLoser().equals(name)) {
+								// **** HERE LOSER ACTION *******
+							}
+							
 							
 						}
 					}	
