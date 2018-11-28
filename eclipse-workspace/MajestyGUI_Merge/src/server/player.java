@@ -120,8 +120,7 @@ public class player {
 						int rate = 0;
 						int rewardall = 0;
 						
-							overallcount ++;
-						if (overallcount < 13) {	
+						if (overallcount < 24) {	
 							
 							// disable buttons 
 							VisibilityMsg vismsg = new VisibilityMsg(player.this.name, "false");
@@ -238,13 +237,18 @@ public class player {
 								player.this.saldo += reward;
 									
 								// Heal cards from lazarett
+							
+								if (lazarett.empty() == true) {
+								
+								}
+								
+								else try {
 									
-									try {
 										if (lazarett.peek().equals("Muehle")) {
 											ScoreMsg miller = new ScoreMsg((player.this.name = ((ScoreMsg) msg).getName()), "Muehle", "heal");
 											player.this.Muehle++;
 											lazarett.pop();
-											model.broadcast((ScoreMsg) miller); // does this work?
+											model.broadcast((ScoreMsg) miller);
 										} 
 										
 										else if (lazarett.peek().equals("Brauerei")) {
@@ -509,10 +513,16 @@ public class player {
 	public boolean getComplete(){
 		return this.complete;
 	}
+	
+	public int getOverallcount() {
+		return overallcount;
+	}	
 
 	
 	// Setter
 	
+
+
 	public void setSaldo(int saldo) {
 		this.saldo = saldo;
 	}
@@ -533,7 +543,12 @@ public class player {
 	public void setPoints(int points) {
 		this.points = points;
 	}
-		
+
+	public void setOverallcount(int overallcount) {
+		this.overallcount = overallcount;
+	}
+
+	
 	// @Ali: grösse vom Stack entspricht der Anzahl Personen im Lazarett (Minuspunkte in der Auswertung)
 	public int getLazarett() {
 		return lazarett.size();
@@ -546,6 +561,9 @@ public class player {
 
 	
 	public void changeTurn() {
+		
+		overallcount++; 
+		
 		if(this.turn.equals("true")){
 			this.turn = "false";
 		} else if (this.turn.equals("false")){
