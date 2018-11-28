@@ -319,6 +319,15 @@ public class server_model {
 			}
 		}
 		
+		VisibilityMsg vismsg1 = new VisibilityMsg(erster, "false");
+		broadcast(vismsg1);	
+		logger.info("set zweiter visible false " + zweiter);
+		
+		VisibilityMsg vismsg2 = new VisibilityMsg(zweiter, "false");
+		broadcast(vismsg2);	
+		logger.info("set zweiter visible false " + zweiter);
+		
+		
 		System.out.println("all complete: " + allComplete);
 		
 		// wenn alle Spieler fertig sind, Auswertung starten
