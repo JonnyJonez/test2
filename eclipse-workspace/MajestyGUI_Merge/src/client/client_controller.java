@@ -748,7 +748,7 @@ public class client_controller {
 		Platform.runLater(new Runnable() {
 		    public void run() {
 		    	ellWinner.setVisible(true);
-				lblWinner.setText(winner+"ist König von Westeros!");
+				lblWinner.setText(winner+" ist König von Westeros!");
 				lblWinner.setVisible(true);		    	
 		    }
 		});
