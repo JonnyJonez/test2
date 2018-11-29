@@ -89,13 +89,13 @@ public class player {
 						model.broadcast((JoinMsg) msg);
 
 						
-					// Msg to remove Card from Stack and send new Stack
+					// @Erich Msg to remove Card from Stack and send new Stack
 						
 					} else if (msg instanceof CardTakenMsg){
 						player.this.position = ((CardTakenMsg)msg).getposition();
 						model.s1.removeCard(position);	
 						
-						//waiting for removing card
+						// waiting for removing card
 						try {
 							Thread.sleep(200);
 						} catch (InterruptedException e) {

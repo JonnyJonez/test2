@@ -31,6 +31,7 @@ public class server_model {
 	public CardStack s1;
 	// @Ali: Weil am Anfang noch kein Winner feststeht -> null
 	private player winner = null;
+	private player loser = null;
 	
 	// @Ali: Punkte für die Auswertung
 	private static final int VALUE_MUEHLE = 10;
@@ -530,9 +531,13 @@ public class server_model {
 			// falls noch kein winner gesetzt ist (null), wird der erste Spieler in der Schlauf als Winner gesetzt egal wie viel Punkte er hat
 			// sobald ein Winner gesetzt ist, wird überprüft ob die Punkte des Spielers höher sind als die Punkte des momentan gesetzten Winners
 			if (winner == null || p.getPoints() > winner.getPoints()) {
-				winner = p;
+				winner = p;				
+			} else {
+				loser = p;
 			}
 		}
+		WinnerMsg winmsg = new WinnerMsg(winner.getName(), loser.getName());
+		broadcast(winmsg);
 		System.out.println("the winner is: " + winner.getName());
 	}
 }
