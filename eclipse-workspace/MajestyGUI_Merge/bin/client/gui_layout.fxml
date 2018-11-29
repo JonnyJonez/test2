@@ -316,5 +316,11 @@
             </AnchorPane>
          </children>
       </AnchorPane>
+      <Ellipse fx:id="ellWinner" disable="true" fill="#fff31f" layoutX="520.0" layoutY="248.0" radiusX="391.0" radiusY="222.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Label fx:id="lblWinner" layoutX="201.0" layoutY="112.0" prefHeight="257.0" prefWidth="687.0" text="#Player ist König von Westeros!" textFill="#ab1212" visible="false">
+         <font>
+            <Font name="Pristina" size="55.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

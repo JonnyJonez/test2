@@ -1,20 +1,14 @@
 package client;
 
-import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-
-import client.client_model;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
 
 public class client_controller {
 	private client_model model;
@@ -43,6 +37,7 @@ public class client_controller {
 	public Label lblplayer1score;
 	public Label lblplayer2score;
 	
+	
 	public Label lblPlayer1muehle;
 	public Label lblPlayer2muehle;
 	public Label lblPlayer1brauerei;
@@ -67,6 +62,10 @@ public class client_controller {
 	public Label lblMeeple5;
 	public Label lblMeeplePlayer1;
 	public Label lblMeeplePlayer2;
+	
+	public static Label lblWinner;
+	
+	public static Ellipse ellWinner;
 	
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
@@ -119,6 +118,8 @@ public class client_controller {
 		txtPort.setDisable(true);
 		txtName.setDisable(true);
 		btnConnect.setDisable(false);
+		
+		
 		
 	}
 	
