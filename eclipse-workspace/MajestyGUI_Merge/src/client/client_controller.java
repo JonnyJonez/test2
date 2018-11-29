@@ -63,9 +63,9 @@ public class client_controller {
 	public Label lblMeeplePlayer1;
 	public Label lblMeeplePlayer2;
 	
-	public static Label lblWinner;
+	public Label lblWinner;
 	
-	public static Ellipse ellWinner;
+	public Ellipse ellWinner;
 	
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
@@ -243,6 +243,13 @@ public class client_controller {
 			}		
 						
 		} );
+		
+		// Listener for setting winner label & ellipse		
+				model.winnerVis.addListener( (o, oldValue, newValue) -> {
+					if(!newValue.isEmpty()) {
+						settingWinner(newValue);	
+					}						
+				} );
 		
 	}
 	
@@ -735,5 +742,18 @@ public class client_controller {
 		    }
 		});
 	}	
+	
+	public void settingWinner(String winner) {
+		
+		Platform.runLater(new Runnable() {
+		    public void run() {
+		    	ellWinner.setVisible(true);
+				lblWinner.setText(winner+"ist König von Westeros!");
+				lblWinner.setVisible(true);		    	
+		    }
+		});
+	}
+	
+		
 
 }

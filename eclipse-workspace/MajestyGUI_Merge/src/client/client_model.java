@@ -39,6 +39,7 @@ public class client_model {
 	protected SimpleStringProperty otherCardTaken = new SimpleStringProperty();
 	protected SimpleStringProperty myCardAction = new SimpleStringProperty();
 	protected SimpleStringProperty otherCardAction = new SimpleStringProperty();
+	protected SimpleStringProperty winnerVis = new SimpleStringProperty();
 	
 	private Logger logger = Logger.getLogger("");
 	private Socket socket;
@@ -229,9 +230,8 @@ public class client_model {
 							
 							if(winmsg.getWinner().equals(name)) {
 								//******HERE WINNER ACTION ********
-								// setting "ellWinner.setVisible(true)"
-								// setting "lblWinner.setText(getWinner()+"ist König von Westeros!""
-								// setting "lblWinner.setVisible(true)"
+								winnerVis.set(name);
+								
 							} else if (winmsg.getLoser().equals(name)) {
 								// **** HERE LOSER ACTION *******
 							}							

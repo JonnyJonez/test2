@@ -124,7 +124,7 @@ public class player {
 							
 							// disable buttons 
 							VisibilityMsg vismsg = new VisibilityMsg(player.this.name, "false");
-							model.broadcast(vismsg);	
+							model.broadcast(vismsg);
 							
 							// wait before calculate for GUI
 							
@@ -448,6 +448,7 @@ public class player {
 								player.this.complete = true;
 								model.setComplete();
 								model.changeTurn();
+								//model.broadcast(winmsg);
 								
 							}
 						}
