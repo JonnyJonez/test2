@@ -532,11 +532,11 @@ public class server_model {
 			// sobald ein Winner gesetzt ist, wird überprüft ob die Punkte des Spielers höher sind als die Punkte des momentan gesetzten Winners
 			if (winner == null || p.getPoints() > winner.getPoints()) {
 				winner = p;				
-			} else {
-				loser = p;
-			}
-		}
-		WinnerMsg winmsg = new WinnerMsg(winner.getName(), loser.getName());
+			} 
+		}		
+		
+		
+		WinnerMsg winmsg = new WinnerMsg(winner.getName());
 		broadcast(winmsg);
 		System.out.println("the winner is: " + winner.getName());
 	}

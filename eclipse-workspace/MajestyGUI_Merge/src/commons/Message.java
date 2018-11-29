@@ -58,7 +58,7 @@ public abstract class Message {
 				} else if (parts[0].equals(MessageType.CardTakenMsg.toString())) {
 					msg = new CardTakenMsg(Integer.parseInt(parts[1]));
 				} else if (parts[0].equals(MessageType.Winner.toString())) {
-					msg = new WinnerMsg(parts[1], parts[2]);
+					msg = new WinnerMsg(parts[1]);
 					
 									
 				}

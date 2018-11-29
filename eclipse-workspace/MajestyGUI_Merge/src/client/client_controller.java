@@ -245,11 +245,11 @@ public class client_controller {
 		} );
 		
 		// Listener for setting winner label & ellipse		
-				model.winnerVis.addListener( (o, oldValue, newValue) -> {
-					if(!newValue.isEmpty()) {
-						settingWinner(newValue);	
-					}						
-				} );
+			model.winnerVis.addListener( (o, oldValue, newValue) -> {
+				if(!newValue.isEmpty()) {
+					settingWinner(newValue);	
+				}						
+			} );
 		
 	}
 	
