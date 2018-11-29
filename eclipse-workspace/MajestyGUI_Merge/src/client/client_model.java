@@ -229,6 +229,9 @@ public class client_model {
 							
 							if(winmsg.getWinner().equals(name)) {
 								//******HERE WINNER ACTION ********
+								// setting "ellWinner.setVisible(true)"
+								// setting "lblWinner.setText(getWinner()+"ist König von Westeros!""
+								// setting "lblWinner.setVisible(true)"
 							} else if (winmsg.getLoser().equals(name)) {
 								// **** HERE LOSER ACTION *******
 							}							
