@@ -38,26 +38,28 @@
                   <Image url="@../../pics/cards/backs/Back%201.jpg" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#38e04100" height="167.0" layoutX="734.0" layoutY="32.0" stroke="#0e110e" strokeType="INSIDE" width="290.0" />
-            <Ellipse fill="#ffae1fd4" layoutX="882.0" layoutY="159.0" radiusX="138.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" />
-            <Ellipse fill="#ffce1fa4" layoutX="882.0" layoutY="100.0" radiusX="138.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label layoutX="834.0" layoutY="22.0" text="Punkte:">
+            <ImageView fitHeight="257.0" fitWidth="188.0" layoutX="808.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+               <image>
+                  <Image url="@../../../../../../OneDrive/Dokumente/_FHNW/5.%20Sem/IT-Projekt/GUI-MockUp/Vintage_Paper_Background.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="852.0" layoutY="25.0" text="Punkte:">
                <font>
                   <Font name="Pristina" size="36.0" />
                </font></Label>
-            <Label fx:id="lblPlayer1" layoutX="761.0" layoutY="78.0" prefHeight="39.0" prefWidth="90.0">
+            <Label fx:id="lblPlayer1" layoutX="795.0" layoutY="86.0" prefHeight="39.0" prefWidth="90.0">
                <font>
                   <Font name="Pristina" size="24.0" />
                </font></Label>
-            <Label fx:id="lblPlayer2" layoutX="761.0" layoutY="137.0">
+            <Label fx:id="lblPlayer2" layoutX="795.0" layoutY="147.0">
                <font>
                   <Font name="Pristina" size="24.0" />
                </font></Label>
-            <Label fx:id="lblplayer1score" layoutX="866.0" layoutY="68.0" textFill="#bf1919" underline="true">
+            <Label fx:id="lblplayer1score" layoutX="932.0" layoutY="74.0" textFill="#bf1919" underline="true">
                <font>
                   <Font name="Pristina" size="36.0" />
                </font></Label>
-            <Label fx:id="lblplayer2score" layoutX="864.0" layoutY="128.0" textFill="#bf1919" underline="true">
+            <Label fx:id="lblplayer2score" layoutX="932.0" layoutY="132.0" textFill="#bf1919" underline="true">
                <font>
                   <Font name="Pristina" size="36.0" />
                </font></Label>
