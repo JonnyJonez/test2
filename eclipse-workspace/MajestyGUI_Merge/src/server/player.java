@@ -139,11 +139,7 @@ public class player {
 							if (((ScoreMsg) msg).getCard().equals("Wachturm")) {
 								
 								try {
-									String wachturmMusicFile = "src/sounds/defense.wav";
-									Media wachturmSound = new Media (new File(wachturmMusicFile).toURI().toString());
-									MediaPlayer wachturmPlayer = new MediaPlayer(wachturmSound);
-									wachturmPlayer.setVolume(0.2);
-									wachturmPlayer.play();
+									defenseSound();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -169,11 +165,7 @@ public class player {
 							if (((ScoreMsg) msg).getCard().equals("Brauerei")) {
 								
 								try {
-									String brauereiMusicFile = "src/sounds/brewery.wav";
-									Media brauereiSound = new Media (new File(brauereiMusicFile).toURI().toString());
-									MediaPlayer brauereiPlayer = new MediaPlayer(brauereiSound);
-									brauereiPlayer.setVolume(0.2);
-									brauereiPlayer.play();
+									brewerySound();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -214,11 +206,7 @@ public class player {
 							if (((ScoreMsg) msg).getCard().equals("Hexenhaus")) {
 									
 							try {
-									String witchMusicFile = "src/sounds/witch.wav";
-									Media witchSound = new Media (new File(witchMusicFile).toURI().toString());
-									MediaPlayer witchPlayer = new MediaPlayer(witchSound);
-									witchPlayer.setVolume(0.2);
-									witchPlayer.play();
+								witchSound();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -236,8 +224,12 @@ public class player {
 								reward += (player.this.getHexenhaus() * rate);
 								player.this.saldo += reward;
 									
-								// Heal cards from lazarett
-							
+								/**
+								 * whenever a card with the name "Hexenhaus" is picked, it will be checked,
+								 * if the lazarett is empty. If there is at least one card inside of the lazarett,
+								 * the following code will check which one it is based on a if peek = x = true -> pop  
+								 * @author R. Thiel
+								 */
 								if (lazarett.empty() == true) {
 								
 								}
@@ -304,11 +296,7 @@ public class player {
 								if (((ScoreMsg) msg).getCard().equals("Muehle")) {
 									
 									try {
-										String muehleMusicFile = "src/sounds/miller.wav";
-										Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
-										MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
-										muehlePlayer.setVolume(0.2);
-										muehlePlayer.play();
+										millerSound();
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -332,11 +320,7 @@ public class player {
 								if (((ScoreMsg) msg).getCard().equals("Kaserne")) {
 									
 									try {
-										String attackMusicFile = "src/sounds/attack.wav";
-										Media attackSound = new Media (new File(attackMusicFile).toURI().toString());
-										MediaPlayer attackPlayer = new MediaPlayer(attackSound);
-										attackPlayer.setVolume(0.2);
-										attackPlayer.play();
+										attackSound();
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -362,11 +346,7 @@ public class player {
 								if (((ScoreMsg) msg).getCard().equals("Schloss")) {
 									
 									try {
-										String castleMusicFile = "src/sounds/castle.wav";
-										Media castleSound = new Media (new File(castleMusicFile).toURI().toString());
-										MediaPlayer castlePlayer = new MediaPlayer(castleSound);
-										castlePlayer.setVolume(0.2);
-										castlePlayer.play();
+										castleSound();
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -391,11 +371,7 @@ public class player {
 								if (((ScoreMsg) msg).getCard().equals("Taverne")) {
 									
 									try {
-										String tavernMusicFile = "src/sounds/tavern.wav";
-										Media tavernSound = new Media (new File(tavernMusicFile).toURI().toString());
-										MediaPlayer tavernPlayer = new MediaPlayer(tavernSound);
-										tavernPlayer.setVolume(0.2);
-										tavernPlayer.play();
+										tavernSound();
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -646,7 +622,106 @@ public class player {
 			}
 		}
 	}
+	
+	/**
+	 * this method is called when a card is picked with the "Wachturm"-name. 
+	 * it will play a predetermined sound with 20% volume.  
+	 * The original sound file is from the MMORPG "World of Warcraft"
+	 * @author: R. Thiel
+	 */
+	public void defenseSound(){ 
+	String wachturmMusicFile = "src/sounds/defense.wav";
+	Media wachturmSound = new Media (new File(wachturmMusicFile).toURI().toString());
+	MediaPlayer wachturmPlayer = new MediaPlayer(wachturmSound);
+	wachturmPlayer.setVolume(0.2);
+	wachturmPlayer.play();
+	}
+	
+	/**
+	 * this method is called when a card is picked with the "Brauerei"-name. 
+	 * it will play a predetermined sound with 20% volume.  
+	 * The original sound file was taken from a website who distributes free sample sounds. 
+	 * @author: R. Thiel
+	 */
+	public void brewerySound() {
+	String brauereiMusicFile = "src/sounds/brewery.wav";
+	Media brauereiSound = new Media (new File(brauereiMusicFile).toURI().toString());
+	MediaPlayer brauereiPlayer = new MediaPlayer(brauereiSound);
+	brauereiPlayer.setVolume(0.2);
+	brauereiPlayer.play();
+	}
 
+	/**
+	 * this method is called when a card is picked with the "Hexenhaus"-name. 
+	 * it will play a predetermined sound with 20% volume. 
+	 * The original sound file was taken from a website who distributes free sample sounds. 
+	 * @author: R. Thiel
+	 */
+	public void witchSound() {
+	String witchMusicFile = "src/sounds/witch.wav";
+	Media witchSound = new Media (new File(witchMusicFile).toURI().toString());
+	MediaPlayer witchPlayer = new MediaPlayer(witchSound);
+	witchPlayer.setVolume(0.2);
+	witchPlayer.play();
+	}
+	
+	/**
+	 * this method is called when a card is picked with the "Mühle"-name. 
+	 * it will play a predetermined sound with 20% volume.  
+	 * The original sound file is from the RTS "Age of Empires II"
+	 * @author: R. Thiel
+	 */
+	public void millerSound() {
+	String muehleMusicFile = "src/sounds/miller.wav";
+	Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
+	MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
+	muehlePlayer.setVolume(0.2);
+	muehlePlayer.play();
+	}
+	
+	/**
+	 * this method is called when a card is picked with the "Kaserne"-name. 
+	 * it will play a predetermined sound with 20% volume. 
+	 * The original sound file is from the MMORPG "World of Warcraft"
+	 * @author: R. Thiel
+	 */
+	public void attackSound() {
+	String attackMusicFile = "src/sounds/attack.wav";
+	Media attackSound = new Media (new File(attackMusicFile).toURI().toString());
+	MediaPlayer attackPlayer = new MediaPlayer(attackSound);
+	attackPlayer.setVolume(0.2);
+	attackPlayer.play();
+	}
+	
+	/**
+	 * this method is called when a card is picked with the "Schloss"-name. 
+	 * it will play a predetermined sound with 20% volume. 
+	 * The original sound file is from the RTS "Age of Empires II"
+	 * @author: R. Thiel
+	 */
+	public void castleSound() {
+	String castleMusicFile = "src/sounds/castle.wav";
+	Media castleSound = new Media (new File(castleMusicFile).toURI().toString());
+	MediaPlayer castlePlayer = new MediaPlayer(castleSound);
+	castlePlayer.setVolume(0.2);
+	castlePlayer.play();
+	}
+	
+	/**
+	 * this method is called when a card is picked with the "Taverne"-name. 
+	 * it will play a predetermined sound with 20% volume. 
+	 * The original sound file was taken from a website who distributes free sample sounds. 
+	 * @author: R. Thiel
+	 */
+	public void tavernSound() {
+	String tavernMusicFile = "src/sounds/tavern.wav";
+	Media tavernSound = new Media (new File(tavernMusicFile).toURI().toString());
+	MediaPlayer tavernPlayer = new MediaPlayer(tavernSound);
+	tavernPlayer.setVolume(0.2);
+	tavernPlayer.play();
+	}
+	
+	
 	public void stop() {
 		try {
 			socket.close();
