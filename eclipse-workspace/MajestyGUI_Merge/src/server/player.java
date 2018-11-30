@@ -139,11 +139,11 @@ public class player {
 							if (((ScoreMsg) msg).getCard().equals("Wachturm")) {
 								
 								try {
-									String brauereiMusicFile = "src/sounds/defense.wav";
-									Media brauereiSound = new Media (new File(brauereiMusicFile).toURI().toString());
-									MediaPlayer brauereiPlayer = new MediaPlayer(brauereiSound);
-									brauereiPlayer.setVolume(0.2);
-									brauereiPlayer.play();
+									String wachturmMusicFile = "src/sounds/defense.wav";
+									Media wachturmSound = new Media (new File(wachturmMusicFile).toURI().toString());
+									MediaPlayer wachturmPlayer = new MediaPlayer(wachturmSound);
+									wachturmPlayer.setVolume(0.2);
+									wachturmPlayer.play();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -214,11 +214,11 @@ public class player {
 							if (((ScoreMsg) msg).getCard().equals("Hexenhaus")) {
 									
 							try {
-									String brauereiMusicFile = "src/sounds/witch.wav";
-									Media brauereiSound = new Media (new File(brauereiMusicFile).toURI().toString());
-									MediaPlayer brauereiPlayer = new MediaPlayer(brauereiSound);
-									brauereiPlayer.setVolume(0.2);
-									brauereiPlayer.play();
+									String witchMusicFile = "src/sounds/witch.wav";
+									Media witchSound = new Media (new File(witchMusicFile).toURI().toString());
+									MediaPlayer witchPlayer = new MediaPlayer(witchSound);
+									witchPlayer.setVolume(0.2);
+									witchPlayer.play();
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
@@ -307,6 +307,7 @@ public class player {
 										String muehleMusicFile = "src/sounds/miller.wav";
 										Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
 										MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
+										muehlePlayer.setVolume(0.2);
 										muehlePlayer.play();
 									} catch (Exception e) {
 										e.printStackTrace();
@@ -331,10 +332,11 @@ public class player {
 								if (((ScoreMsg) msg).getCard().equals("Kaserne")) {
 									
 									try {
-										String muehleMusicFile = "src/sounds/attack.wav";
-										Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
-										MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
-										muehlePlayer.play();
+										String attackMusicFile = "src/sounds/attack.wav";
+										Media attackSound = new Media (new File(attackMusicFile).toURI().toString());
+										MediaPlayer attackPlayer = new MediaPlayer(attackSound);
+										attackPlayer.setVolume(0.2);
+										attackPlayer.play();
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -360,10 +362,11 @@ public class player {
 								if (((ScoreMsg) msg).getCard().equals("Schloss")) {
 									
 									try {
-										String muehleMusicFile = "src/sounds/castle.wav";
-										Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
-										MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
-										muehlePlayer.play();
+										String castleMusicFile = "src/sounds/castle.wav";
+										Media castleSound = new Media (new File(castleMusicFile).toURI().toString());
+										MediaPlayer castlePlayer = new MediaPlayer(castleSound);
+										castlePlayer.setVolume(0.2);
+										castlePlayer.play();
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -388,10 +391,11 @@ public class player {
 								if (((ScoreMsg) msg).getCard().equals("Taverne")) {
 									
 									try {
-										String muehleMusicFile = "src/sounds/tavern.wav";
-										Media muehleSound = new Media (new File(muehleMusicFile).toURI().toString());
-										MediaPlayer muehlePlayer = new MediaPlayer(muehleSound);
-										muehlePlayer.play();
+										String tavernMusicFile = "src/sounds/tavern.wav";
+										Media tavernSound = new Media (new File(tavernMusicFile).toURI().toString());
+										MediaPlayer tavernPlayer = new MediaPlayer(tavernSound);
+										tavernPlayer.setVolume(0.2);
+										tavernPlayer.play();
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
