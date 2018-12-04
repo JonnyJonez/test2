@@ -4,9 +4,10 @@ public class WinnerMsg extends Message {
 	private String winner;
 	private String loser;
 	
-	public WinnerMsg(String winner) {
+	public WinnerMsg(String winner, String loser) {
 		super(MessageType.Winner);
-		this.winner = winner;		
+		this.winner = winner;
+		this.loser = loser;
 		
 	}
 		

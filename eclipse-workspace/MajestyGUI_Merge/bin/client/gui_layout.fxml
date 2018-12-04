@@ -40,7 +40,7 @@
             </ImageView>
             <ImageView fitHeight="257.0" fitWidth="188.0" layoutX="808.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
-                  <Image url="@../../../../../../OneDrive/Dokumente/_FHNW/5.%20Sem/IT-Projekt/GUI-MockUp/Vintage_Paper_Background.jpg" />
+                  <Image url="@../../pics/PointsBackground.jpg" />
                </image>
             </ImageView>
             <Label layoutX="852.0" layoutY="25.0" text="Punkte:">
@@ -319,7 +319,22 @@
          </children>
       </AnchorPane>
       <Ellipse fx:id="ellWinner" disable="true" fill="#fff31f" layoutX="520.0" layoutY="248.0" radiusX="391.0" radiusY="222.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <Label fx:id="lblWinner" layoutX="201.0" layoutY="112.0" prefHeight="257.0" prefWidth="687.0" text="#Player ist König von Westeros!" textFill="#ab1212" visible="false">
+      <Label fx:id="lblWinner" layoutX="201.0" layoutY="112.0" prefHeight="257.0" prefWidth="687.0" text="P1 ist König" textFill="#ab1212" visible="false">
+         <font>
+            <Font name="Pristina" size="55.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLoser" layoutX="194.0" layoutY="202.0" prefHeight="257.0" prefWidth="687.0" text="P2 ist Bastard" textFill="#ab1212" visible="false">
+         <font>
+            <Font name="Pristina" size="55.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblWinnerScore" layoutX="545.0" layoutY="112.0" prefHeight="257.0" prefWidth="687.0" text="Score P1" textFill="#ab1212" visible="false">
+         <font>
+            <Font name="Pristina" size="55.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLoserScore" layoutX="545.0" layoutY="202.0" prefHeight="257.0" prefWidth="687.0" text="Score P2" textFill="#ab1212" visible="false">
          <font>
             <Font name="Pristina" size="55.0" />
          </font>

@@ -59,14 +59,9 @@ public class client_controller {
 	public Label lblPlayer1lazarett;
 	public Label lblPlayer2lazarett;
 	
-	public Label lblMeeple1;
-	public Label lblMeeple2;
-	public Label lblMeeple3;
-	public Label lblMeeple4;
-	public Label lblMeeple5;
-	public Label lblMeeplePlayer1;
-	public Label lblMeeplePlayer2;
-	
+	public Label lblWinnerPoints;
+	public Label lblLoserPoints;
+	public Label lblLoser;	
 	public Label lblWinner;
 	
 	public Ellipse ellWinner;
@@ -254,7 +249,14 @@ public class client_controller {
 					settingWinner(newValue);	
 				}						
 			} );
-		
+			
+		// Listener for setting winner label & ellipse		
+			model.loserVis.addListener( (o, oldValue, newValue) -> {
+				if(!newValue.isEmpty()) {
+					settingLoser(newValue);	
+				}						
+			} );
+
 	}
 	
 	// Set all card buttons to invisible
@@ -752,11 +754,40 @@ public class client_controller {
 		Platform.runLater(new Runnable() {
 		    public void run() {
 		    	ellWinner.setVisible(true);
-				lblWinner.setText(winner+" ist König von Westeros!");
-				lblWinner.setVisible(true);		    	
+		    	lblWinner.setVisible(true);
+		    	lblWinnerPoints.setVisible(true);
+				lblWinner.setText("Winner: " + winner);
+				if(lblPlayer1.getText().equals(winner)) {
+					lblWinnerPoints.setText("test");
+					
+				} else {
+					lblWinnerPoints.setText("test");
+				}
+				
+				
+				
 		    }
 		});
 	}
+	
+	public void settingLoser(String loser) {
+			
+			Platform.runLater(new Runnable() {
+			    public void run() {
+			    	ellWinner.setVisible(true);
+			    	lblLoser.setVisible(true);
+			    	lblLoserPoints.setVisible(true);
+					lblLoser.setText("Loser: " + loser);
+					if(lblPlayer1.getText().equals(loser)) {
+						lblLoserPoints.setText(lblplayer1score.getText());
+					} else {
+						lblLoserPoints.setText(lblplayer2score.getText());
+					}
+					
+					
+			    }
+			});
+		}
 	
 		
 

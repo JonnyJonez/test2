@@ -537,17 +537,25 @@ public class server_model {
 		winner();
 	}
 	
+	/**@Author Ali */
 	public void winner() {
 		for (player p : players) {
 			// falls noch kein winner gesetzt ist (null), wird der erste Spieler in der Schlauf als Winner gesetzt egal wie viel Punkte er hat
 			// sobald ein Winner gesetzt ist, wird überprüft ob die Punkte des Spielers höher sind als die Punkte des momentan gesetzten Winners
-			if (winner == null || p.getPoints() > winner.getPoints()) {
+			if(winner == null && loser == null) {
+				loser = p;
 				winner = p;				
-			} 
+			}else {
+				if (p.getPoints() > winner.getPoints())	{
+					winner = p;
+				} else
+					loser = p;
+			} 		
+			
 		}		
 		
 		
-		WinnerMsg winmsg = new WinnerMsg(winner.getName());
+		WinnerMsg winmsg = new WinnerMsg(winner.getName(), loser.getName());
 		broadcast(winmsg);
 		System.out.println("the winner is: " + winner.getName());
 	}

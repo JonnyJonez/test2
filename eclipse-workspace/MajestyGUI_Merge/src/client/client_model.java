@@ -40,6 +40,7 @@ public class client_model {
 	protected SimpleStringProperty myCardAction = new SimpleStringProperty();
 	protected SimpleStringProperty otherCardAction = new SimpleStringProperty();
 	protected SimpleStringProperty winnerVis = new SimpleStringProperty();
+	protected SimpleStringProperty loserVis = new SimpleStringProperty();
 	
 	private Logger logger = Logger.getLogger("");
 	private Socket socket;
@@ -239,13 +240,12 @@ public class client_model {
 							
 							WinnerMsg winmsg = (WinnerMsg) msg;
 							
-							if(winmsg.getWinner().equals(name)) {
 								//******HERE WINNER ACTION ********
-								winnerVis.set(name);
-								
-							} else if (winmsg.getLoser().equals(name)) {
-								// **** HERE LOSER ACTION *******
-							}							
+								winnerVis.set(winmsg.getWinner());
+							
+								//******HERE LOSER ACTION ********
+								loserVis.set(winmsg.getLoser());
+														
 						}
 					}	
 				}
