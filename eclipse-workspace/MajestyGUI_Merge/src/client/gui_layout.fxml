@@ -324,7 +324,7 @@
             <Font name="Pristina" size="55.0" />
          </font>
       </Label>
-      <Label fx:id="lblLooser" layoutX="194.0" layoutY="202.0" prefHeight="257.0" prefWidth="687.0" text="P2 ist Bastard" textFill="#ab1212" visible="false">
+      <Label fx:id="lblLoser" layoutX="194.0" layoutY="202.0" prefHeight="257.0" prefWidth="687.0" text="P2 ist Bastard" textFill="#ab1212" visible="false">
          <font>
             <Font name="Pristina" size="55.0" />
          </font>
@@ -334,7 +334,7 @@
             <Font name="Pristina" size="55.0" />
          </font>
       </Label>
-      <Label fx:id="lblLooserScore" layoutX="545.0" layoutY="202.0" prefHeight="257.0" prefWidth="687.0" text="Score P2" textFill="#ab1212" visible="false">
+      <Label fx:id="lblLoserScore" layoutX="545.0" layoutY="202.0" prefHeight="257.0" prefWidth="687.0" text="Score P2" textFill="#ab1212" visible="false">
          <font>
             <Font name="Pristina" size="55.0" />
          </font>
