@@ -11,6 +11,10 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+/**
+ * Credit: Prof Dr. Bradley Richards
+ */	
+
 public class server_view {
 	protected Stage stage;
 	private server_model model;

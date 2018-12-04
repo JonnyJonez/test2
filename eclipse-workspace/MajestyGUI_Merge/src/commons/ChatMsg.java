@@ -1,5 +1,9 @@
 package commons;
 
+/**
+ * Credit: Prof. Dr. Bradley Richards
+ */
+
 public class ChatMsg extends Message {
 	private String name;
 	private String content;

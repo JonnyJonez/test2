@@ -98,6 +98,11 @@ public class client_model {
 																					
 						} else if (msg instanceof ScoreMsg) {
 							
+							/**
+							 * distinguish between "action" and "take" score messages
+							 * @author P. Mächler (oder Erich?)
+							 */
+							
 							ScoreMsg scoremsg = (ScoreMsg) msg;
 							
 							// Add text to listener based on their type
@@ -136,6 +141,11 @@ public class client_model {
 							
 						}	else if (msg instanceof RewardMsg) {
 							
+							/**
+							 * Handle rewards
+							 * @author P. Mächler
+							 */
+							
 							RewardMsg rewardmsg = (RewardMsg) msg;
 							
 							// Add reward info to the log area if i'm the receiver
@@ -143,7 +153,6 @@ public class client_model {
 							if(rewardmsg.getName().equals(name)){								
 								newestMessage.set(""); 
 								newestMessage.set("$$$ Erhaltene Coins: " + rewardmsg.getReward());
-								// newestMessage.set("$$$ Neuer Kontostand: " + rewardmsg.getSaldo());
 								myCoins.set(((RewardMsg) msg).getSaldo().toString());
 								
 							}	else{
@@ -168,6 +177,8 @@ public class client_model {
 							if(vismsg.getName().equals(name)){
 							buttonsVis.set(vismsg.getVisibility());
 							}
+							
+							// Debug only
 							
 							// Log button visibility
 							

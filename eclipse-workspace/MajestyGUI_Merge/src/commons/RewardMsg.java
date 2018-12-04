@@ -1,5 +1,10 @@
 package commons;
 
+/**
+ * Message to distribute coins 
+ * @author P. Mächler
+ */
+
 public class RewardMsg extends Message {
 	private String name;
 	private int reward;

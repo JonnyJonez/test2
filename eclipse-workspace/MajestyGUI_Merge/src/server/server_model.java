@@ -19,6 +19,10 @@ import commons.WinnerMsg;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Credit: Prof Dr. Bradley Richards
+ */	
+
 public class server_model {
 	protected final ObservableList<player> players = FXCollections.observableArrayList();
 
@@ -71,8 +75,7 @@ public class server_model {
 									broadcast(firstmsg);	
 								}
 								
-								// Initiate CardStack when all spaces are taken
-								
+
 								if(players.size() == maxPlayer){
 																		
 									// Create stack
@@ -93,8 +96,11 @@ public class server_model {
 									e.printStackTrace();
 									}
 									
-									// Find first and second joiner 
-									
+									/**
+									 * Find first joiner and broadcast join messages & visibility messages
+									 * @author: P. Mächler
+									 */
+																		
 									for (player p : players) {
 										p.getErster();
 										if(p.getErster() == "true"){
@@ -177,6 +183,11 @@ public class server_model {
 			}
 		}
 	}
+	
+	/**
+	 * Broadcast messages to all players
+	 * @author: P. Mächler
+	 */	
 	
 	// Broadcast of messages
 	

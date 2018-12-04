@@ -10,6 +10,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+/**
+ * Credit: Prof. Dr. Bradley Richards
+ */
 
 public class client_main extends Application {
 

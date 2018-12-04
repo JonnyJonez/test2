@@ -1,5 +1,10 @@
 package commons;
 
+/**
+ * Message to change the visibility of buttons
+ * @author P. Mächler
+ */	
+
 public class VisibilityMsg extends Message {
 	private String name;
 	private String turn;

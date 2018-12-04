@@ -11,6 +11,10 @@ import java.util.logging.Logger;
 import commons.Message;
 import commons.MessageType;
 
+/**
+ * Credit: Prof Dr. Bradley Richards
+ */
+
 public abstract class Message {
 		private static Logger logger = Logger.getLogger("");
 		
@@ -42,6 +46,12 @@ public abstract class Message {
 				logger.info("Receiving message: " + msgText);
 				
 				// Parse message
+				
+				/**
+				 * Convert string back to a message based on their message type
+				 * @author P. Mächler
+				 */
+				
 				String[] parts = msgText.split("\\|");
 				if (parts[0].equals(MessageType.Join.toString())) {
 					msg = new JoinMsg(parts[1]);

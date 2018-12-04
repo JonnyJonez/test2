@@ -7,6 +7,10 @@ import server.server_view;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * Credit: Prof Dr. Bradley Richards
+ */	
+
 public class server_main extends Application {
 
 	public static void main(String[] args) {

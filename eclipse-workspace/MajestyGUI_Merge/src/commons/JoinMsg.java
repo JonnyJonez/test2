@@ -1,5 +1,9 @@
 package commons;
 
+/**
+ * Credit: Prof. Dr. Bradley Richards
+ */
+
 public class JoinMsg extends Message {
 	private String name;
 	

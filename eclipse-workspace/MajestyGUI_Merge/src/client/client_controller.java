@@ -10,6 +10,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Credit: Prof. Dr. Bradley Richards
+ */
+
 public class client_controller {
 	private client_model model;
 	

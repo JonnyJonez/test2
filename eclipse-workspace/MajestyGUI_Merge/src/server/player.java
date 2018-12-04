@@ -73,17 +73,30 @@ public class player {
 					
 					// Receive messages and check type
 					
+							
 					if (msg instanceof ChatMsg) {	
+						
+						/**
+						 * Identify and broadcast chat message, increase counter						 
+						 * @author: P. Mächler
+						 */
 														
 						player.this.AnzahlMessages++;					
 						model.broadcast((ChatMsg) msg);
-									
-						ChatMsg countmsg = new ChatMsg(player.this.name, "hat " + player.this.AnzahlMessages + " Nachrichten gesendet");
-						model.broadcast(countmsg);
+						
+						// Debug only
+						
+						// ChatMsg countmsg = new ChatMsg(player.this.name, "hat " + player.this.AnzahlMessages + " Nachrichten gesendet");
+						// model.broadcast(countmsg);
 						
 											
 					} else if (msg instanceof JoinMsg) {
-										
+						
+						/**
+						 * Identify and broadcast join message
+						 * @author: P. Mächler
+						 */
+						
 						// player.this.name = model.checknames(((JoinMsg) msg).getName());
 						player.this.name = ((JoinMsg) msg).getName();
 						model.broadcast((JoinMsg) msg);
@@ -114,15 +127,20 @@ public class player {
 						model.broadcast(cardSmsg);
 						
 					} else if (msg instanceof ScoreMsg) {
+						
 						player.this.name = ((ScoreMsg) msg).getName();	
 						
 						int reward = 0;
 						int rate = 0;
 						int rewardall = 0;
-						
+									
 						if (overallcount < 24) {	
 							
-							// disable buttons 
+							/**
+							 * Disable buttons after a card is taken
+							 * @author: P. Mächler
+							 */
+							
 							VisibilityMsg vismsg = new VisibilityMsg(player.this.name, "false");
 							model.broadcast(vismsg);
 							
@@ -135,8 +153,13 @@ public class player {
 							}
 							
 							// Check taken cards for type and send rewards
-							
+																			
 							if (((ScoreMsg) msg).getCard().equals("Wachturm")) {
+								
+								/**
+								 * Calculate reward for a taken "Wachturm" card. Send Reward message to the player
+								 * @author: P. Mächler
+								 */
 								
 								try {
 									defenseSound();
@@ -160,9 +183,14 @@ public class player {
 								RewardMsg rewardmsg = new RewardMsg(player.this.name, reward, player.this.saldo);
 								model.broadcast(rewardmsg);
 							}
-											
-						
+								
 							if (((ScoreMsg) msg).getCard().equals("Brauerei")) {
+								
+								/**
+								 * Calculate reward for a taken "Brauerei" card. Send Reward message to the player
+								 * Identify all player with at least one "Mühle" card and send a reward message for those
+								 * @author: P. Mächler
+								 */
 								
 								try {
 									brewerySound();
@@ -204,7 +232,7 @@ public class player {
 								}
 								
 							if (((ScoreMsg) msg).getCard().equals("Hexenhaus")) {
-									
+													
 							try {
 								witchSound();
 								} catch (Exception e) {
@@ -295,6 +323,11 @@ public class player {
 								
 								if (((ScoreMsg) msg).getCard().equals("Muehle")) {
 									
+									/**
+									 * Calculate reward for a taken "Mühle" card. Send Reward message to the player
+									 * @author: P. Mächler
+									 */
+									
 									try {
 										millerSound();
 									} catch (Exception e) {
@@ -318,6 +351,12 @@ public class player {
 									}
 								
 								if (((ScoreMsg) msg).getCard().equals("Kaserne")) {
+									
+									/**
+									 * Calculate reward for a taken "Kaserne" card. Send Reward message to the player
+									 * Attack other players
+									 * @author: P. Mächler
+									 */
 									
 									try {
 										attackSound();
@@ -345,6 +384,11 @@ public class player {
 								
 								if (((ScoreMsg) msg).getCard().equals("Schloss")) {
 									
+									/**
+									 * Calculate reward for a taken "Schloss" card. Send Reward message to the player
+									 * @author: P. Mächler
+									 */
+									
 									try {
 										castleSound();
 									} catch (Exception e) {
@@ -369,6 +413,12 @@ public class player {
 								
 									
 								if (((ScoreMsg) msg).getCard().equals("Taverne")) {
+									
+									/**
+									 * Calculate reward for a taken "Taverne" card. Send Reward message to the player
+									 * Identify all player with at least one "Brauerei" card and send a reward message for those
+									 * @author: P. Mächler
+									 */
 									
 									try {
 										tavernSound();
@@ -502,8 +552,6 @@ public class player {
 	
 	// Setter
 	
-
-
 	public void setSaldo(int saldo) {
 		this.saldo = saldo;
 	}
@@ -529,7 +577,6 @@ public class player {
 		this.overallcount = overallcount;
 	}
 
-	
 	// @Ali: grösse vom Stack entspricht der Anzahl Personen im Lazarett (Minuspunkte in der Auswertung)
 	public int getLazarett() {
 		return lazarett.size();
@@ -539,7 +586,10 @@ public class player {
 		return name + ": " + socket.toString();
 	}
 	
-
+	/**
+	 * this method is called after a turn was done. It sends a visibility message to disable or enable the buttons
+	 * @author: P. Mächler
+	 */
 	
 	public void changeTurn() {
 		
@@ -556,6 +606,10 @@ public class player {
 
 	}
 	
+	/**
+	 * this method is called when an attack starts (less defense that attackers)
+	 * @author: P. Mächler
+	 */
 	public void attack(){
 		
 		// Go from left to right until a card is found
