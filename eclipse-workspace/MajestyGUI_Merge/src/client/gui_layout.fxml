@@ -40,7 +40,7 @@
             </ImageView>
             <ImageView fitHeight="257.0" fitWidth="188.0" layoutX="808.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
-                  <Image url="@../../../../../../OneDrive/Dokumente/_FHNW/5.%20Sem/IT-Projekt/GUI-MockUp/Vintage_Paper_Background.jpg" />
+                  <Image url="@../../pics/PointsBackground.jpg" />
                </image>
             </ImageView>
             <Label layoutX="852.0" layoutY="25.0" text="Punkte:">
