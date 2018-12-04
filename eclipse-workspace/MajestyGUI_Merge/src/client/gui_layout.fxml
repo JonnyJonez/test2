@@ -318,23 +318,23 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Ellipse fx:id="ellWinner" disable="true" fill="#fff31f" layoutX="520.0" layoutY="248.0" radiusX="391.0" radiusY="222.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label fx:id="lblWinner" layoutX="201.0" layoutY="112.0" prefHeight="257.0" prefWidth="687.0" text="P1 ist König" textFill="#ab1212">
+      <Ellipse fx:id="ellWinner" disable="true" fill="#fff31f" layoutX="520.0" layoutY="248.0" radiusX="391.0" radiusY="222.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+      <Label fx:id="lblWinner" layoutX="201.0" layoutY="112.0" prefHeight="257.0" prefWidth="687.0" text="P1 ist König" textFill="#ab1212" visible="false">
          <font>
             <Font name="Pristina" size="55.0" />
          </font>
       </Label>
-      <Label fx:id="lblLooser" layoutX="194.0" layoutY="202.0" prefHeight="257.0" prefWidth="687.0" text="P2 ist Bastard" textFill="#ab1212">
+      <Label fx:id="lblLooser" layoutX="194.0" layoutY="202.0" prefHeight="257.0" prefWidth="687.0" text="P2 ist Bastard" textFill="#ab1212" visible="false">
          <font>
             <Font name="Pristina" size="55.0" />
          </font>
       </Label>
-      <Label fx:id="lblWinner2" layoutX="545.0" layoutY="112.0" prefHeight="257.0" prefWidth="687.0" text="Score P1" textFill="#ab1212">
+      <Label fx:id="lblWinner2" layoutX="545.0" layoutY="112.0" prefHeight="257.0" prefWidth="687.0" text="Score P1" textFill="#ab1212" visible="false">
          <font>
             <Font name="Pristina" size="55.0" />
          </font>
       </Label>
-      <Label fx:id="lblLooserScore" layoutX="545.0" layoutY="202.0" prefHeight="257.0" prefWidth="687.0" text="Score P2" textFill="#ab1212">
+      <Label fx:id="lblLooserScore" layoutX="545.0" layoutY="202.0" prefHeight="257.0" prefWidth="687.0" text="Score P2" textFill="#ab1212" visible="false">
          <font>
             <Font name="Pristina" size="55.0" />
          </font>
