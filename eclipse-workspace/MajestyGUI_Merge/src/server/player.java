@@ -140,9 +140,16 @@ public class player {
 							 * Disable buttons after a card is taken
 							 * @author: P. Mächler
 							 */
-							
-							VisibilityMsg vismsg = new VisibilityMsg(player.this.name, "false");
-							model.broadcast(vismsg);
+
+							VisibilityMsg vismsgOne = new VisibilityMsg(model.erster, "false");
+							VisibilityMsg vismsgTwo = new VisibilityMsg(model.zweiter, "false");
+							model.broadcast(vismsgOne);
+							try {
+								Thread.sleep(200);
+							} catch (InterruptedException e) {
+							e.printStackTrace();
+							}
+							model.broadcast(vismsgTwo);
 							
 							// wait before calculate for GUI
 							
