@@ -531,6 +531,21 @@ public class server_model {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_SCHLOSS);
 		}
 		
+
+		//determine the winner and broadcast it to all players
+		playerOne.setSaldo(playerOne.getPoints());
+		playerTwo.setSaldo(playerTwo.getPoints());
+		RewardMsg rewardmsgOne = new RewardMsg(playerOne.getName(), 0, playerOne.getSaldo());
+		RewardMsg rewardmsgTwo = new RewardMsg(playerTwo.getName(), 0, playerTwo.getSaldo());
+		broadcast(rewardmsgOne);
+		broadcast(rewardmsgTwo);
+		try {
+			Thread.sleep(800);
+		} catch (InterruptedException e) {
+		e.printStackTrace();
+		}
+		
+		
 		System.out.println("Auswertung:");
 		System.out.println(playerOne.getName() + ": " + playerOne.getPoints());
 		System.out.println(playerTwo.getName() + ": " + playerTwo.getPoints());
