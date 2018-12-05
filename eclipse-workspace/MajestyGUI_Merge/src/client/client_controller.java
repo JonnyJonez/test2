@@ -59,8 +59,8 @@ public class client_controller {
 	public Label lblPlayer1lazarett;
 	public Label lblPlayer2lazarett;
 	
-	public Label lblWinnerPoints;
-	public Label lblLoserPoints;
+	public Label lblLoserScore;
+	public Label lblWinnerScore;
 	public Label lblLoser;	
 	public Label lblWinner;
 	
@@ -755,13 +755,13 @@ public class client_controller {
 		    public void run() {
 		    	ellWinner.setVisible(true);
 		    	lblWinner.setVisible(true);
-		    	lblWinnerPoints.setVisible(true);
+		    	lblWinnerScore.setVisible(true);
 				lblWinner.setText("Winner: " + winner);
 				if(lblPlayer1.getText().equals(winner)) {
-					lblWinnerPoints.setText("test");
+					lblWinnerScore.setText(lblplayer1score.getText());
 					
 				} else {
-					lblWinnerPoints.setText("test");
+					lblWinnerScore.setText(lblplayer2score.getText());
 				}
 				
 				
@@ -776,12 +776,12 @@ public class client_controller {
 			    public void run() {
 			    	ellWinner.setVisible(true);
 			    	lblLoser.setVisible(true);
-			    	lblLoserPoints.setVisible(true);
+			    	lblLoserScore.setVisible(true);
 					lblLoser.setText("Loser: " + loser);
 					if(lblPlayer1.getText().equals(loser)) {
-						lblLoserPoints.setText(lblplayer1score.getText());
+						lblLoserScore.setText(lblplayer1score.getText());
 					} else {
-						lblLoserPoints.setText(lblplayer2score.getText());
+						lblLoserScore.setText(lblplayer2score.getText());
 					}
 					
 					

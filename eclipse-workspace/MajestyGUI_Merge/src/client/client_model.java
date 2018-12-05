@@ -242,7 +242,13 @@ public class client_model {
 							
 								//******HERE WINNER ACTION ********
 								winnerVis.set(winmsg.getWinner());
-							
+								
+								try {
+									Thread.sleep(300);
+								} catch (InterruptedException e) {
+								e.printStackTrace();
+								}
+								
 								//******HERE LOSER ACTION ********
 								loserVis.set(winmsg.getLoser());
 														

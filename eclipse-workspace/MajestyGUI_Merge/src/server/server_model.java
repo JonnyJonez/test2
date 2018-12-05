@@ -555,7 +555,7 @@ public class server_model {
 		}		
 		
 		
-		WinnerMsg winmsg = new WinnerMsg(winner.getName(), loser.getName());
+		WinnerMsg winmsg = new WinnerMsg(winner.getName(),loser.getName());
 		broadcast(winmsg);
 		System.out.println("the winner is: " + winner.getName());
 	}
