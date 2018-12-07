@@ -33,11 +33,12 @@ public class server_model {
 	public String erster;
 	public String zweiter;
 	public CardStack s1;
-	// @Ali: Weil am Anfang noch kein Winner feststeht -> null
+	
+	// @Ali
 	private player winner = null;
 	private player loser = null;
 	
-	// @Ali: Punkte für die Auswertung
+	// @Ali: card points for evaluation
 	private static final int VALUE_MUEHLE = 10;
 	private static final int VALUE_BRAUEREI = 11;
 	private static final int VALUE_HEXENHAUS = 12;
@@ -322,96 +323,92 @@ public class server_model {
 		return players.size();
 	}
 	
+	/**
+	 * end the game after everybody got 12 cards
+	 * @author A. Atici
+	 */
+	
 	public void setComplete(){
 		
-		boolean allComplete = true;  // gehe davon aus, dass alle player genau 12 Karten gezogen haben und fertig sind
-		for (player p : players) {   // durch alle player durch
-			if (!p.getComplete()) {  // wenn der aktuelle Spieler nicht fertig ist, dann setze ich allcomplete auf falsch
+		boolean allComplete = true;  
+		for (player p : players) {   
+			if (!p.getComplete()) { 
 				allComplete = false;
 			}
 		}
 		
-//		VisibilityMsg vismsg1 = new VisibilityMsg(erster, "false");
-//		broadcast(vismsg1);	
-//		logger.info("set zweiter visible false " + zweiter);
-//		
-//		VisibilityMsg vismsg2 = new VisibilityMsg(zweiter, "false");
-//		broadcast(vismsg2);	
-//		logger.info("set zweiter visible false " + zweiter);
-//		
-		
 		System.out.println("all complete: " + allComplete);
 		
-		// wenn alle Spieler fertig sind, Auswertung starten
 		if (allComplete) {
 			endResult();
 		}
 	}
 	
+	/**
+	 * this method contains the evaluation of points per gamer
+	 * @author A. Atici
+	 */
 	
 	public void endResult() {
-		// Saldo als Punkte auf Spieler setzen (zum unterscheiden von Münzen (Saldo) zu Punkten (Points))
+		
 		for (player p : players) {
 			p.setPoints(p.getSaldo());
 		}
 		
-		// für das Vergleichen die Spieler 1 und 2 separat speichern
 		player playerOne = players.get(0);
 		player playerTwo = players.get(1);
 		
-		// 1. Wertung: Lazarett
+		// first evaluation: looking at the lazarett aspect
 		playerOne.setPoints(playerOne.getPoints() - playerOne.getLazarett());
 		playerTwo.setPoints(playerTwo.getPoints() - playerTwo.getLazarett());
 		
-		// 2. Wertung: unterschiedliche Personen
-		// zum Speichern der Anzahl verschiedenen Karten
+		//  second evaluation: multiplication different card typs with themselves
 		int oneDifferentCards = 0;
 		int twoDifferentCards = 0;
 		
-		// durch alle Kartentypen durchgehen
-		// Mühlen
+
 		if (playerOne.getMuehle() > 0) {
 			oneDifferentCards++;
 		}
 		if (playerTwo.getMuehle() > 0) {
 			twoDifferentCards++;
 		}
-		// Brauer
+		
 		if (playerOne.getBrauerei() > 0) {
 			oneDifferentCards++;
 		}
 		if (playerTwo.getBrauerei() > 0) {
 			twoDifferentCards++;
 		}
-		// Hexe
+		
 		if (playerOne.getHexenhaus() > 0) {
 			oneDifferentCards++;
 		}
 		if (playerTwo.getHexenhaus() > 0) {
 			twoDifferentCards++;
 		}
-		// Wache
+	
 		if (playerOne.getWachturm() > 0) {
 			oneDifferentCards++;
 		}
 		if (playerTwo.getWachturm() > 0) {
 			twoDifferentCards++;
 		}
-		// Soldat
+	
 		if (playerOne.getKaserne() > 0) {
 			oneDifferentCards++;
 		}
 		if (playerTwo.getKaserne() > 0) {
 			twoDifferentCards++;
 		}
-		// Wirt
+		
 		if (playerOne.getTaverne() > 0) {
 			oneDifferentCards++;
 		}
 		if (playerTwo.getTaverne() > 0) {
 			twoDifferentCards++;
 		}
-		// Adelige
+		
 		if (playerOne.getSchloss() > 0) {
 			oneDifferentCards++;
 		}
@@ -419,19 +416,15 @@ public class server_model {
 			twoDifferentCards++;
 		}
 		
-		// Anzahl verschiedene Karten mit sich selber mutliplizieren und zu den Punkten zählen
+		// adding the actual points to the second evaluation
 		playerOne.setPoints(playerOne.getPoints() + (oneDifferentCards * oneDifferentCards));
 		playerTwo.setPoints(playerTwo.getPoints() + (twoDifferentCards * twoDifferentCards));
 		
-		// 3. Wertung: Mehrheitswertung
-		// durch alle Kartentypen durchgehen und Rewards setzen
-		
-		// Mühle
-		// von beiden Spielern die Anzahl der Müllerinnen auslesen
+		// third evaluation: go through all typ of cards and add reward
 		int oneMuehle = playerOne.getMuehle();
 		int twoMuehle = playerTwo.getMuehle();
 		
-		// Anzahl Müllerinnen vergleichen
+		
 		if (oneMuehle > twoMuehle) {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_MUEHLE);
 		} else if (oneMuehle < twoMuehle) {
@@ -441,12 +434,10 @@ public class server_model {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_MUEHLE);
 		}
 		
-		// Brauerei
-		// von beiden Spielern die Anzahl der Brauer auslesen
+		
 		int oneBrauerei = playerOne.getBrauerei();
 		int twoBrauerei = playerTwo.getBrauerei();
 		
-		// Anzahl Brauer vergleichen
 		if (oneBrauerei > twoBrauerei) {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_BRAUEREI);
 		} else if (oneBrauerei < twoBrauerei) {
@@ -456,12 +447,9 @@ public class server_model {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_BRAUEREI);
 		}
 		
-		// Hexenhaus
-		// von beiden Spielern die Anzahl der Hexen auslesen
 		int oneHexenhaus = playerOne.getHexenhaus();
 		int twoHexenhaus = playerTwo.getHexenhaus();
 		
-		// Anzahl Hexen vergleichen
 		if (oneHexenhaus > twoHexenhaus) {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_HEXENHAUS);
 		} else if (oneHexenhaus < twoHexenhaus) {
@@ -471,12 +459,9 @@ public class server_model {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_HEXENHAUS);
 		}
 		
-		// Wachturm
-		// von beiden Spielern die Anzahl der Wachen auslesen
 		int oneWachturm = playerOne.getWachturm();
 		int twoWachturm = playerTwo.getWachturm();
 		
-		// Anzahl Wachen vergleichen
 		if (oneWachturm > twoWachturm) {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_WACHTURM);
 		} else if (oneWachturm < twoWachturm) {
@@ -486,12 +471,9 @@ public class server_model {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_WACHTURM);
 		}
 		
-		// Kaserne
-		// von beiden Spielern die Anzahl der Soldaten auslesen
 		int oneKaserne = playerOne.getKaserne();
 		int twoKaserne = playerTwo.getKaserne();
 		
-		// Anzahl Soldaten vergleichen
 		if (oneKaserne > twoKaserne) {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_KASERNE);
 		} else if (oneKaserne < twoKaserne) {
@@ -501,12 +483,9 @@ public class server_model {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_KASERNE);
 		}
 		
-		// Taverne
-		// von beiden Spielern die Anzahl der Wirten auslesen
 		int oneTaverne = playerOne.getTaverne();
 		int twoTaverne = playerTwo.getTaverne();
 		
-		// Anzahl Wirten vergleichen
 		if (oneTaverne > twoTaverne) {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_TAVERNE);
 		} else if (oneTaverne < twoTaverne) {
@@ -516,12 +495,9 @@ public class server_model {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_TAVERNE);
 		}
 		
-		// Schloss
-		// von beiden Spielern die Anzahl der Adlige auslesen
 		int oneSchloss = playerOne.getSchloss();
 		int twoSchloss = playerTwo.getSchloss();
 		
-		// Anzahl Adlige vergleichen
 		if (oneSchloss > twoSchloss) {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_SCHLOSS);
 		} else if (oneSchloss < twoSchloss) {
@@ -545,18 +521,19 @@ public class server_model {
 		e.printStackTrace();
 		}
 		
-		
+		// adding the actual points to the third evaluation
 		System.out.println("Auswertung:");
 		System.out.println(playerOne.getName() + ": " + playerOne.getPoints());
 		System.out.println(playerTwo.getName() + ": " + playerTwo.getPoints());
 		winner();
 	}
 	
-	/**@Author Ali */
+	/**
+	 * evaluation of winner
+	 * @author A. Atici
+	 */
 	public void winner() {
 		for (player p : players) {
-			// falls noch kein winner gesetzt ist (null), wird der erste Spieler in der Schlauf als Winner gesetzt egal wie viel Punkte er hat
-			// sobald ein Winner gesetzt ist, wird überprüft ob die Punkte des Spielers höher sind als die Punkte des momentan gesetzten Winners
 			if(winner == null && loser == null) {
 				loser = p;
 				winner = p;				
@@ -568,7 +545,6 @@ public class server_model {
 			} 		
 			
 		}		
-		
 		
 		WinnerMsg winmsg = new WinnerMsg(winner.getName(),loser.getName());
 		broadcast(winmsg);
