@@ -17,7 +17,10 @@ import javafx.scene.shape.Rectangle;
 public class client_controller {
 	private client_model model;
 	
-	// Initiate buttons, labels and text fields
+	/**
+	 * Initiating game elements
+	 * @author J.Arnold
+	 */
 	public Button btnConnect;
 	public Button btnSend;
 	public Button btnMute;
@@ -69,8 +72,7 @@ public class client_controller {
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
 	
-	//	 Set image for Character cards
-	 
+	
 	Image Wachturm = new Image(getClass().getResourceAsStream("../character_cards/Blue.jpg"));
 	Image Brauerei = new Image(getClass().getResourceAsStream("../character_cards/Brown.jpg"));
 	Image Hexenhaus = new Image(getClass().getResourceAsStream("../character_cards/Green.jpg"));
@@ -79,7 +81,13 @@ public class client_controller {
 	Image Schloss = new Image(getClass().getResourceAsStream("../character_cards/Violet.jpg"));
 	Image Taverne = new Image(getClass().getResourceAsStream("../character_cards/Yellow.jpg"));
 	
-	// Action on connect button
+	// Action on connect button¨
+	
+	/**
+	 * Action when clicking the ConnectButton
+	 * Creates a connection with the server via the method connect in server_model
+	 * @author J.Arnold
+	 */
 	
 	public void clickOnConnect () {
 		
@@ -88,7 +96,6 @@ public class client_controller {
 		String name = txtName.getText();
 
 		// set default text for labels
-		
 		
 		lblplayer1score.setText("0");
 		lblplayer2score.setText("0");
@@ -123,7 +130,9 @@ public class client_controller {
 	}
 	
 	
-	// Action for taking cards
+	/** Action for taking cards by click
+	 * @author J.Arnold
+	 */
 	
 	public void clickOnCard1() {
 		model.takeCard(btncard1.getText());

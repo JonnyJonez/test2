@@ -23,6 +23,7 @@ public class client_main extends Application {
 			
 			/**
 			 * Implementing a FXML-File instead of a view class
+			 * Design and FXML made by J.Arnold
 			 * @author J.Arnold
 			 */
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("gui_layout.fxml"));
