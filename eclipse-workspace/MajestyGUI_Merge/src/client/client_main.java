@@ -21,14 +21,20 @@ public class client_main extends Application {
 			client_model model = new client_model();
 			client_controller controller = new client_controller(model);
 			
-			// Laden des FXML (view)
+			/**
+			 * Implementing a FXML-File instead of a view class
+			 * @author J.Arnold
+			 */
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("gui_layout.fxml"));
 			loader.setController(controller);
 			AnchorPane root = loader.load();
 					
 			
-			// Start sound when opening the game client
-			
+			/**
+			 * For a nicer game experience a background sound is implemented
+			 * It starts by starting the client a volume of 20%
+			 * @author J.Arnold
+			 */
 			 String backgroundSound = "src/sounds/background_sound.mp3";
 			 Media musicfile = new Media (new File(backgroundSound).toURI().toString());
 			 MediaPlayer mediaplayer = new MediaPlayer(musicfile);
@@ -36,7 +42,11 @@ public class client_main extends Application {
 			 mediaplayer.setVolume(0.2);
 			 mediaplayer.play();
 				
-			
+			 /**
+			 * Setting the scene to a fixed size
+			 * the two background pictures are implemented with the application.css
+			 * @author J.Arnold
+			 */
 			Scene scene = new Scene(root,1100,700);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
