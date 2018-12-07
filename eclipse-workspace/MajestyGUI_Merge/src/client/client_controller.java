@@ -44,7 +44,6 @@ public class client_controller {
 	public Label lblplayer1score;
 	public Label lblplayer2score;
 	
-	
 	public Label lblPlayer1muehle;
 	public Label lblPlayer2muehle;
 	public Label lblPlayer1brauerei;
@@ -72,7 +71,6 @@ public class client_controller {
 	public TextArea txtChatArea;
 	public TextArea txtChatMessage;
 	
-	
 	Image Wachturm = new Image(getClass().getResourceAsStream("../character_cards/Blue.jpg"));
 	Image Brauerei = new Image(getClass().getResourceAsStream("../character_cards/Brown.jpg"));
 	Image Hexenhaus = new Image(getClass().getResourceAsStream("../character_cards/Green.jpg"));
@@ -81,14 +79,11 @@ public class client_controller {
 	Image Schloss = new Image(getClass().getResourceAsStream("../character_cards/Violet.jpg"));
 	Image Taverne = new Image(getClass().getResourceAsStream("../character_cards/Yellow.jpg"));
 	
-	// Action on connect button¨
-	
 	/**
 	 * Action when clicking the ConnectButton
 	 * Creates a connection with the server via the method connect in server_model
 	 * @author J.Arnold
 	 */
-	
 	public void clickOnConnect () {
 		
 		String ipAddress = txtIpAddress.getText();
@@ -123,17 +118,13 @@ public class client_controller {
 		txtIpAddress.setDisable(true);
 		txtPort.setDisable(true);
 		txtName.setDisable(true);
-		btnConnect.setDisable(false);
-		
-		
-		
+		btnConnect.setDisable(false);	
 	}
 	
-	
 	/** Action for taking cards by click
+	 *  Opens the method takenCard in client_model
 	 * @author J.Arnold
 	 */
-	
 	public void clickOnCard1() {
 		model.takeCard(btncard1.getText());
 		model.takenCard(1);
@@ -163,7 +154,6 @@ public class client_controller {
 	public client_controller(client_model model) {
 		this.model = model;
 		
-		// Add listeners
 		
 		// Listener for log area		
 		model.newestMessage.addListener( (o, oldValue, newValue) -> {
@@ -268,20 +258,24 @@ public class client_controller {
 
 	}
 	
-	// Set all card buttons to invisible
+	/** Set all card buttons to invisible
+	 * 
+	 * @author J.Arnold
+	 */
 	
 	public void setButtonsInvisible(){
-			
 			btncard1.setDisable(true);
 			btncard2.setDisable(true);
 			btncard3.setDisable(true);
 			btncard4.setDisable(true);
 			btncard5.setDisable(true);
-			btncard6.setDisable(true);
-		
+			btncard6.setDisable(true);	
 	}
 	
-	// Set all card buttons to visible
+	/** Set all card buttons to visible
+	 * 
+	 * @author J.Arnold
+	 */
 	
 	public void setButtonsVisible(){
 		
@@ -520,22 +514,24 @@ public class client_controller {
 	}
 	
 
-	// Send Chat message
-	
+	/**
+	 * Sends the written message by clicking on the button to the server via socket
+	 * @author J.Arnold
+	 */
 	public void clickOnSend() {
 		model.sendMessage(txtChatMessage.getText());
 	}
-	
-	
-	// Set joiner name to labels
-	
-	public void checkJoiner(String joiner) {
 		
+	/**
+	 * The programm don't know which player is the first or the second player
+	 * Set joiner name to labels
+	 * 
+	 * @author J.Arnold
+	 */
+	public void checkJoiner(String joiner) {
 		Platform.runLater(new Runnable() {
 		    public void run() {
-		    	
 		    	// Check if the joiner is myself
-		    	
 		    	if(joiner.equals(txtName.getText())){
 					lblPlayer1.setText(joiner);
 					lblPlayer1table.setText(joiner);
