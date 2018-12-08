@@ -287,9 +287,14 @@ public class client_controller {
 		btncard6.setDisable(false);
 		}
 	
-	// Set card images to the buttons
+	/**
+	 * Set card images to the buttons
+	 * @author E. Thammavongsa
+	 */
+	
 	
 	public void setButtonImage(String imagebutton) {
+		//Get which position is being set Rnage: 1-6
 		 int posID = Integer.parseInt(String.valueOf(imagebutton.charAt(0)));
 		 String Cardimage = imagebutton.substring(1);
  
@@ -491,8 +496,12 @@ public class client_controller {
 		
 	}
 	
-	// Set text to buttons
 	
+	
+	/**
+	 * Set Text to Button
+	 * @author E. Thammavongsa
+	 */	
 	public void setButtonCardsText(String Value){
 		
 		String[] cards = Value.split(" ");
@@ -754,6 +763,11 @@ public class client_controller {
 		});
 	}	
 	
+	/**
+	 * Activate Winner Lables and get the Score from the Labels
+	 * @author E. Thammavongsa
+	 */
+	
 	public void settingWinner(String winner) {
 		
 		Platform.runLater(new Runnable() {
@@ -774,6 +788,11 @@ public class client_controller {
 		    }
 		});
 	}
+	
+	/**
+	 * Activate Loser lables and get Score from Playerscore lable
+	 * @author E. Thammavongsa
+	 */
 	
 	public void settingLoser(String loser) {
 			

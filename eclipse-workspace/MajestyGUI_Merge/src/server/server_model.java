@@ -80,6 +80,10 @@ public class server_model {
 								if(players.size() == maxPlayer){
 																		
 									// Create stack
+									/**
+									 * If all Users are Online, the Cardstack will be generated and broadcasted.
+									 * @author E. Thammavongsa
+									 */
 									
 									s1 = new CardStack();
 									logger.info("ready to send cards");

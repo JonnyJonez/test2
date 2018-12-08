@@ -197,6 +197,13 @@ public class client_model {
 							
 						}	else if (msg instanceof CardStackMsg) {
 							
+							/**
+							 * Read the CardStack Message
+							 * Set the Cards to the Buttons with the listener buttonText in the Client_controller
+							 * Set Buttonimg with Buttonimage listener
+							 * @author E. Thammavongsa
+							 */
+							
 							CardStackMsg stackmsg = (CardStackMsg) msg;							
 							String Card1 = stackmsg.getCard1();
 							String Card2 = stackmsg.getCard2();
@@ -237,6 +244,12 @@ public class client_model {
 							
 							//Read the Winner Message 
 						}	else if (msg instanceof WinnerMsg) {
+							
+							/**
+							 * Define the Winner and loser with the Winnermsg at the end of the game.
+							 * seperated Listener for Loser and Winner labels
+							 * @author E. Thammavongsa
+							 */
 							
 							WinnerMsg winmsg = (WinnerMsg) msg;
 							
@@ -293,7 +306,11 @@ public class client_model {
 		}
 	}
 	
-	// Send position to server for removing
+	
+	/**
+	 * Send taken Card position to server for removing from Stack
+	 * @author E. Thammavongsa
+	 */
 	
 	public void takenCard(int position) {
 		logger.info("Send position to Server");

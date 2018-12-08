@@ -9,6 +9,11 @@ import java.util.Random;
 
 import server.server_model;
 
+/**
+ * Class to generate the entire Stack for the game and shuffle it at the beginning. It will not be shuffled during the game.
+ * The Cards will be saved in a Arraylist to avoid any "empty" Index.
+ * @author E. Thammavongsa
+ */
 public class CardStack {
 	
 	private ArrayList<Card> stack = new ArrayList<>();
@@ -16,6 +21,7 @@ public class CardStack {
 	private server_model model;
 	private int[] Frequency = {9,6,5,5,3,4,5};
 	
+	//Consturctor to create the Card stack with the default Frequency.
 	public CardStack() {
 		int counter = 0;
 		for (CardType cards: CardType.values()) {			
@@ -26,16 +32,14 @@ public class CardStack {
 		}
 		
 		this.shuffleStack();
-	}
-	
-
-	
+	}	
 	
 	
 	public ArrayList<Card> getCardStack() {
 		return stack;
 	}
 	
+	//Shuffle the generated Stack
 	public void shuffleStack() {
 		
 		ArrayList<Card> tempStack = new ArrayList<>();
@@ -48,19 +52,16 @@ public class CardStack {
 		
 		this.stack = tempStack;
 		
-	}
-	
+	}	
 
 	
 	public int size() {
 		return stack.size();
 	}
 	
+	
 	public String toString() {
 		String results = "";
-		
-//		for(Card card : stack) {
-//			results = results + card.toString() + "|";
 	
 		for(int i = 0; i < stack.size(); i++){
 			results += stack.get(i);			
@@ -68,6 +69,7 @@ public class CardStack {
 		return results;
 	}
 	
+	//Get Card Index for the Card which will be removed. The game send the index of the card 0-5 and the specific Card will be removed from the stack
 	public Card getCardIndex(int position) {
 		int temp = position;
 		Card A = this.stack.get(temp - 1);
@@ -81,6 +83,7 @@ public class CardStack {
 		return Cardname;
 	}
 	
+	//Remove Card from Stack
 	public void removeCard(int position) {
 		ArrayList<Card> tempStack = this.stack;		
 		tempStack.remove(position);		

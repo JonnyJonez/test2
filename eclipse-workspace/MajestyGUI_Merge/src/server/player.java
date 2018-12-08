@@ -102,9 +102,14 @@ public class player {
 						model.broadcast((JoinMsg) msg);
 
 						
-					// @Erich Msg to remove Card from Stack and send new Stack
+					
 						
 					} else if (msg instanceof CardTakenMsg){
+						
+						/**
+						 * Identify the Taken Card and remove it from the Stack. Send Broadcast with the new Cards.
+						 * @author E. Thammavongsa
+						 */
 						player.this.position = ((CardTakenMsg)msg).getposition();
 						model.s1.removeCard(position);	
 						
