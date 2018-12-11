@@ -10,13 +10,14 @@ import java.util.logging.Logger;
 
 import commons.Message;
 import commons.MessageType;
+import server.server_model;
 
 /**
  * Credit: Prof Dr. Bradley Richards
  */
 
 public abstract class Message {
-		private static Logger logger = Logger.getLogger("");
+		private static Logger logger = Logger.getLogger(Message.class.getName());
 		
 		protected MessageType type;
 		

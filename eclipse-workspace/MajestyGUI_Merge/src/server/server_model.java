@@ -26,7 +26,7 @@ import javafx.collections.ObservableList;
 public class server_model {
 	protected final ObservableList<player> players = FXCollections.observableArrayList();
 
-	private final Logger logger = Logger.getLogger("");
+	private final Logger logger = Logger.getLogger(server_model.class.getName());
 	private ServerSocket listener;
 	private volatile boolean stop = false;
 	private int maxPlayer = 2;

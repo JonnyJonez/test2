@@ -23,6 +23,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Button;
 import server.player;
+import server.server_model;
 
 public class client_model {
 	
@@ -42,7 +43,7 @@ public class client_model {
 	protected SimpleStringProperty winnerVis = new SimpleStringProperty();
 	protected SimpleStringProperty loserVis = new SimpleStringProperty();
 	
-	private Logger logger = Logger.getLogger("");
+	private Logger logger = Logger.getLogger(client_model.class.getName());
 	private Socket socket;
 	public String name;
 	private int joincounter;
