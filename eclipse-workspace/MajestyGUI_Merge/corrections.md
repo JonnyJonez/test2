@@ -1,19 +1,18 @@
 # Corrections
 
 ## Simple corrections
-- Correct package naming (eg. ch.jonnyjonez.fhnw)
-- Correct package naming (character_cards -> charactercards)
-- Correct class and variable names according to Java convention
-- Changed scope of all fields, where possible, to private
-- Image/Media files names should not contain whitespaces (by convention they are lowercase with underscores)
-- Fields should be ordered by accessibility and by type (constant -> final -> "normal" fields)
-- Reformat code
-- Make use of switch statements instead of multiple else-if
+- Correct package naming (eg. ch.jonnyjonez.fhnw) -> nope risk to high to break something
+- Correct package naming (character_cards -> charactercards) -> nope risk to high to break something
+- Correct class and variable names according to Java convention -> nope risk to high to break something
+- Changed scope of all fields, where possible, to private -> nope risk to high to break something
+- Image/Media files names should not contain whitespaces (by convention they are lowercase with underscores) -> nope risk to high to break something
+- Fields should be ordered by accessibility and by type (constant -> final -> "normal" fields) -> too much effort, too little profit
+- Reformat code -> too much effort, too little profit
+- Make use of switch statements instead of multiple else-if -> nope risk to high to break something
 - If code is not used anymore it should be deleted, not commented
-- Enum values should be uppercase (eg. CardType)
-- Do not use System.out.println along with a logger (use the logger all the time)
-- Instead of writing comments move logic to dedicated method with this name
-- Extract duplicate logic into separate methods (eg. Player)
+- Enum values should be uppercase (eg. CardType) -> nope risk to high to break something
+- Instead of writing comments move logic to dedicated method with this name  -> too much effort, too little profit
+- Extract duplicate logic into separate methods (eg. Player) -> nope risk to high to break something
 
 ## Unused?
 - Remove unused fields (eg. in ServerController)
