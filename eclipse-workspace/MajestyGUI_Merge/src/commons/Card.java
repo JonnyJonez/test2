@@ -1,7 +1,5 @@
 package commons;
 
-import commons.*;
-
 
 public class Card {
 	

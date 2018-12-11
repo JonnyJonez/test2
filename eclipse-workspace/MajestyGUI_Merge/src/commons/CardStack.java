@@ -3,10 +3,7 @@ package commons;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Random;
-
 import server.server_model;
 
 /**

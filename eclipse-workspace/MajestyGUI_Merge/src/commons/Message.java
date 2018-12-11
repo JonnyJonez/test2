@@ -5,12 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import commons.Message;
 import commons.MessageType;
-import server.server_model;
 
 /**
  * Credit: Prof Dr. Bradley Richards

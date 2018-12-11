@@ -11,7 +11,6 @@ import commons.CardStack;
 import commons.CardStackMsg;
 import commons.ChatMsg;
 import commons.JoinMsg;
-import commons.Message;
 import commons.RewardMsg;
 import commons.ScoreMsg;
 import commons.VisibilityMsg;

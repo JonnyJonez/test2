@@ -4,26 +4,16 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-import javax.sound.midi.ControllerEventListener;
-import javax.swing.text.View;
-
 import commons.CardStackMsg;
 import commons.CardTakenMsg;
 import commons.ChatMsg;
 import commons.JoinMsg;
 import commons.Message;
-import commons.MessageType;
 import commons.RewardMsg;
 import commons.ScoreMsg;
-import commons.ScoreType;
 import commons.VisibilityMsg;
 import commons.WinnerMsg;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.Button;
-import server.player;
-import server.server_model;
 
 public class client_model {
 	
