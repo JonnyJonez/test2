@@ -45,6 +45,7 @@ public class client_model {
 	private Logger logger = Logger.getLogger("");
 	private Socket socket;
 	public String name;
+	private int joincounter;
 	
 	// Add counter for my and others card
 	
@@ -86,16 +87,24 @@ public class client_model {
 							// Add chat message to the log area
 							
 							newestMessage.set(""); 
-							newestMessage.set(chatmsg.getName() + ": " + chatmsg.getContent());
+							newestMessage.set("Chat " + chatmsg.getName() + ": " + chatmsg.getContent());
+						
+							
 							 
 						} else if (msg instanceof JoinMsg) {
 							JoinMsg joinmsg = (JoinMsg) msg;
 							newJoin.set(joinmsg.getName());	
 							
 							// Add join information to the log area
-
+							
+							joincounter++;
+							
+							// show each join only once
+							
+							if(joincounter <= 2) {
 							newestMessage.set(""); 
-							newestMessage.set("LOG: " + joinmsg.getName() + " joined the game");
+							newestMessage.set(joinmsg.getName() + " joined the game");
+							}
 																					
 						} else if (msg instanceof ScoreMsg) {
 							
@@ -117,6 +126,9 @@ public class client_model {
 									} else {
 									otherCardAction.set(((ScoreMsg) msg).getScoreType() + "|" + ((ScoreMsg) msg).getCard());
 									}
+								
+								newestMessage.set(""); 
+								newestMessage.set(scoremsg.getName() + ": My " + scoremsg.getCard() + " is wounded !");
 																							
 							} else if (scoremsg.getScoreType().equals("heal")) {
 								
@@ -126,6 +138,9 @@ public class client_model {
 									otherCardAction.set(((ScoreMsg) msg).getScoreType() + "|" + ((ScoreMsg) msg).getCard());
 									}
 								
+								newestMessage.set(""); 
+								newestMessage.set(scoremsg.getName() + " : healed " + scoremsg.getCard());
+								
 							} else if (scoremsg.getScoreType().equals("take")) {
 								
 								if(scoremsg.getName().equals(name)){
@@ -133,12 +148,15 @@ public class client_model {
 									} else {
 									otherCardTaken.set(((ScoreMsg) msg).getCard());
 									}
+								
+								newestMessage.set(""); 
+								newestMessage.set(scoremsg.getName() + ": took " + scoremsg.getCard());
 							}
 							
 							// Add action event to the log area
 							
-							newestMessage.set(""); 
-							newestMessage.set("LOG: " + scoremsg.getName() + " " + scoremsg.getScoreType() + " " + scoremsg.getCard());
+//							newestMessage.set(""); 
+//							newestMessage.set("LOG: " + scoremsg.getName() + " " + scoremsg.getScoreType() + " " + scoremsg.getCard());
 							
 						}	else if (msg instanceof RewardMsg) {
 							
@@ -151,9 +169,9 @@ public class client_model {
 							
 							// Add reward info to the log area if i'm the receiver
 							
-							if(rewardmsg.getName().equals(name)){								
+							if(rewardmsg.getName().equals(name) && rewardmsg.getReward() > 0){
 								newestMessage.set(""); 
-								newestMessage.set("$$$ Erhaltene Coins: " + rewardmsg.getReward());
+								newestMessage.set("$$$$$ " + rewardmsg.getReward() + " $$$$$");
 								myCoins.set(((RewardMsg) msg).getSaldo().toString());
 								
 							}	else{
@@ -178,15 +196,7 @@ public class client_model {
 							if(vismsg.getName().equals(name)){
 							buttonsVis.set(vismsg.getVisibility());
 							}
-							
-							// Debug only
-							
-							// Log button visibility
-							
-							// newestMessage.set("");
-							// newestMessage.set("----- Turn buttons " + vismsg.getVisibility() + " for " + vismsg.getName());
-							
-							// timeout to avoid overlapping messages
+
 							
 							try {
 								Thread.sleep(200);
