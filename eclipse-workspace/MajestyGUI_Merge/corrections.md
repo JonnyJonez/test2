@@ -14,8 +14,6 @@
 - Do not use System.out.println along with a logger (use the logger all the time)
 - Instead of writing comments move logic to dedicated method with this name
 - Extract duplicate logic into separate methods (eg. Player)
-- When instantiating logger inject current class name (Logger.getLogger(ClientModel.class.getName())
-- Logger could be a constant
 
 ## Unused?
 - Remove unused fields (eg. in ServerController)
