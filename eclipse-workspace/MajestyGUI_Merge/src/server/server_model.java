@@ -340,7 +340,7 @@ public class server_model {
 			}
 		}
 		
-		System.out.println("all complete: " + allComplete);
+		logger.info("all complete: " + allComplete);
 		
 		if (allComplete) {
 			endResult();
@@ -525,9 +525,9 @@ public class server_model {
 		}
 		
 		// adding the actual points to the third evaluation
-		System.out.println("Auswertung:");
-		System.out.println(playerOne.getName() + ": " + playerOne.getPoints());
-		System.out.println(playerTwo.getName() + ": " + playerTwo.getPoints());
+		logger.info("Auswertung:");
+		logger.info(playerOne.getName() + ": " + playerOne.getPoints());
+		logger.info(playerTwo.getName() + ": " + playerTwo.getPoints());
 		winner();
 	}
 	
@@ -551,6 +551,6 @@ public class server_model {
 		
 		WinnerMsg winmsg = new WinnerMsg(winner.getName(),loser.getName());
 		broadcast(winmsg);
-		System.out.println("the winner is: " + winner.getName());
+		logger.info("the winner is: " + winner.getName());
 	}
 }
