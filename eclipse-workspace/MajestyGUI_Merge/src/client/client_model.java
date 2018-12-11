@@ -169,7 +169,7 @@ public class client_model {
 							
 							// Add reward info to the log area if i'm the receiver
 							
-							if(rewardmsg.getName().equals(name) && rewardmsg.getReward() > 0){
+							if(rewardmsg.getName().equals(name)){
 								newestMessage.set(""); 
 								newestMessage.set("$$$$$ " + rewardmsg.getReward() + " $$$$$");
 								myCoins.set(((RewardMsg) msg).getSaldo().toString());
