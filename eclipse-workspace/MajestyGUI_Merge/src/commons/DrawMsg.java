@@ -10,7 +10,7 @@ public class DrawMsg extends Message {
 	private String player2;
 	
 	public DrawMsg(String draw1, String draw2) {
-		super(MessageType.Winner);
+		super(MessageType.Draw);
 		this.player1 = draw1;
 		this.player2 = draw2;
 		

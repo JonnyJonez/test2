@@ -33,7 +33,7 @@ public class client_model {
 	protected SimpleStringProperty otherCardAction = new SimpleStringProperty();
 	protected SimpleStringProperty winnerVis = new SimpleStringProperty();
 	protected SimpleStringProperty loserVis = new SimpleStringProperty();
-	protected SimpleStringProperty DrawVis = new SimpleStringProperty();
+	protected SimpleStringProperty drawVis = new SimpleStringProperty();
 	
 	private Logger logger = Logger.getLogger(client_model.class.getName());
 	private Socket socket;
@@ -271,7 +271,7 @@ public class client_model {
 						} else if (msg instanceof DrawMsg) {
 							DrawMsg drawmsg = (DrawMsg) msg;
 							
-							DrawVis.set(drawmsg.getDraw1() + "|" + drawmsg.getDraw2());
+							drawVis.set(drawmsg.getDraw1() + "|" + drawmsg.getDraw2());
 							
 							
 						}

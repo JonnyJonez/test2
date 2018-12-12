@@ -256,7 +256,7 @@ public class client_controller {
 			} );
 		
 		// Listener for setting winner label & ellipse		
-			model.DrawVis.addListener( (o, oldValue, newValue) -> {
+			model.drawVis.addListener( (o, oldValue, newValue) -> {
 				if(!newValue.isEmpty()) {
 					settingDraw(newValue);	
 				}						
