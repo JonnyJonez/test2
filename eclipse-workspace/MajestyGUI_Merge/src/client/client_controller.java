@@ -295,7 +295,7 @@ public class client_controller {
 	
 	/**
 	 * Set card images to the buttons
-	 * @author E. Thammavongsa
+	 * @author E.Thammavongsa
 	 */
 	
 	
@@ -506,7 +506,7 @@ public class client_controller {
 	
 	/**
 	 * Set Text to Button
-	 * @author E. Thammavongsa
+	 * @author E.Thammavongsa
 	 */	
 	public void setButtonCardsText(String Value){
 		
@@ -771,7 +771,7 @@ public class client_controller {
 	
 	/**
 	 * Activate Winner Lables and get the Score from the Labels
-	 * @author E. Thammavongsa
+	 * @author E.Thammavongsa
 	 */
 	
 	public void settingWinner(String winner) {
@@ -797,7 +797,7 @@ public class client_controller {
 	
 	/**
 	 * Activate Loser lables and get Score from Playerscore lable
-	 * @author E. Thammavongsa
+	 * @author E.Thammavongsa
 	 */
 	
 	public void settingLoser(String loser) {

@@ -9,7 +9,7 @@ import server.server_model;
 /**
  * Class to generate the entire Stack for the game and shuffle it at the beginning. It will not be shuffled during the game.
  * The Cards will be saved in a Arraylist to avoid any "empty" Index.
- * @author E. Thammavongsa
+ * @author E.Thammavongsa
  */
 public class CardStack {
 	

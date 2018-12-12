@@ -103,7 +103,7 @@ public class player {
 						
 						/**
 						 * Identify the Taken Card and remove it from the Stack. Send Broadcast with the new Cards.
-						 * @author E. Thammavongsa
+						 * @author E.Thammavongsa
 						 */
 						player.this.position = ((CardTakenMsg)msg).getposition();
 						model.s1.removeCard(position);	

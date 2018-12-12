@@ -1,5 +1,9 @@
 package commons;
 
+/**
+ * Message for Sending cards to Client
+ * @author E.Thammavongsa
+ */
 public class CardStackMsg extends Message {
 	public CardStack stack;
 	private String card1;
@@ -8,8 +12,6 @@ public class CardStackMsg extends Message {
 	private String card4;
 	private String card5;
 	private String card6;
-	
-	
 	
 		
 	public CardStackMsg(String card1, String card2, String card3, String card4, String card5, String card6) {
@@ -28,10 +30,6 @@ public class CardStackMsg extends Message {
 		return stack;
 	}
 	
-//	public int getPositions(){
-//		return this.position1;		
-//	}
-//	
 	public String getCard1(){
 		return this.card1;
 	}

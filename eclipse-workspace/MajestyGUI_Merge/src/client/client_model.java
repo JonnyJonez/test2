@@ -204,7 +204,7 @@ public class client_model {
 							 * Read the CardStack Message
 							 * Set the Cards to the Buttons with the listener buttonText in the Client_controller
 							 * Set Buttonimg with Buttonimage listener
-							 * @author E. Thammavongsa
+							 * @author E.Thammavongsa
 							 */
 							
 							CardStackMsg stackmsg = (CardStackMsg) msg;							
@@ -251,7 +251,7 @@ public class client_model {
 							/**
 							 * Define the Winner and loser with the Winnermsg at the end of the game.
 							 * seperated Listener for Loser and Winner labels
-							 * @author E. Thammavongsa
+							 * @author E.Thammavongsa
 							 */
 							
 							WinnerMsg winmsg = (WinnerMsg) msg;
@@ -318,7 +318,7 @@ public class client_model {
 	
 	/**
 	 * Send taken Card position to server for removing from Stack
-	 * @author E. Thammavongsa
+	 * @author E.Thammavongsa
 	 */
 	
 	public void takenCard(int position) {

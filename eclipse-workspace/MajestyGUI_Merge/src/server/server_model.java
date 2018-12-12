@@ -84,7 +84,7 @@ public class server_model {
 									// Create stack
 									/**
 									 * If all Users are Online, the Cardstack will be generated and broadcasted.
-									 * @author E. Thammavongsa
+									 * @author E.Thammavongsa
 									 */
 									
 									s1 = new CardStack();
