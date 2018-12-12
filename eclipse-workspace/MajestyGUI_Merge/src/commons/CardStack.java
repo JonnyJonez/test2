@@ -21,9 +21,9 @@ public class CardStack {
 	//Consturctor to create the Card stack with the default Frequency.
 	public CardStack() {
 		int counter = 0;
-		for (CardType cards: CardType.values()) {			
+		for (CardType types: CardType.values()) {			
 			for(int i = 0; i < Frequency[counter]; i++){
-				stack.add(new Card(cards));					
+				stack.add(new Card(types));					
 			}
 			counter++;
 		}

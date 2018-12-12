@@ -781,7 +781,7 @@ public class client_controller {
 		    	ellWinner.setVisible(true);
 		    	lblWinner.setVisible(true);
 		    	lblWinnerScore.setVisible(true);
-				lblWinner.setText("Winner: " + winner);
+				lblWinner.setText("Gewinner: " + winner);
 				if(lblPlayer1.getText().equals(winner)) {
 					lblWinnerScore.setText(lblplayer1score.getText());
 					
@@ -807,7 +807,7 @@ public class client_controller {
 			    	ellWinner.setVisible(true);
 			    	lblLoser.setVisible(true);
 			    	lblLoserScore.setVisible(true);
-					lblLoser.setText("Loser: " + loser);
+					lblLoser.setText("Verlierer: " + loser);
 					if(lblPlayer1.getText().equals(loser)) {
 						lblLoserScore.setText(lblplayer1score.getText());
 					} else {
@@ -835,14 +835,14 @@ public class client_controller {
 		    	
 		    	if(lblPlayer1.getText().equals(Player1draw)) {
 					lblLoserScore.setText(lblplayer1score.getText());
-					lblLoser.setText("Draw Winners: " + Player1draw);
+					lblLoser.setText("Unentschieden: " + Player1draw);
 					lblWinnerScore.setText(lblplayer2score.getText());
-					lblWinner.setText("Draw Winners: " + Player2draw);
+					lblWinner.setText("Unentschieden: " + Player2draw);
 				} else {
 					lblLoserScore.setText(lblplayer2score.getText());
-					lblLoser.setText("Draw Winners: " + Player1draw);
+					lblLoser.setText("Unentschieden: " + Player1draw);
 					lblWinnerScore.setText(lblplayer1score.getText());
-					lblWinner.setText("Draw Winners: " + Player2draw);
+					lblWinner.setText("Unentschieden: " + Player2draw);
 				}
 		    	
 		    }
