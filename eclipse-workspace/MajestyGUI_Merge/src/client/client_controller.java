@@ -254,6 +254,13 @@ public class client_controller {
 					settingLoser(newValue);	
 				}						
 			} );
+		
+		// Listener for setting winner label & ellipse		
+			model.DrawVis.addListener( (o, oldValue, newValue) -> {
+				if(!newValue.isEmpty()) {
+					settingDraw(newValue);	
+				}						
+			} );
 
 	}
 	
@@ -811,6 +818,36 @@ public class client_controller {
 			    }
 			});
 		}
+	
+	public void settingDraw(String Draw) {
+		
+		String[] DrawPlayers = Draw.split("|");
+		String Player1draw = DrawPlayers[0];
+		String Player2draw = DrawPlayers[1];
+		
+		Platform.runLater(new Runnable() {
+		    public void run() {
+		    	ellWinner.setVisible(true);
+		    	lblLoser.setVisible(true);
+		    	lblWinner.setVisible(true);
+		    	lblWinnerScore.setVisible(true);
+		    	lblLoserScore.setVisible(true);
+		    	
+		    	if(lblPlayer1.getText().equals(Player1draw)) {
+					lblLoserScore.setText(lblplayer1score.getText());
+					lblLoser.setText("Draw Winners: " + Player1draw);
+					lblWinnerScore.setText(lblplayer2score.getText());
+					lblWinner.setText("Draw Winners: " + Player2draw);
+				} else {
+					lblLoserScore.setText(lblplayer2score.getText());
+					lblLoser.setText("Draw Winners: " + Player1draw);
+					lblWinnerScore.setText(lblplayer1score.getText());
+					lblWinner.setText("Draw Winners: " + Player2draw);
+				}
+		    	
+		    }
+		});
+	}
 	
 		
 

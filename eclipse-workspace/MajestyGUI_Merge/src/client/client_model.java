@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import commons.CardStackMsg;
 import commons.CardTakenMsg;
 import commons.ChatMsg;
+import commons.DrawMsg;
 import commons.JoinMsg;
 import commons.Message;
 import commons.RewardMsg;
@@ -32,6 +33,7 @@ public class client_model {
 	protected SimpleStringProperty otherCardAction = new SimpleStringProperty();
 	protected SimpleStringProperty winnerVis = new SimpleStringProperty();
 	protected SimpleStringProperty loserVis = new SimpleStringProperty();
+	protected SimpleStringProperty DrawVis = new SimpleStringProperty();
 	
 	private Logger logger = Logger.getLogger(client_model.class.getName());
 	private Socket socket;
@@ -266,6 +268,12 @@ public class client_model {
 								//******HERE LOSER ACTION ********
 								loserVis.set(winmsg.getLoser());
 														
+						} else if (msg instanceof DrawMsg) {
+							DrawMsg drawmsg = (DrawMsg) msg;
+							
+							DrawVis.set(drawmsg.getDraw1() + "|" + drawmsg.getDraw2());
+							
+							
 						}
 					}	
 				}

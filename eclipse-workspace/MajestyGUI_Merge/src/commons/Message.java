@@ -68,6 +68,8 @@ public abstract class Message {
 					msg = new CardTakenMsg(Integer.parseInt(parts[1]));
 				} else if (parts[0].equals(MessageType.Winner.toString())) {
 					msg = new WinnerMsg(parts[1], parts[2]);
+				} else if (parts[0].equals(MessageType.Draw.toString())) {
+					msg = new DrawMsg(parts[1], parts[2]);
 					
 									
 				}

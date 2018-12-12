@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import commons.CardStack;
 import commons.CardStackMsg;
 import commons.ChatMsg;
+import commons.DrawMsg;
 import commons.JoinMsg;
 import commons.RewardMsg;
 import commons.ScoreMsg;
@@ -36,6 +37,8 @@ public class server_model {
 	// @Ali
 	private player winner = null;
 	private player loser = null;
+	private player draw1 = null;
+	private player draw2 = null;
 	
 	// @Ali: card points for evaluation
 	private static final int VALUE_MUEHLE = 10;
@@ -241,6 +244,13 @@ public class server_model {
 		logger.info("Broadcasting Winner msg");
 		for (player p : players) {
 			p.send(winmsg);
+		}
+	}
+	
+	public void broadcast(DrawMsg drawmsg) {
+		logger.info("Broadcasting Draw msg");
+		for (player p : players) {
+			p.send(drawmsg);
 		}
 	}
 	
@@ -539,18 +549,33 @@ public class server_model {
 		for (player p : players) {
 			if(winner == null && loser == null) {
 				loser = p;
-				winner = p;				
-			}else {
+				winner = p;	
+				draw1 = p;
+			} else {
 				if (p.getPoints() > winner.getPoints())	{
 					winner = p;
 				} else
 					loser = p;
-			} 		
+				
+				//falls Spieler 2 gleich viele Punkte hat, wird draw2 gesetzt.
+				if (p.getPoints() == draw1.getPoints()) {
+					draw2 = p;
+				}
+				
+			} 
 			
 		}		
 		
-		WinnerMsg winmsg = new WinnerMsg(winner.getName(),loser.getName());
-		broadcast(winmsg);
-		logger.info("the winner is: " + winner.getName());
+		if(draw2.equals(null)) {
+			WinnerMsg winmsg = new WinnerMsg(winner.getName(),loser.getName());
+			broadcast(winmsg);
+			logger.info("the winner is: " + winner.getName());
+		} else {
+			DrawMsg drawmsg = new DrawMsg(draw1.getName(), draw2.getName());
+			broadcast(drawmsg);
+			logger.info("Both are Winners!: " + draw1.getName() + " " + draw2.getName() );
+		}
+		
+		
 	}
 }
