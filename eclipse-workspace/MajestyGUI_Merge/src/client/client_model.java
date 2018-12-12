@@ -96,7 +96,7 @@ public class client_model {
 							
 							if(joincounter <= 2) {
 							newestMessage.set(""); 
-							newestMessage.set(joinmsg.getName() + " joined the game");
+							newestMessage.set(joinmsg.getName() + " ist dem Spiel beigetreten.");
 							}
 																					
 						} else if (msg instanceof ScoreMsg) {
@@ -121,7 +121,7 @@ public class client_model {
 									}
 								
 								newestMessage.set(""); 
-								newestMessage.set(scoremsg.getName() + ": My " + scoremsg.getCard() + " is wounded !");
+								newestMessage.set(scoremsg.getName() + ": Meine " + scoremsg.getCard() + " ist verwundet !");
 																							
 							} else if (scoremsg.getScoreType().equals("heal")) {
 								
@@ -132,7 +132,7 @@ public class client_model {
 									}
 								
 								newestMessage.set(""); 
-								newestMessage.set(scoremsg.getName() + " : healed " + scoremsg.getCard());
+								newestMessage.set(scoremsg.getName() + ": " + scoremsg.getCard() + " geheilt.");
 								
 							} else if (scoremsg.getScoreType().equals("take")) {
 								
@@ -143,7 +143,7 @@ public class client_model {
 									}
 								
 								newestMessage.set(""); 
-								newestMessage.set(scoremsg.getName() + ": took " + scoremsg.getCard());
+								newestMessage.set(scoremsg.getName() + ": " + scoremsg.getCard() + " genommen");
 							}
 							
 							// Add action event to the log area
