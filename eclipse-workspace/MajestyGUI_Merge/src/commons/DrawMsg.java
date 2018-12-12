@@ -3,7 +3,7 @@ package commons;
 
 /**
  * Last Message after defining the Winner and the Loser
- * @author E. Thammavongsa
+ * @author E.Thammavongsa
  */
 public class DrawMsg extends Message {
 	private String player1;

@@ -3,24 +3,24 @@ package commons;
 
 public class Card {
 	
-	private CardType karte;
+	private CardType card;
 
 	public Card() {
 		
 	}
 	
 	public Card(CardType cardtyp) {
-		this.karte = cardtyp;
+		this.card = cardtyp;
 	}
 	
 	
 	
 	public CardType getCard() {
-		return karte;
+		return card;
 	}
 	
 	public String toString() {
-		return "" + karte;
+		return "" + card;
 	}
 	
 	public Card StringtoCard(String StrCard) {

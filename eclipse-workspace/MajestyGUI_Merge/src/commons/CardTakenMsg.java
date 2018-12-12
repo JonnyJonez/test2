@@ -2,7 +2,7 @@ package commons;
 
 /**
  * Client to Server Message to point to the taken Card, which will be removed from the CardStack
- * @author E. Thammavongsa
+ * @author Erich 
  */
 public class CardTakenMsg extends Message{
 	private int positionofCard;
