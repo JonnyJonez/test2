@@ -103,7 +103,7 @@ public class client_model {
 							
 							/**
 							 * distinguish between "action" and "take" score messages
-							 * @author P. Mächler --> Kann jemand haben
+							 * @author R.Thiel
 							 */
 							
 							ScoreMsg scoremsg = (ScoreMsg) msg;
@@ -155,7 +155,7 @@ public class client_model {
 							
 							/**
 							 * Handle rewards
-							 * @author P. Mächler --> Kann jemand haben
+							 * @author R. Thiel
 							 */
 							
 							RewardMsg rewardmsg = (RewardMsg) msg;

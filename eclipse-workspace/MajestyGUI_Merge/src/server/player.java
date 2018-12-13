@@ -615,7 +615,7 @@ public class player {
 	
 	/**
 	 * this method is called when an attack starts (less defense that attackers)
-	 * @author: P. Mächler ---> Raffi ?
+	 * @author R.Thiel
 	 */
 	public void attack(){
 		
