@@ -4,7 +4,6 @@ package commons;
  * Message to handle attacks and taken cards
  * @author P. Mächler
  */	
-
 public class ScoreMsg extends Message {
 	private String card;
 	private String name;

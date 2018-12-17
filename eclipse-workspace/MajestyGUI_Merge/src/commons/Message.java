@@ -13,7 +13,9 @@ import commons.MessageType;
 /**
  * Credit: Prof Dr. Bradley Richards
  */
-
+/**
+ * @author P.Mächler
+ */
 public abstract class Message {
 		private static Logger logger = Logger.getLogger(Message.class.getName());
 		
@@ -49,8 +51,7 @@ public abstract class Message {
 				/**
 				 * Convert string back to a message based on their message type
 				 * @author P. Mächler
-				 */
-				
+				 */		
 				String[] parts = msgText.split("\\|");
 				if (parts[0].equals(MessageType.Join.toString())) {
 					msg = new JoinMsg(parts[1]);
@@ -70,8 +71,7 @@ public abstract class Message {
 					msg = new WinnerMsg(parts[1], parts[2]);
 				} else if (parts[0].equals(MessageType.Draw.toString())) {
 					msg = new DrawMsg(parts[1], parts[2]);
-					
-									
+														
 				}
 				
 			} catch (IOException e) {

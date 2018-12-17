@@ -1,6 +1,8 @@
 package commons;
 
-
+/**
+ * @author E.Thammavongsa
+ */
 public class Card {
 	
 	private CardType card;

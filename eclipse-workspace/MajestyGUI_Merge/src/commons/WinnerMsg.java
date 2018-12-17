@@ -2,7 +2,7 @@ package commons;
 
 /**
  * Last Message after defining the Winner and the Loser
- * @author E.Thammavongsa
+ * @author A.Atici
  */
 public class WinnerMsg extends Message {
 	private String winner;
