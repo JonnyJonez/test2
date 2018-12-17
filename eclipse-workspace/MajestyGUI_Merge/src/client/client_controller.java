@@ -149,7 +149,11 @@ public class client_controller {
 		model.takenCard(6);
 	}	
 	
-	
+	/** Constructor
+	 * @author E.Thammavongsa
+	 * @author P.Mächler
+	 * @author J.Arnold
+	 */
 	public client_controller(client_model model) {
 		this.model = model;
 		
@@ -297,10 +301,8 @@ public class client_controller {
 	 * Set card images to the buttons
 	 * @author E.Thammavongsa
 	 */
-	
-	
 	public void setButtonImage(String imagebutton) {
-		//Get which position is being set Rnage: 1-6
+		//Get which position is being set range: 1-6
 		 int posID = Integer.parseInt(String.valueOf(imagebutton.charAt(0)));
 		 String Cardimage = imagebutton.substring(1);
  
@@ -538,7 +540,7 @@ public class client_controller {
 	}
 		
 	/**
-	 * The programm don't know which player is the first or the second player
+	 * The program don't know which player is the first or the second player
 	 * Set joiner name to labels
 	 * 
 	 * @author J.Arnold
@@ -560,8 +562,10 @@ public class client_controller {
 	}
 	
 	
-	// Add a new saldo to the labels
-	
+	/**
+	 * Add a new saldo to the labels
+	 * @author P.Mächler
+	 */
 	public void addSaldo(String type, String saldo) {
 		
 		Platform.runLater(new Runnable() {
@@ -579,19 +583,10 @@ public class client_controller {
 		});
 	}
 	
-	// Set a player name in the user interface
-	
-	public void setNameInGUI(String name){
-		
-		Platform.runLater(new Runnable() {
-		    public void run() {
-		       txtName.setText(name);		    	
-		    }
-		});
-	}
-	
-	// React on actions concerning myself
-	
+	/**
+	 * React on actions concerning myself
+	 * @author P.Mächler
+	 */
 	public void myCardAction(String s){
 		
 		String[] parts = s.split("\\|");
@@ -613,8 +608,10 @@ public class client_controller {
 		});
 	}
 	
-	// React on actions concerning others
-	
+	/**
+	 * React on actions concerning others
+	 * @author P.Mächler
+	 */
 	public void otherCardAction(String s){
 		
 		String[] parts = s.split("\\|");
@@ -635,9 +632,11 @@ public class client_controller {
 		    }
 		});
 	}
-	
-	// Increase card counter and update labels
-	
+
+	/**
+	 * Increase card counter and update labels
+	 * @author J.Arnold
+	 */
 	public void increaseCardCount(String type, String card){
 		
 		Platform.runLater(new Runnable() {
@@ -702,8 +701,10 @@ public class client_controller {
 		});
 	}
 	
-	// Decrease card counter and update labels
-	
+	/**
+	 * Decrease card counter and update labels
+	 * @author J.Arnold
+	 */
 	public void decreaseCardCount(String type, String card){
 		
 		Platform.runLater(new Runnable() {
@@ -770,10 +771,9 @@ public class client_controller {
 	}	
 	
 	/**
-	 * Activate Winner Lables and get the Score from the Labels
-	 * @author E.Thammavongsa
-	 */
-	
+	 * Activate Winner lables and get the Score from the Labels
+	 * @author J.Arnold
+	 */	
 	public void settingWinner(String winner) {
 		
 		Platform.runLater(new Runnable() {
@@ -787,19 +787,15 @@ public class client_controller {
 					
 				} else {
 					lblWinnerScore.setText(lblplayer2score.getText());
-				}
-				
-				
-				
+				}				
 		    }
 		});
 	}
 	
 	/**
 	 * Activate Loser lables and get Score from Playerscore lable
-	 * @author E.Thammavongsa
+	 * @author J.Arnold
 	 */
-	
 	public void settingLoser(String loser) {
 			
 			Platform.runLater(new Runnable() {
@@ -812,13 +808,14 @@ public class client_controller {
 						lblLoserScore.setText(lblplayer1score.getText());
 					} else {
 						lblLoserScore.setText(lblplayer2score.getText());
-					}
-					
-					
+					}					
 			    }
 			});
 		}
-	
+	/**
+	 * Activate draw lables and get Score from Playerscore lable
+	 * @author J.Arnold
+	 */	
 	public void settingDraw(String Draw) {
 		
 		String[] DrawPlayers = Draw.split("|");
