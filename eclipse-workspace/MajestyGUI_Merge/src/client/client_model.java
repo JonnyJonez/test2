@@ -16,6 +16,10 @@ import commons.VisibilityMsg;
 import commons.WinnerMsg;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Credit: Prof. Dr. Bradley Richards
+ */
+
 public class client_model {
 	
 	// Add SimpleStringProperties used for listener in controller
@@ -67,33 +71,32 @@ public class client_model {
 			socket = new Socket(ipAddress, Port);
 
 			Runnable r = new Runnable() {
+				/**
+				 * Handling of incomming messages based on their type
+				 * @author P.Mächler
+				 * @author E.Thammavongsa
+				 * @author A.Atici
+				 * @author R.Thiel
+				 */
 				public void run() {
 					while (true) {
 							
 						Message msg = Message.receive(socket);
 						
-						// Handling of incomming messages based on their type
-						
 						if (msg instanceof ChatMsg) {	
 							ChatMsg chatmsg = (ChatMsg) msg;
 							
-							// Add chat message to the log area
-							
 							newestMessage.set(""); 
-							newestMessage.set("Chat " + chatmsg.getName() + ": " + chatmsg.getContent());
-						
-							
+							newestMessage.set("Chat " + chatmsg.getName() + ": " + chatmsg.getContent());					
 							 
 						} else if (msg instanceof JoinMsg) {
 							JoinMsg joinmsg = (JoinMsg) msg;
 							newJoin.set(joinmsg.getName());	
 							
-							// Add join information to the log area
-							
+							// Add join information to the log area							
 							joincounter++;
 							
 							// show each join only once
-							
 							if(joincounter <= 2) {
 							newestMessage.set(""); 
 							newestMessage.set(joinmsg.getName() + " ist dem Spiel beigetreten.");
@@ -104,8 +107,7 @@ public class client_model {
 							/**
 							 * distinguish between "action" and "take" score messages
 							 * @author R.Thiel
-							 */
-							
+							 */				
 							ScoreMsg scoremsg = (ScoreMsg) msg;
 							
 							// Add text to listener based on their type
@@ -121,7 +123,7 @@ public class client_model {
 									}
 								
 								newestMessage.set(""); 
-								newestMessage.set(scoremsg.getName() + ": Meine " + scoremsg.getCard() + " ist verwundet !");
+								newestMessage.set(scoremsg.getName() + ": Mein(e) " + scoremsg.getCard() + " ist verwundet !");
 																							
 							} else if (scoremsg.getScoreType().equals("heal")) {
 								
@@ -145,23 +147,16 @@ public class client_model {
 								newestMessage.set(""); 
 								newestMessage.set(scoremsg.getName() + ": " + scoremsg.getCard() + " genommen");
 							}
-							
-							// Add action event to the log area
-							
-//							newestMessage.set(""); 
-//							newestMessage.set("LOG: " + scoremsg.getName() + " " + scoremsg.getScoreType() + " " + scoremsg.getCard());
-							
+			
 						}	else if (msg instanceof RewardMsg) {
 							
 							/**
 							 * Handle rewards
 							 * @author R. Thiel
-							 */
-							
+							 */				
 							RewardMsg rewardmsg = (RewardMsg) msg;
 							
-							// Add reward info to the log area if i'm the receiver
-							
+							// Add reward info to the log area if i'm the receiver			
 							if(rewardmsg.getName().equals(name)){
 								newestMessage.set(""); 
 								newestMessage.set("$$$$$ " + rewardmsg.getReward() + " $$$$$");
@@ -171,15 +166,13 @@ public class client_model {
 								otherCoins.set(((RewardMsg) msg).getSaldo().toString());
 							}
 							
-							// timeout to avoid overlapping messages
-							
+							// timeout to avoid overlapping messages					
 							try {
 								Thread.sleep(200);
 							} catch (InterruptedException e) {
 							e.printStackTrace();
 							}
-							
-							
+												
 						}	else if (msg instanceof VisibilityMsg) {
 							
 							VisibilityMsg vismsg = (VisibilityMsg) msg;
@@ -189,15 +182,13 @@ public class client_model {
 							if(vismsg.getName().equals(name)){
 							buttonsVis.set(vismsg.getVisibility());
 							}
-
 							
 							try {
 								Thread.sleep(200);
 							} catch (InterruptedException e) {
 							e.printStackTrace();
 							}
-							
-							
+											
 						}	else if (msg instanceof CardStackMsg) {
 							
 							/**
@@ -251,29 +242,27 @@ public class client_model {
 							/**
 							 * Define the Winner and loser with the Winnermsg at the end of the game.
 							 * seperated Listener for Loser and Winner labels
-							 * @author E.Thammavongsa
-							 */
-							
+							 * @author A.Atici
+							 */			
 							WinnerMsg winmsg = (WinnerMsg) msg;
 							
-								//******HERE WINNER ACTION ********
-								winnerVis.set(winmsg.getWinner());
+							winnerVis.set(winmsg.getWinner());
 								
 								try {
 									Thread.sleep(300);
 								} catch (InterruptedException e) {
 								e.printStackTrace();
 								}
-								
-								//******HERE LOSER ACTION ********
-								loserVis.set(winmsg.getLoser());
-														
+
+							loserVis.set(winmsg.getLoser());
+							/**
+							 * Define the draw with the drawmsg at the end of the game.
+							 * @author A.Atici
+							 */								
 						} else if (msg instanceof DrawMsg) {
 							DrawMsg drawmsg = (DrawMsg) msg;
-							
-							drawVis.set(drawmsg.getDraw1() + "|" + drawmsg.getDraw2());
-							
-							
+			
+							drawVis.set(drawmsg.getDraw1() + "|" + drawmsg.getDraw2());							
 						}
 					}	
 				}
@@ -300,7 +289,10 @@ public class client_model {
 			} catch (IOException e) {
 			}
 	}
-
+	/**
+	 * send message when a card is taken
+	 * @author P.Mächler
+	 */
 	public void takeCard(String card) {
 		logger.info("Take card");
 		Message msg = new ScoreMsg(name, card, "take");
@@ -319,8 +311,7 @@ public class client_model {
 	/**
 	 * Send taken Card position to server for removing from Stack
 	 * @author E.Thammavongsa
-	 */
-	
+	 */	
 	public void takenCard(int position) {
 		logger.info("Send position to Server");
 		Message msg = new CardTakenMsg(position);
