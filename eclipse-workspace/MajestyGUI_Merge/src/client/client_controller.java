@@ -537,6 +537,7 @@ public class client_controller {
 	 */
 	public void clickOnSend() {
 		model.sendMessage(txtChatMessage.getText());
+		txtChatMessage.clear();
 	}
 		
 	/**
