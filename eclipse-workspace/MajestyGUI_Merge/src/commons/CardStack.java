@@ -16,7 +16,14 @@ public class CardStack {
 	private ArrayList<Card> stack = new ArrayList<>();
 	private Socket socket;
 	private server_model model;
-	private int[] Frequency = {9,6,5,5,3,4,5};
+	private final int COUNT_MUEHLE = 9;
+	private final int COUNT_BRAUEREI = 6;
+	private final int COUNT_HEXENHAUS = 5;
+	private final int COUNT_WACHTURM = 5;
+	private final int COUNT_ANGRIFF = 3;
+	private final int COUNT_TAVERNE = 4;
+	private final int COUNT_SCHLOSS = 5;
+	private int[] Frequency = {COUNT_MUEHLE,COUNT_BRAUEREI,COUNT_HEXENHAUS,COUNT_WACHTURM,COUNT_ANGRIFF,COUNT_TAVERNE,COUNT_SCHLOSS};
 	
 	//Consturctor to create the Card stack with the default Frequency.
 	public CardStack() {
