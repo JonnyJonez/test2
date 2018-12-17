@@ -34,6 +34,7 @@ public class client_main extends Application {
 			/**
 			 * For a nicer game experience a background sound is implemented
 			 * It starts by starting the client a volume of 20%
+			 * All music is composed by Derek and Brandon Fiechter (https://www.youtube.com/watch?v=KYA8XGxSHSM)
 			 * @author J.Arnold
 			 */
 			 String backgroundSound = "src/sounds/background_sound.mp3";
