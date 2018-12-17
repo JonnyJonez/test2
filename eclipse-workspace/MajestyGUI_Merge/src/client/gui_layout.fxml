@@ -40,6 +40,7 @@
             </ImageView>
             <ImageView fitHeight="257.0" fitWidth="188.0" layoutX="808.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
+               <!-- source: https://lh3.googleusercontent.com/1pjgESZ65IyWS02kFyjGEMRWRUE7uDupPpWyX-Nvspewp5woQB78ecaKTw4F81ELySH1Aw=s111-->
                   <Image url="@../../pics/PointsBackground.jpg" />
                </image>
             </ImageView>
