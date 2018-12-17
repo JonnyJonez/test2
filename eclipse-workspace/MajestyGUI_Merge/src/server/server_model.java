@@ -34,13 +34,11 @@ public class server_model {
 	public String zweiter;
 	public CardStack s1;
 	
-	// @Ali
 	private player winner = null;
 	private player loser = null;
 	private player draw1 = null;
 	private player draw2 = null;
 	
-	// @Ali: card points for evaluation
 	private static final int VALUE_MUEHLE = 10;
 	private static final int VALUE_BRAUEREI = 11;
 	private static final int VALUE_HEXENHAUS = 12;
@@ -358,7 +356,7 @@ public class server_model {
 	}
 	
 	/**
-	 * this method contains the evaluation of points per gamer
+	 * this method contains the evaluation of points
 	 * @author A. Atici
 	 */
 	
@@ -433,7 +431,7 @@ public class server_model {
 		playerOne.setPoints(playerOne.getPoints() + (oneDifferentCards * oneDifferentCards));
 		playerTwo.setPoints(playerTwo.getPoints() + (twoDifferentCards * twoDifferentCards));
 		
-		// third evaluation: go through all typ of cards and add reward
+		// third evaluation: go through all typ of cards and add points
 		int oneMuehle = playerOne.getMuehle();
 		int twoMuehle = playerTwo.getMuehle();
 		
@@ -557,7 +555,7 @@ public class server_model {
 				} else
 					loser = p;
 				
-				//falls Spieler 2 gleich viele Punkte hat, wird draw2 gesetzt.
+				// if player2 has same points then draw2
 				if (p.getPoints() == draw1.getPoints()) {
 					draw2 = p;
 				}

@@ -44,9 +44,8 @@ public class player {
 	private String turn = "false";
 	private String erster = "false";
 	private int position;
-	// @ali String -> boolean
+	
 	private boolean complete = false;
-	// @ali: mit -1 sieht man, ob der Spieler am Ende 0 Punkte hatte
 	private int points = -1;
 	
 	// Initiate lazarett
@@ -584,7 +583,6 @@ public class player {
 		this.overallcount = overallcount;
 	}
 
-	// @Ali: grösse vom Stack entspricht der Anzahl Personen im Lazarett (Minuspunkte in der Auswertung)
 	public int getLazarett() {
 		return lazarett.size();
 	}
