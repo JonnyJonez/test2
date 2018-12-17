@@ -1,11 +1,13 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 #pane{
+/*source: http://getwallpapers.com/collection/dark-wood-wallpaper*/
 	-fx-background-image: url("table_background.jpg");
 	-fx-background-size: 1100 700;
 }
 
 #inner_pane{
+/*source: https://www.deviantart.com/painterhoya*/
 	-fx-background-image: url("background_c_painterhoya.jpg");
 	-fx-background-size: 1025 650;
 }
