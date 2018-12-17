@@ -18,7 +18,12 @@ import server.server_model;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-
+/**
+ * @author P.Mächler
+ * @author E.Thammavongsa
+ * @author R.Thiel
+ *
+ */
 public class player {
 
 	private Socket socket;
@@ -27,7 +32,6 @@ public class player {
 	
 	// Create counter for cards
 	
-	private int AnzahlMessages = 0;
 	private int Wachturm = 0;
 	private int Taverne = 0;
 	private int Kaserne = 0;
@@ -72,31 +76,19 @@ public class player {
 						
 						/**
 						 * Identify and broadcast chat message, increase counter						 
-						 * @author: P. Mächler
-						 */
-														
-						player.this.AnzahlMessages++;					
+						 * @author P.Mächler
+						 */				
 						model.broadcast((ChatMsg) msg);
-						
-						// Debug only
-						
-						// ChatMsg countmsg = new ChatMsg(player.this.name, "hat " + player.this.AnzahlMessages + " Nachrichten gesendet");
-						// model.broadcast(countmsg);
-						
 											
 					} else if (msg instanceof JoinMsg) {
 						
 						/**
 						 * Identify and broadcast join message
-						 * @author: P. Mächler
+						 * @author P.Mächler
 						 */
-						
-						// player.this.name = model.checknames(((JoinMsg) msg).getName());
+
 						player.this.name = ((JoinMsg) msg).getName();
 						model.broadcast((JoinMsg) msg);
-
-						
-					
 						
 					} else if (msg instanceof CardTakenMsg){
 						
@@ -125,7 +117,12 @@ public class player {
 						
 						model.broadcast(cardSmsg);
 						
-					} else if (msg instanceof ScoreMsg) {
+					} 
+					/**
+					 * handling of different messages 
+					 * @author: P.Mächler
+					 */	
+					else if (msg instanceof ScoreMsg) {
 						
 						player.this.name = ((ScoreMsg) msg).getName();	
 						
@@ -135,11 +132,6 @@ public class player {
 									
 						if (overallcount < 24) {	
 							
-							/**
-							 * Disable buttons after a card is taken
-							 * @author: P. Mächler
-							 */
-
 							VisibilityMsg vismsgOne = new VisibilityMsg(model.erster, "false");
 							VisibilityMsg vismsgTwo = new VisibilityMsg(model.zweiter, "false");
 							model.broadcast(vismsgOne);
@@ -162,11 +154,7 @@ public class player {
 																			
 							if (((ScoreMsg) msg).getCard().equals("Wachturm")) {
 								
-								/**
-								 * Calculate reward for a taken "Wachturm" card. Send Reward message to the player
-								 * @author: P. Mächler
-								 */
-								
+					
 								try {
 									defenseSound();
 								} catch (Exception e) {
@@ -192,11 +180,9 @@ public class player {
 								
 							if (((ScoreMsg) msg).getCard().equals("Brauerei")) {
 								
-								/**
-								 * Calculate reward for a taken "Brauerei" card. Send Reward message to the player
-								 * Identify all player with at least one "Mühle" card and send a reward message for those
-								 * @author: P. Mächler
-								 */
+
+//								 Calculate reward for a taken "Brauerei" card. Send Reward message to the player
+//								 Identify all player with at least one "Mühle" card and send a reward message for those
 								
 								try {
 									brewerySound();
@@ -262,7 +248,7 @@ public class player {
 								 * whenever a card with the name "Hexenhaus" is picked, it will be checked,
 								 * if the lazarett is empty. If there is at least one card inside of the lazarett,
 								 * the following code will check which one it is based on a if peek = x = true -> pop  
-								 * @author R. Thiel
+								 * @author R.Thiel
 								 */
 								if (lazarett.empty() == true) {
 								
@@ -331,7 +317,7 @@ public class player {
 									
 									/**
 									 * Calculate reward for a taken "Mühle" card. Send Reward message to the player
-									 * @author: P. Mächler
+									 * @author P.Mächler
 									 */
 									
 									try {
@@ -361,7 +347,7 @@ public class player {
 									/**
 									 * Calculate reward for a taken "Kaserne" card. Send Reward message to the player
 									 * Attack other players
-									 * @author: P. Mächler
+									 * @author P.Mächler
 									 */
 									
 									try {
@@ -392,7 +378,7 @@ public class player {
 									
 									/**
 									 * Calculate reward for a taken "Schloss" card. Send Reward message to the player
-									 * @author: P. Mächler
+									 * @author P.Mächler
 									 */
 									
 									try {
@@ -423,7 +409,7 @@ public class player {
 									/**
 									 * Calculate reward for a taken "Taverne" card. Send Reward message to the player
 									 * Identify all player with at least one "Brauerei" card and send a reward message for those
-									 * @author: P. Mächler
+									 * @author P.Mächler
 									 */
 									
 									try {
@@ -480,12 +466,9 @@ public class player {
 								model.changeTurn();
 								
 							} else {
-								// TODO: disable buttons in all player windows
 								player.this.complete = true;
 								model.setComplete();
 								model.changeTurn();
-								//model.broadcast(winmsg);
-								
 							}
 						}
 					
@@ -593,9 +576,8 @@ public class player {
 	
 	/**
 	 * this method is called after a turn was done. It sends a visibility message to disable or enable the buttons
-	 * @author: P. Mächler
+	 * @author P.Mächler
 	 */
-	
 	public void changeTurn() {
 		
 		overallcount++; 
@@ -686,7 +668,7 @@ public class player {
 	 * this method is called when a card is picked with the "Wachturm"-name. 
 	 * it will play a predetermined sound with 20% volume.  
 	 * The original sound file is from the MMORPG "World of Warcraft"
-	 * @author: R. Thiel
+	 * @author R.Thiel
 	 */
 	public void defenseSound(){ 
 	String wachturmMusicFile = "src/sounds/defense.wav";
@@ -700,7 +682,7 @@ public class player {
 	 * this method is called when a card is picked with the "Brauerei"-name. 
 	 * it will play a predetermined sound with 20% volume.  
 	 * The original sound file was taken from a website who distributes free sample sounds. 
-	 * @author: R. Thiel
+	 * @author R.Thiel
 	 */
 	public void brewerySound() {
 	String brauereiMusicFile = "src/sounds/brewery.wav";
@@ -714,7 +696,7 @@ public class player {
 	 * this method is called when a card is picked with the "Hexenhaus"-name. 
 	 * it will play a predetermined sound with 20% volume. 
 	 * The original sound file was taken from a website who distributes free sample sounds. 
-	 * @author: R. Thiel
+	 * @author R.Thiel
 	 */
 	public void witchSound() {
 	String witchMusicFile = "src/sounds/witch.wav";
@@ -728,7 +710,7 @@ public class player {
 	 * this method is called when a card is picked with the "Mühle"-name. 
 	 * it will play a predetermined sound with 20% volume.  
 	 * The original sound file is from the RTS "Age of Empires II"
-	 * @author: R. Thiel
+	 * @author R.Thiel
 	 */
 	public void millerSound() {
 	String muehleMusicFile = "src/sounds/miller.wav";
@@ -742,7 +724,7 @@ public class player {
 	 * this method is called when a card is picked with the "Kaserne"-name. 
 	 * it will play a predetermined sound with 20% volume. 
 	 * The original sound file is from the MMORPG "World of Warcraft"
-	 * @author: R. Thiel
+	 * @author R.Thiel
 	 */
 	public void attackSound() {
 	String attackMusicFile = "src/sounds/attack.wav";
@@ -756,7 +738,7 @@ public class player {
 	 * this method is called when a card is picked with the "Schloss"-name. 
 	 * it will play a predetermined sound with 20% volume. 
 	 * The original sound file is from the RTS "Age of Empires II"
-	 * @author: R. Thiel
+	 * @author R.Thiel
 	 */
 	public void castleSound() {
 	String castleMusicFile = "src/sounds/castle.wav";
@@ -770,7 +752,7 @@ public class player {
 	 * this method is called when a card is picked with the "Taverne"-name. 
 	 * it will play a predetermined sound with 20% volume. 
 	 * The original sound file was taken from a website who distributes free sample sounds. 
-	 * @author: R. Thiel
+	 * @author R.Thiel
 	 */
 	public void tavernSound() {
 	String tavernMusicFile = "src/sounds/tavern.wav";

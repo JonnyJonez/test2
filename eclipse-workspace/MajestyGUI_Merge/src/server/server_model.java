@@ -23,6 +23,11 @@ import javafx.collections.ObservableList;
  * Credit: Prof Dr. Bradley Richards
  */	
 
+/**
+ *@author P.Mächler
+ *@author E.Thammavongsa
+ *@author A.Atici
+ */
 public class server_model {
 	protected final ObservableList<player> players = FXCollections.observableArrayList();
 
@@ -64,7 +69,7 @@ public class server_model {
 							// Accept new players as long as not all spaces are taken
 							
 							if(players.size() < maxPlayer){
-																
+
 								player player = new player(server_model.this, socket);
 								players.add(player); 
 								
@@ -85,7 +90,6 @@ public class server_model {
 									 * If all Users are Online, the Cardstack will be generated and broadcasted.
 									 * @author E.Thammavongsa
 									 */
-									
 									s1 = new CardStack();
 									logger.info("ready to send cards");
 									
@@ -104,9 +108,8 @@ public class server_model {
 									
 									/**
 									 * Find first joiner and broadcast join messages & visibility messages
-									 * @author: P. Mächler
-									 */
-																		
+									 * @author: P.Mächler
+									 */							
 									for (player p : players) {
 										p.getErster();
 										if(p.getErster() == "true"){
@@ -117,8 +120,10 @@ public class server_model {
 										}
 									}
 										
-									// Send Join messages
-										
+									/**
+									 * send join messages
+									 * @author: P.Mächler
+									 */		
 									for (player p : players) {
 										
 										// Avoid overlapping messages
@@ -134,8 +139,10 @@ public class server_model {
 												
 									}
 										
-									// Send visibility message (true) to the first player to start the game
-																																			
+									/**
+									 * Send visibility message (true) to the first player to start the game
+									 * @author: P.Mächler
+									 */																											
 									VisibilityMsg vismsg = new VisibilityMsg(erster, "true");
 									broadcast(vismsg);
 									logger.info("set erster visible " + erster);
@@ -147,9 +154,11 @@ public class server_model {
 									} catch (InterruptedException e) {
 									e.printStackTrace();
 									}
-									
-									// Send visibility message (false) to the second player to wait 
-																		
+									 
+									/**
+									 * Send visibility message (false) to the second player to wait
+									 * @author: P.Mächler
+									 */
 									VisibilityMsg vismsg2 = new VisibilityMsg(zweiter, "false");
 									broadcast(vismsg2);	
 									logger.info("set zweiter visible false " + zweiter);
@@ -157,7 +166,7 @@ public class server_model {
 								}
 							
 							} else {
-								// Pech, schon alle da
+								logger.info("maximale Anzahl Spieler erreicht");
 							}						
 							
 						} catch (Exception e) {
@@ -192,60 +201,78 @@ public class server_model {
 	
 	/**
 	 * Broadcast messages to all players
-	 * @author: P. Mächler
-	 */	
-	
-	// Broadcast of messages
-	
+	 * @author: P.Mächler
+	 */		
 	public void broadcast(ChatMsg chatMsg) {
 		logger.info("Broadcasting Chatmessage to clients");
 		for (player p : players) {
 			p.send(chatMsg);
 		}
 	}
-	
+	/**
+	 * Broadcast messages to all players
+	 * @author: P.Mächler
+	 */	
 	public void broadcast(RewardMsg rewardmsg) {
 		logger.info("Broadcasting Rewardmessage to clients");
 		for (player p : players) {
 			p.send(rewardmsg);
 		}
 	}
-	
+	/**
+	 * Broadcast messages to all players
+	 * @author: P.Mächler
+	 */	
 	public void broadcast(JoinMsg joinMsg) {
 		logger.info("Broadcasting Joinmessage to clients");
 		for (player p : players) {
 			p.send(joinMsg);
 		}
 	}
-	
+	/**
+	 * Broadcast messages to all players
+	 * @author: P.Mächler
+	 */	
 	public void broadcast(ScoreMsg scoremsg) {
 		logger.info("Broadcasting cards");
 		for (player p : players) {
 			p.send(scoremsg);
 		}
 	}
-	
+	/**
+	 * Broadcast messages to all players
+	 * @author: P.Mächler
+	 */	
 	public void broadcast(VisibilityMsg vismsg) {
 		logger.info("Broadcasting Visibility msg");
 		for (player p : players) {
 			p.send(vismsg);
 		}
 	}
-	
+	/**
+	 * Broadcast messages to all players
+	 * @author: P.Mächler
+	 */	
 	public void broadcast(CardStackMsg stackmsg) {
 		logger.info("Broadcasting CardStack msg");
 		for (player p : players) {
 			p.send(stackmsg);
 		}
 	}
-	
+	/**
+	 * Broadcast messages to all players
+	 * @author: P.Mächler
+	 */	
 	public void broadcast(WinnerMsg winmsg) {
 		logger.info("Broadcasting Winner msg");
 		for (player p : players) {
 			p.send(winmsg);
 		}
 	}
-	
+	/**
+	 * Broadcast messages to all players
+	 * @author: P.Mächler
+	 */	
 	public void broadcast(DrawMsg drawmsg) {
 		logger.info("Broadcasting Draw msg");
 		for (player p : players) {
@@ -265,9 +292,11 @@ public class server_model {
 		return msg;
 	}
 	
-	// Get all players with a certain card 
-	// Used for  rewards concerning other players (used in Taverne or Muehle)
-	
+	/**
+	 * Get all players with a certain card 
+	 * Used for rewards concerning other players (used in Taverne or Muehle)
+	 * @author: P.Mächler
+	 */	
 	public List<String> getPlayersWithCard(String s){
 		
 		List<String> array = new ArrayList<String>();
@@ -294,8 +323,10 @@ public class server_model {
 
 	}
 	
-	// Attack all player with less defense than attackers
-	
+	/**
+	 * Attack all player with less defense than attackers
+	 * @author: P.Mächler
+	 */	
 	public void attackAll(int attackers, String name){
 				
 		for (player p : players) {
@@ -309,8 +340,11 @@ public class server_model {
 	}
 	
 	
-	// Get saldo of a certain player
-
+	// 
+	/**
+	 * Get saldo of a certain player 
+	 * @author: P.Mächler
+	 */	
 	public void setSaldi(String string) {
 		String[] parts = string.split("\\|");
 			for (player p : players) {
@@ -321,8 +355,10 @@ public class server_model {
 	
 	}
 	
-	// Change turn of players
-	
+	/**
+	 * Change turn of players
+	 * @author: P.Mächler
+	 */	
 	public void changeTurn(){
 		for (player p : players) {
 			p.changeTurn();
@@ -337,9 +373,8 @@ public class server_model {
 	
 	/**
 	 * end the game after everybody got 12 cards
-	 * @author A. Atici
+	 * @author A.Atici
 	 */
-	
 	public void setComplete(){
 		
 		boolean allComplete = true;  
@@ -358,9 +393,8 @@ public class server_model {
 	
 	/**
 	 * this method contains the evaluation of points
-	 * @author A. Atici
+	 * @author A.Atici
 	 */
-	
 	public void endResult() {
 		
 		for (player p : players) {
@@ -446,7 +480,6 @@ public class server_model {
 			playerOne.setPoints(playerOne.getPoints() + VALUE_MUEHLE);
 		}
 		
-		
 		int oneBrauerei = playerOne.getBrauerei();
 		int twoBrauerei = playerTwo.getBrauerei();
 		
@@ -518,7 +551,6 @@ public class server_model {
 			playerTwo.setPoints(playerTwo.getPoints() + VALUE_SCHLOSS);
 			playerOne.setPoints(playerOne.getPoints() + VALUE_SCHLOSS);
 		}
-		
 
 		//determine the winner and broadcast it to all players
 		playerOne.setSaldo(playerOne.getPoints());
@@ -542,7 +574,7 @@ public class server_model {
 	
 	/**
 	 * evaluation of winner
-	 * @author A. Atici
+	 * @author A.Atici
 	 */
 	public void winner() {
 		for (player p : players) {
@@ -563,7 +595,7 @@ public class server_model {
 				}
 				
 			} 
-			
+
 		}		
 		
 		if(!isdraw) {
@@ -575,7 +607,6 @@ public class server_model {
 			broadcast(drawmsg);
 			logger.info("Both are Winners!: " + draw1.getName() + " " + draw2.getName() );
 		}
-		
 		
 	}
 }

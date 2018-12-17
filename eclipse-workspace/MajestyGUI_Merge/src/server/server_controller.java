@@ -5,7 +5,6 @@ import javafx.collections.ListChangeListener;
 /**
  * Credit: Prof Dr. Bradley Richards
  */	
-
 public class server_controller {
 	private server_model model;
 	private server_view view;
