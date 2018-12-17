@@ -38,6 +38,7 @@ public class server_model {
 	private player loser = null;
 	private player draw1 = null;
 	private player draw2 = null;
+	private boolean isdraw = false;
 	
 	private static final int VALUE_MUEHLE = 10;
 	private static final int VALUE_BRAUEREI = 11;
@@ -552,19 +553,20 @@ public class server_model {
 			} else {
 				if (p.getPoints() > winner.getPoints())	{
 					winner = p;
-				} else
+				} else {
 					loser = p;
-				
+				}
 				// if player2 has same points then draw2
 				if (p.getPoints() == draw1.getPoints()) {
 					draw2 = p;
+					isdraw = true;
 				}
 				
 			} 
 			
 		}		
 		
-		if(draw2.equals(null)) {
+		if(!isdraw) {
 			WinnerMsg winmsg = new WinnerMsg(winner.getName(),loser.getName());
 			broadcast(winmsg);
 			logger.info("the winner is: " + winner.getName());
