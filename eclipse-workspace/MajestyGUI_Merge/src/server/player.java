@@ -767,6 +767,7 @@ public class player {
 		try {
 			socket.close();
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
