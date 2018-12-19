@@ -83,7 +83,7 @@ public class client_controller {
 	 * Creates a connection with the server via the method connect in server_model
 	 * @author J.Arnold
 	 */
-	public void clickOnConnect () {
+public void clickOnConnect () {
 		
 		String ipAddress = txtIpAddress.getText();
 		int port = Integer.parseInt(txtPort.getText());
@@ -91,24 +91,29 @@ public class client_controller {
 
 		// set default text for labels
 		
-		lblplayer1score.setText("0");
-		lblplayer2score.setText("0");
-		lblPlayer1muehle.setText("0");
-		lblPlayer1brauerei.setText("0");
-		lblPlayer1hexenhaus.setText("0");
-		lblPlayer1wachturm.setText("0");
-		lblPlayer1kaserne.setText("0");
-		lblPlayer1taverne.setText("0");
-		lblPlayer1schloss.setText("0");
-		lblPlayer2muehle.setText("0");
-		lblPlayer2brauerei.setText("0");
-		lblPlayer2hexenhaus.setText("0");
-		lblPlayer2wachturm.setText("0");
-		lblPlayer2kaserne.setText("0");
-		lblPlayer2taverne.setText("0");
-		lblPlayer2schloss.setText("0");
-		lblPlayer1lazarett.setText("0");
-		lblPlayer2lazarett.setText("0");
+		Label [] labels = new Label[]{
+				lblplayer1score,
+				lblplayer2score,
+				lblPlayer1muehle,
+				lblPlayer1brauerei,
+				lblPlayer1hexenhaus,
+				lblPlayer1wachturm,
+				lblPlayer1kaserne,
+				lblPlayer1taverne,
+				lblPlayer1schloss,
+				lblPlayer2muehle, 
+				lblPlayer2brauerei, 
+				lblPlayer2hexenhaus, 
+				lblPlayer2wachturm, 
+				lblPlayer2kaserne, 
+				lblPlayer2taverne, 
+				lblPlayer2schloss, 
+				lblPlayer1lazarett, 
+				lblPlayer2lazarett
+		};
+		
+		for (int i=0;i<labels.length;i++)
+			labels[i].setText("0");
 		
 		model.connect(ipAddress, port, name);
 		
@@ -119,6 +124,7 @@ public class client_controller {
 		txtName.setDisable(true);
 		btnConnect.setDisable(false);	
 	}
+
 	
 	/** Action for taking cards by click
 	 *  Opens the method takenCard in client_model
@@ -274,12 +280,10 @@ public class client_controller {
 	 */
 	
 	public void setButtonsInvisible(){
-			btncard1.setDisable(true);
-			btncard2.setDisable(true);
-			btncard3.setDisable(true);
-			btncard4.setDisable(true);
-			btncard5.setDisable(true);
-			btncard6.setDisable(true);	
+				
+		for (int i = 0;i<buttons.length;i++) {
+				buttons[i].setDisable(true);
+		}
 	}
 	
 	/** Set all card buttons to visible
@@ -289,12 +293,9 @@ public class client_controller {
 	
 	public void setButtonsVisible(){
 		
-		btncard1.setDisable(false);
-		btncard2.setDisable(false);
-		btncard3.setDisable(false);
-		btncard4.setDisable(false);
-		btncard5.setDisable(false);
-		btncard6.setDisable(false);
+		for (int i = 0;i<buttons.length;i++) {
+			buttons[i].setDisable(false);
+	}
 		}
 	
 	/**
@@ -508,7 +509,7 @@ public class client_controller {
 	
 	/**
 	 * Set Text to Button
-	 * @author E.Thammavongsa
+	 * @author J.Arnold
 	 */	
 	public void setButtonCardsText(String Value){
 		
@@ -516,16 +517,10 @@ public class client_controller {
 		
 		Platform.runLater(new Runnable() {
 		    public void run() {
-		    	
-		    	// Update button text
-		    	
-		    	btncard1.setText(cards[0]);
-		    	btncard2.setText(cards[1]);
-		    	btncard3.setText(cards[2]);
-		    	btncard4.setText(cards[3]);
-		    	btncard5.setText(cards[4]);
-		    	btncard6.setText(cards[5]);	 	
-		    	
+		    	    	
+		    	for (int i = 0;i<cards.length;i++) {
+		    		buttons[i].setText(cards[i]);
+		    	}
 		    }
 		});
 	}
@@ -565,7 +560,7 @@ public class client_controller {
 	
 	/**
 	 * Add a new saldo to the labels
-	 * @author P.Mächler
+	 * @author J.Arnold
 	 */
 	public void addSaldo(String type, String saldo) {
 		
@@ -794,7 +789,7 @@ public class client_controller {
 	}
 	
 	/**
-	 * Activate Loser lables and get Score from Playerscore lable
+	 * Activate loser lables and get score from playerscore label
 	 * @author J.Arnold
 	 */
 	public void settingLoser(String loser) {
@@ -814,7 +809,8 @@ public class client_controller {
 			});
 		}
 	/**
-	 * Activate draw lables and get Score from Playerscore lable
+	 * Activate draw lables and get Score from playerscore labels
+	 * 
 	 * @author J.Arnold
 	 */	
 	public void settingDraw(String Draw) {
