@@ -18,6 +18,7 @@ public class client_controller {
 	
 	/**
 	 * Initiating game elements
+	 * 
 	 * @author J.Arnold
 	 */
 	public Button btnConnect;
@@ -81,6 +82,7 @@ public class client_controller {
 	/**
 	 * Action when clicking the ConnectButton
 	 * Creates a connection with the server via the method connect in server_model
+	 * 
 	 * @author J.Arnold
 	 */
 public void clickOnConnect () {
@@ -128,6 +130,7 @@ public void clickOnConnect () {
 	
 	/** Action for taking cards by click
 	 *  Opens the method takenCard in client_model
+	 *  
 	 * @author J.Arnold
 	 */
 	public void clickOnCard1() {
@@ -300,6 +303,7 @@ public void clickOnConnect () {
 	
 	/**
 	 * Set card images to the buttons
+	 * 
 	 * @author E.Thammavongsa
 	 */
 	public void setButtonImage(String imagebutton) {
@@ -508,7 +512,8 @@ public void clickOnConnect () {
 	
 	
 	/**
-	 * Set Text to Button
+	 * Set text to buttons
+	 * 
 	 * @author J.Arnold
 	 */	
 	public void setButtonCardsText(String Value){
@@ -528,6 +533,7 @@ public void clickOnConnect () {
 
 	/**
 	 * Sends the written message by clicking on the button to the server via socket
+	 * 
 	 * @author J.Arnold
 	 */
 	public void clickOnSend() {
@@ -536,8 +542,8 @@ public void clickOnConnect () {
 	}
 		
 	/**
-	 * The program don't know which player is the first or the second player
-	 * Set joiner name to labels
+	 * Sets the first joined and the second joined player
+	 *
 	 * 
 	 * @author J.Arnold
 	 */
@@ -560,6 +566,7 @@ public void clickOnConnect () {
 	
 	/**
 	 * Add a new saldo to the labels
+	 * 
 	 * @author J.Arnold
 	 */
 	public void addSaldo(String type, String saldo) {
@@ -581,6 +588,7 @@ public void clickOnConnect () {
 	
 	/**
 	 * React on actions concerning myself
+	 * 
 	 * @author P.Mächler
 	 */
 	public void myCardAction(String s){
@@ -606,6 +614,7 @@ public void clickOnConnect () {
 	
 	/**
 	 * React on actions concerning others
+	 * 
 	 * @author P.Mächler
 	 */
 	public void otherCardAction(String s){
@@ -631,6 +640,7 @@ public void clickOnConnect () {
 
 	/**
 	 * Increase card counter and update labels
+	 * 
 	 * @author J.Arnold
 	 */
 	public void increaseCardCount(String type, String card){
@@ -699,6 +709,7 @@ public void clickOnConnect () {
 	
 	/**
 	 * Decrease card counter and update labels
+	 * 
 	 * @author J.Arnold
 	 */
 	public void decreaseCardCount(String type, String card){
@@ -767,7 +778,8 @@ public void clickOnConnect () {
 	}	
 	
 	/**
-	 * Activate Winner lables and get the Score from the Labels
+	 * Activate winner lables and sets the finish score
+	 * 
 	 * @author J.Arnold
 	 */	
 	public void settingWinner(String winner) {
@@ -789,7 +801,8 @@ public void clickOnConnect () {
 	}
 	
 	/**
-	 * Activate loser lables and get score from playerscore label
+	 * Activate loser lables and sets the finish score
+	 * 
 	 * @author J.Arnold
 	 */
 	public void settingLoser(String loser) {
@@ -809,7 +822,7 @@ public void clickOnConnect () {
 			});
 		}
 	/**
-	 * Activate draw lables and get Score from playerscore labels
+	 * Activate draw lables and sets the finish score
 	 * 
 	 * @author J.Arnold
 	 */	
