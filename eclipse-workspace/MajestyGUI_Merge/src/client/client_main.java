@@ -49,7 +49,7 @@ public class client_main extends Application {
 			 * the two background pictures are implemented with the application.css
 			 * @author J.Arnold
 			 */
-			Scene scene = new Scene(root,1100,700);
+			Scene scene = new Scene(root,1100,650);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);

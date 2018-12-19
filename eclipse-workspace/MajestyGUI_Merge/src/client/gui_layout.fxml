@@ -1,3 +1,15 @@
+<!-- 
+**
+**
+**
+** This FXML creates the design & the id's for the GUI
+** The base for the GUI are encapsulated AnchorPanes
+** 
+** @author: J.Arnold
+**
+-->
+
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.text.*?>
