@@ -615,8 +615,9 @@ public void clickOnConnect () {
 		       		
 		    	} else if (parts[0].equals("heal")) {
 		    		model.mylazarett--;
+		    		checkHealerIncrease("my", parts[1]);
 		    		lblPlayer1lazarett.setText("" + model.mylazarett);
-		    		increaseCardCount("my", parts[1]);
+		    		increaseCardCount("my", Integer.toString(model.mylazarett)+ "|" + parts[1] + "|" + parts[0]);
 		    	}
 		    }
 		});
@@ -641,8 +642,9 @@ public void clickOnConnect () {
 		       		
 		    	} else if (parts[0].equals("heal")) {
 		    		model.otherlazarett--;
+		    		checkHealerIncrease("other", parts[1]);
 		    		lblPlayer2lazarett.setText("" + model.otherlazarett);
-		    		increaseCardCount("other", parts[1]);
+		    		increaseCardCount("other","" + Integer.toString(model.otherlazarett)+ "|" + parts[1] + "|" + parts[0]);
 		    	}
 		    }
 		});
@@ -653,35 +655,32 @@ public void clickOnConnect () {
 	 * 
 	 * @author J.Arnold
 	 */
-	public void increaseCardCount(String type, String card){
+	public void increaseCardCount(String type, String s){
+		
+		String[] parts = s.split("\\|");
+		String card = parts[1];	
 		
 		Platform.runLater(new Runnable() {
 		    public void run() {
 		    	
+		    			    	
 		    	// Increase my card counter
 		    	
 		    	if(type.equals("my")){
 		    		
-		    		if(card.equals("Muehle")){
-			    		model.mymuehle++;
+		    		if(card.equals("Muehle")){		    			
 			    		lblPlayer1muehle.setText("" + model.mymuehle);
-			    	} else if (card.equals("Brauerei")) {
-			    		model.mybrauerei++;
+			    	} else if (card.equals("Brauerei")) {			    		
 			    		lblPlayer1brauerei.setText("" + model.mybrauerei);
-			    	} else if (card.equals("Hexenhaus")) {
-			    		model.myhexenhaus++;
+			    	} else if (card.equals("Hexenhaus")) {			    		
 			    		lblPlayer1hexenhaus.setText("" + model.myhexenhaus);
-			    	} else if (card.equals("Wachturm")) {
-			    		model.mywachturm++;
+			    	} else if (card.equals("Wachturm")) {			    		
 			    		lblPlayer1wachturm.setText("" + model.mywachturm);
-			    	} else if (card.equals("Kaserne")) {
-			    		model.mykaserne++;
+			    	} else if (card.equals("Kaserne")) {			    		
 			    		lblPlayer1kaserne.setText("" + model.mykaserne);
-			    	} else if (card.equals("Taverne")) {
-			    		model.mytaverne++;
+			    	} else if (card.equals("Taverne")) {			    		
 			    		lblPlayer1taverne.setText("" + model.mytaverne);
-			    	} else if (card.equals("Schloss")) {
-			    		model.myschloss++;
+			    	} else if (card.equals("Schloss")) {			    		
 			    		lblPlayer1schloss.setText("" + model.myschloss);
 			    	} 
 		    		
@@ -689,32 +688,71 @@ public void clickOnConnect () {
 
 		    	} else {
 		    		
-		    		if(card.equals("Muehle")){
-			    		model.othermuehle++;
+		    		if(card.equals("Muehle")){			    		
 			    		lblPlayer2muehle.setText("" + model.othermuehle);
 		    		} else if (card.equals("Brauerei")) {
-			    		model.otherbrauerei++;
 			    		lblPlayer2brauerei.setText("" + model.otherbrauerei);
-			    	} else if (card.equals("Hexenhaus")) {
-			    		model.otherhexenhaus++;
+			    	} else if (card.equals("Hexenhaus")) {			    		
 			    		lblPlayer2hexenhaus.setText("" + model.otherhexenhaus);
-			    	} else if (card.equals("Wachturm")) {
-			    		model.otherwachturm++;
+			    	} else if (card.equals("Wachturm")) {			    		
 			    		lblPlayer2wachturm.setText("" + model.otherwachturm);
-			    	} else if (card.equals("Kaserne")) {
-			    		model.otherkaserne++;
+			    	} else if (card.equals("Kaserne")) {			    	
 			    		lblPlayer2kaserne.setText("" + model.otherkaserne);
-			    	} else if (card.equals("Taverne")) {
-			    		model.othertaverne++;
+			    	} else if (card.equals("Taverne")) {			    		
 			    		lblPlayer2taverne.setText("" + model.othertaverne);
-			    	} else if (card.equals("Schloss")) {
-			    		model.otherschloss++;
+			    	} else if (card.equals("Schloss")) {			    		
 			    		lblPlayer2schloss.setText("" + model.otherschloss);
 			    	} 
 				}
 		         	
 		    }
 		});
+	}
+	
+	/**
+	 * To add the card back after the card has been healed
+	 * @author E.Thammavongsa
+	 */	
+	
+	public void checkHealerIncrease(String type, String card) {
+		if(type.equals("my")){
+    		
+    		if(card.equals("Muehle")){		    			
+	    		model.mymuehle++;
+	    	} else if (card.equals("Brauerei")) {			    		
+	    		model.mybrauerei++;
+	    	} else if (card.equals("Hexenhaus")) {			    		
+	    		model.myhexenhaus++;
+	    	} else if (card.equals("Wachturm")) {			    		
+	    		model.mywachturm++;
+	    	} else if (card.equals("Kaserne")) {			    		
+	    		model.mykaserne++;
+	    	} else if (card.equals("Taverne")) {			    		
+	    		model.mytaverne++;
+	    	} else if (card.equals("Schloss")) {			    		
+	    		model.myschloss++;
+	    	} 
+    		
+    	// Increase others card counter
+
+    	} else {
+    		
+    		if(card.equals("Muehle")){			    		
+	    		model.othermuehle++;
+    		} else if (card.equals("Brauerei")) {
+	    		model.otherbrauerei++;
+	    	} else if (card.equals("Hexenhaus")) {			    		
+	    		model.otherhexenhaus++;
+	    	} else if (card.equals("Wachturm")) {			    		
+	    		model.otherwachturm++;
+	    	} else if (card.equals("Kaserne")) {			    	
+	    		model.otherkaserne++;
+	    	} else if (card.equals("Taverne")) {			    		
+	    		model.othertaverne++;
+	    	} else if (card.equals("Schloss")) {			    		
+	    		model.otherschloss++;
+	    	} 
+		}
 	}
 	
 	/**

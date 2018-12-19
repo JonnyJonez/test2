@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Logger;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import commons.CardStackMsg;
 import commons.CardTakenMsg;
 import commons.ChatMsg;
@@ -43,6 +45,7 @@ public class client_model {
 	private Socket socket;
 	public String name;
 	private int joincounter;
+	private String tmpcountcard;
 	
 	// Add counter for my and others card
 	
@@ -138,10 +141,12 @@ public class client_model {
 								
 							} else if (scoremsg.getScoreType().equals("take")) {
 								
-								if(scoremsg.getName().equals(name)){
-									myCardTaken.set(((ScoreMsg) msg).getCard());
+								if(scoremsg.getName().equals(name)){								
+									tmpcountcard = MyCheckCardtype(scoremsg.getCard());
+									myCardTaken.set("" + tmpcountcard + "|" + ((ScoreMsg) msg).getCard());
 									} else {
-									otherCardTaken.set(((ScoreMsg) msg).getCard());
+										tmpcountcard = OtherCheckCardtype(scoremsg.getCard());
+										otherCardTaken.set("" + tmpcountcard + "|" + ((ScoreMsg) msg).getCard());
 									}
 								
 								newestMessage.set(""); 
@@ -346,6 +351,70 @@ public class client_model {
 	public String receiveVisibility() {
 		logger.info("Receive visibility");
 		return buttonsVis.get();
+	}
+	
+	/**
+	 * Check Card for Increase
+	 * @author E.Thammavongsa
+	 */	
+	public String MyCheckCardtype(String CheckCard) {
+				
+    		
+    		if(CheckCard.equals("Muehle")){
+	    		mymuehle++;
+	    		tmpcountcard = Integer.toString(mymuehle);
+	    	} else if (CheckCard.equals("Brauerei")) {
+	    		mybrauerei++;
+	    		tmpcountcard = Integer.toString(mybrauerei);
+	    	} else if (CheckCard.equals("Hexenhaus")) {
+	    		myhexenhaus++;	    		
+	    		tmpcountcard = Integer.toString(myhexenhaus);
+	    	} else if (CheckCard.equals("Wachturm")) {
+	    		mywachturm++;	    		
+	    		tmpcountcard = Integer.toString(mywachturm);
+	    	} else if (CheckCard.equals("Kaserne")) {
+	    		mykaserne++;	    		
+	    		tmpcountcard = Integer.toString(mykaserne);
+	    	} else if (CheckCard.equals("Taverne")) {
+	    		mytaverne++;	    		
+	    		tmpcountcard = Integer.toString(mytaverne);
+	    	} else if (CheckCard.equals("Schloss")) {
+	    		myschloss++;	    		
+	    		tmpcountcard = Integer.toString(myschloss);
+	    	} 
+    		
+    	return this.tmpcountcard;
+	}
+	/**
+	 * Check other player card for increase
+	 * @author E.Thammavongsa
+	 */	
+	public String OtherCheckCardtype(String CheckCard) {				
+    		
+		if(CheckCard.equals("Muehle")){
+    		othermuehle++;
+    		tmpcountcard = Integer.toString(othermuehle);
+    	} else if (CheckCard.equals("Brauerei")) {
+    		otherbrauerei++;
+    		tmpcountcard = Integer.toString(otherbrauerei);
+    	} else if (CheckCard.equals("Hexenhaus")) {
+    		otherhexenhaus++;	    		
+    		tmpcountcard = Integer.toString(otherhexenhaus);
+    	} else if (CheckCard.equals("Wachturm")) {
+    		otherwachturm++;	    		
+    		tmpcountcard = Integer.toString(otherwachturm);
+    	} else if (CheckCard.equals("Kaserne")) {
+    		otherkaserne++;	    		
+    		tmpcountcard = Integer.toString(otherkaserne);
+    	} else if (CheckCard.equals("Taverne")) {
+    		othertaverne++;	    		
+    		tmpcountcard = Integer.toString(othertaverne);
+    	} else if (CheckCard.equals("Schloss")) {
+    		otherschloss++;	    		
+    		tmpcountcard = Integer.toString(otherschloss);
+    	} 
+		
+	return this.tmpcountcard;
 	}
 	
 
