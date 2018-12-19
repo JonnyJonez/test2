@@ -25,13 +25,13 @@ public class client_controller {
 	public Button btnSend;
 	public Button btnMute;
 	
-	public Button btncard1;
-	public Button btncard2;
-	public Button btncard3;
-	public Button btncard4;
-	public Button btncard5;
-	public Button btncard6;
-	Button[] buttons = {btncard1, btncard2, btncard3, btncard4, btncard5, btncard6}; 
+	public Button btnCard1;
+	public Button btnCard2;
+	public Button btnCard3;
+	public Button btnCard4;
+	public Button btnCard5;
+	public Button btnCard6;
+	Button[] buttons = {btnCard1, btnCard2, btnCard3, btnCard4, btnCard5, btnCard6}; 
 		
 	public TextField txtIpAddress;
 	public TextField txtPort;
@@ -134,27 +134,27 @@ public void clickOnConnect () {
 	 * @author J.Arnold
 	 */
 	public void clickOnCard1() {
-		model.takeCard(btncard1.getText());
+		model.takeCard(btnCard1.getText());
 		model.takenCard(1);
 	}	
 	public void clickOnCard2() {
-		model.takeCard(btncard2.getText());
+		model.takeCard(btnCard2.getText());
 		model.takenCard(2);
 	}
 	public void clickOnCard3() {
-		model.takeCard(btncard3.getText());
+		model.takeCard(btnCard3.getText());
 		model.takenCard(3);
 	}
 	public void clickOnCard4() {
-		model.takeCard(btncard4.getText());
+		model.takeCard(btnCard4.getText());
 		model.takenCard(4);
 	}
 	public void clickOnCard5() {
-		model.takeCard(btncard5.getText());
+		model.takeCard(btnCard5.getText());
 		model.takenCard(5);
 	}
 	public void clickOnCard6() {
-		model.takeCard(btncard6.getText());
+		model.takeCard(btnCard6.getText());
 		model.takenCard(6);
 	}	
 	
@@ -283,10 +283,17 @@ public void clickOnConnect () {
 	 */
 	
 	public void setButtonsInvisible(){
+		btnCard1.setDisable(true);
+		btnCard2.setDisable(true);
+		btnCard3.setDisable(true);
+		btnCard4.setDisable(true);
+		btnCard5.setDisable(true);
+		btnCard6.setDisable(true);
+		
 				
-		for (int i = 0;i<buttons.length;i++) {
+		/*for (int i = 0;i<buttons.length;i++) {
 				buttons[i].setDisable(true);
-		}
+		}*/
 	}
 	
 	/** Set all card buttons to visible
@@ -296,10 +303,17 @@ public void clickOnConnect () {
 	
 	public void setButtonsVisible(){
 		
-		for (int i = 0;i<buttons.length;i++) {
+		btnCard1.setDisable(false);
+		btnCard2.setDisable(false);
+		btnCard3.setDisable(false);
+		btnCard4.setDisable(false);
+		btnCard5.setDisable(false);
+		btnCard6.setDisable(false);
+		
+		/*for (int i = 0;i<buttons.length;i++) {
 			buttons[i].setDisable(false);
+		}*/
 	}
-		}
 	
 	/**
 	 * Set card images to the buttons
@@ -350,25 +364,25 @@ public void clickOnConnect () {
 					if(posID == 1) {
 						switch (Cardimage) {
 						case "Wachturm":
-							btncard1.setGraphic(ViewWachturm);							
+							btnCard1.setGraphic(ViewWachturm);							
 							break;
 						case "Brauerei":
-							btncard1.setGraphic(ViewBrauerei);
+							btnCard1.setGraphic(ViewBrauerei);
 							break;
 						case "Hexenhaus":
-							btncard1.setGraphic(ViewHexenhaus);
+							btnCard1.setGraphic(ViewHexenhaus);
 							break;
 						case "Muehle":
-							btncard1.setGraphic(ViewMuehle);
+							btnCard1.setGraphic(ViewMuehle);
 							break;
 						case "Kaserne":
-							btncard1.setGraphic(ViewKaserne);
+							btnCard1.setGraphic(ViewKaserne);
 							break;
 						case "Schloss":
-							btncard1.setGraphic(ViewSchloss);
+							btnCard1.setGraphic(ViewSchloss);
 							break;
 						case "Taverne":
-							btncard1.setGraphic(ViewTaverne);
+							btnCard1.setGraphic(ViewTaverne);
 							break;
 						default:
 							break;
@@ -376,25 +390,25 @@ public void clickOnConnect () {
 					} else if(posID == 2) {
 							switch (Cardimage) {
 							case "Wachturm":
-								btncard2.setGraphic(ViewWachturm);							
+								btnCard2.setGraphic(ViewWachturm);							
 								break;
 							case "Brauerei":
-								btncard2.setGraphic(ViewBrauerei);
+								btnCard2.setGraphic(ViewBrauerei);
 								break;
 							case "Hexenhaus":
-								btncard2.setGraphic(ViewHexenhaus);
+								btnCard2.setGraphic(ViewHexenhaus);
 								break;
 							case "Muehle":
-								btncard2.setGraphic(ViewMuehle);
+								btnCard2.setGraphic(ViewMuehle);
 								break;
 							case "Kaserne":
-								btncard2.setGraphic(ViewKaserne);
+								btnCard2.setGraphic(ViewKaserne);
 								break;
 							case "Schloss":
-								btncard2.setGraphic(ViewSchloss);
+								btnCard2.setGraphic(ViewSchloss);
 								break;
 							case "Taverne":
-								btncard2.setGraphic(ViewTaverne);
+								btnCard2.setGraphic(ViewTaverne);
 								break;
 							default:
 								break;
@@ -402,25 +416,25 @@ public void clickOnConnect () {
 					} else if(posID == 3) {
 							switch (Cardimage) {
 							case "Wachturm":
-								btncard3.setGraphic(ViewWachturm);							
+								btnCard3.setGraphic(ViewWachturm);							
 								break;
 							case "Brauerei":
-								btncard3.setGraphic(ViewBrauerei);
+								btnCard3.setGraphic(ViewBrauerei);
 								break;
 							case "Hexenhaus":
-								btncard3.setGraphic(ViewHexenhaus);
+								btnCard3.setGraphic(ViewHexenhaus);
 								break;
 							case "Muehle":
-								btncard3.setGraphic(ViewMuehle);
+								btnCard3.setGraphic(ViewMuehle);
 								break;
 							case "Kaserne":
-								btncard3.setGraphic(ViewKaserne);
+								btnCard3.setGraphic(ViewKaserne);
 								break;
 							case "Schloss":
-								btncard3.setGraphic(ViewSchloss);
+								btnCard3.setGraphic(ViewSchloss);
 								break;
 							case "Taverne":
-								btncard3.setGraphic(ViewTaverne);
+								btnCard3.setGraphic(ViewTaverne);
 								break;
 							default:
 								break;
@@ -428,25 +442,25 @@ public void clickOnConnect () {
 					}else if(posID == 4) {
 							switch (Cardimage) {
 							case "Wachturm":
-								btncard4.setGraphic(ViewWachturm);							
+								btnCard4.setGraphic(ViewWachturm);							
 								break;
 							case "Brauerei":
-								btncard4.setGraphic(ViewBrauerei);
+								btnCard4.setGraphic(ViewBrauerei);
 								break;
 							case "Hexenhaus":
-								btncard4.setGraphic(ViewHexenhaus);
+								btnCard4.setGraphic(ViewHexenhaus);
 								break;
 							case "Muehle":
-								btncard4.setGraphic(ViewMuehle);
+								btnCard4.setGraphic(ViewMuehle);
 								break;
 							case "Kaserne":
-								btncard4.setGraphic(ViewKaserne);
+								btnCard4.setGraphic(ViewKaserne);
 								break;
 							case "Schloss":
-								btncard4.setGraphic(ViewSchloss);
+								btnCard4.setGraphic(ViewSchloss);
 								break;
 							case "Taverne":
-								btncard4.setGraphic(ViewTaverne);
+								btnCard4.setGraphic(ViewTaverne);
 								break;
 							default:
 								break;
@@ -454,25 +468,25 @@ public void clickOnConnect () {
 					}else if(posID == 5) {
 							switch (Cardimage) {
 							case "Wachturm":
-								btncard5.setGraphic(ViewWachturm);							
+								btnCard5.setGraphic(ViewWachturm);							
 								break;
 							case "Brauerei":
-								btncard5.setGraphic(ViewBrauerei);
+								btnCard5.setGraphic(ViewBrauerei);
 								break;
 							case "Hexenhaus":
-								btncard5.setGraphic(ViewHexenhaus);
+								btnCard5.setGraphic(ViewHexenhaus);
 								break;
 							case "Muehle":
-								btncard5.setGraphic(ViewMuehle);
+								btnCard5.setGraphic(ViewMuehle);
 								break;
 							case "Kaserne":
-								btncard5.setGraphic(ViewKaserne);
+								btnCard5.setGraphic(ViewKaserne);
 								break;
 							case "Schloss":
-								btncard5.setGraphic(ViewSchloss);
+								btnCard5.setGraphic(ViewSchloss);
 								break;
 							case "Taverne":
-								btncard5.setGraphic(ViewTaverne);
+								btnCard5.setGraphic(ViewTaverne);
 								break;
 							default:
 								break;
@@ -480,25 +494,25 @@ public void clickOnConnect () {
 					}else if(posID == 6) {
 							switch (Cardimage) {
 							case "Wachturm":
-								btncard6.setGraphic(ViewWachturm);							
+								btnCard6.setGraphic(ViewWachturm);							
 								break;
 							case "Brauerei":
-								btncard6.setGraphic(ViewBrauerei);
+								btnCard6.setGraphic(ViewBrauerei);
 								break;
 							case "Hexenhaus":
-								btncard6.setGraphic(ViewHexenhaus);
+								btnCard6.setGraphic(ViewHexenhaus);
 								break;
 							case "Muehle":
-								btncard6.setGraphic(ViewMuehle);
+								btnCard6.setGraphic(ViewMuehle);
 								break;
 							case "Kaserne":
-								btncard6.setGraphic(ViewKaserne);
+								btnCard6.setGraphic(ViewKaserne);
 								break;
 							case "Schloss":
-								btncard6.setGraphic(ViewSchloss);
+								btnCard6.setGraphic(ViewSchloss);
 								break;
 							case "Taverne":
-								btncard6.setGraphic(ViewTaverne);
+								btnCard6.setGraphic(ViewTaverne);
 								break;
 							default:
 								break;
@@ -523,9 +537,12 @@ public void clickOnConnect () {
 		Platform.runLater(new Runnable() {
 		    public void run() {
 		    	    	
-		    	for (int i = 0;i<cards.length;i++) {
-		    		buttons[i].setText(cards[i]);
-		    	}
+		    	btnCard1.setText(cards[0]);
+		    	btnCard2.setText(cards[1]);
+		    	btnCard3.setText(cards[2]);
+		    	btnCard4.setText(cards[3]);
+		    	btnCard5.setText(cards[4]);
+		    	btnCard6.setText(cards[5]);
 		    }
 		});
 	}
