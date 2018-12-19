@@ -289,11 +289,7 @@ public void clickOnConnect () {
 		btnCard4.setDisable(true);
 		btnCard5.setDisable(true);
 		btnCard6.setDisable(true);
-		
-				
-		/*for (int i = 0;i<buttons.length;i++) {
-				buttons[i].setDisable(true);
-		}*/
+
 	}
 	
 	/** Set all card buttons to visible
@@ -310,9 +306,6 @@ public void clickOnConnect () {
 		btnCard5.setDisable(false);
 		btnCard6.setDisable(false);
 		
-		/*for (int i = 0;i<buttons.length;i++) {
-			buttons[i].setDisable(false);
-		}*/
 	}
 	
 	/**
